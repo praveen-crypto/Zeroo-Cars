@@ -11,5 +11,7 @@ __pycache__/
 postcss
 
 sass
+
 run_server.py
-requirements.txt
+
+node_modules
