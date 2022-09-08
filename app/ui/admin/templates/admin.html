@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<!-- Developed by Praveen, Balaji. -->
+<html lang="en">
+<head>
+    <meta charset="UTF-8">    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="{{ url_for('static', path='common/resources/favico.png'  ) }}" sizes="10x10">
+
+    <title>Admin Zeroo Cars</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"   rel="stylesheet">
+
+    <link rel="stylesheet" href="{{ url_for('static', path='common/css/sanitize.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', path='admin/css/admin.css') }}">
+    
+    <link href="https://unpkg.com/filepond/dist/filepond.css" rel="stylesheet" />
+    <link href="https://unpkg.com/filepond-plugin-image-preview/dist/filepond-plugin-image-preview.css" rel="stylesheet" />
+    <link href="https://unpkg.com/filepond-plugin-file-poster/dist/filepond-plugin-file-poster.css" rel="stylesheet"/>
+    <link href="https://unpkg.com/filepond-plugin-image-edit/dist/filepond-plugin-image-edit.css" rel="stylesheet"/>
+    
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.24.0/axios.min.js" integrity="sha512-u9akINsQsAkG9xjc1cnGF4zw5TFDwkxuc9vUp5dltDWYCSmyd0meygbvgXrlc/z7/o4a19Fb5V0OUE58J7dcyw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    
+    <script src="https://unpkg.com/filepond-plugin-file-poster/dist/filepond-plugin-file-poster.js"></script>
+    <script src="https://unpkg.com/filepond-plugin-file-validate-type/dist/filepond-plugin-file-validate-type.js"></script>
+    <script src="https://unpkg.com/filepond-plugin-file-validate-size/dist/filepond-plugin-file-validate-size.js"></script>
+    <script src="https://unpkg.com/filepond-plugin-file-rename/dist/filepond-plugin-file-rename.js"></script>
+    
+    <script src="https://unpkg.com/filepond-plugin-image-preview/dist/filepond-plugin-image-preview.js"></script>
+    <script src="https://unpkg.com/filepond-plugin-image-validate-size/dist/filepond-plugin-image-validate-size.js"></script>
+    <script src="https://unpkg.com/filepond-plugin-image-crop/dist/filepond-plugin-image-crop.js"></script>
+    <script src="https://unpkg.com/filepond-plugin-image-resize/dist/filepond-plugin-image-resize.js"></script>
+    <script src="https://unpkg.com/filepond-plugin-image-edit/dist/filepond-plugin-image-edit.js"></script>
+    <script src="https://unpkg.com/filepond-plugin-image-transform/dist/filepond-plugin-image-transform.js"></script>
+
+    <script src="https://unpkg.com/filepond/dist/filepond.min.js"></script>
+    <script src="https://unpkg.com/jquery-filepond/filepond.jquery.js"></script>
+            
+    {% block script %}
+        
+    {% endblock %}
+
+</head>
+
+<body>
+    <div class="notice-text">
+        <h5 >VIEW THIS PAGE IN DESKTOP...</h5>
+    </div>
+
+    <nav class="nav">
+        <img class="nav-logo" src="{{ url_for('static', path='common/resources/logo-light.png'  ) }}" alt="">
+        
+        <ul class="nav-list" >
+            <li class="dashboard {{dashboard}}">
+                <a href="/admin/dashboard/" > 
+                   <span class="material-icons"> dashboard </span> <span class="nav-name">Dashboard</span> 
+                </a>
+            </li>
+            
+            <li class="car {{cars}}">
+                <a href="/admin/cars/">
+                    <span class="material-icons"> directions_car </span> <span class="nav-name">Car</span> 
+                </a>
+            </li>
+
+            <li class="home {{image}}">
+                <a href="/admin/images/">
+                    <span class="material-icons"> image </span> <span class="nav-name">Image</span> 
+                </a>
+            </li>
+
+            <li class="notification {{notification}}">
+                <a href="/admin/notification/"> 
+                    <span class="material-icons"> notifications </span> <span class="nav-name">Notification</span> 
+                </a>
+            </li>
+
+            <li class="security {{security}}">
+                <a href="/admin/security/">
+                    <span class="material-icons"> admin_panel_settings </span> <span class="nav-name">Security</span> 
+                </a>
+            </li>
+            
+        </ul>
+
+    </nav>
+
+    <header class="sub-nav">
+        {% block title %}
+        {% endblock %}        
+        
+        <button class="logout" id="logout" >  
+            <span class="material-icons "> logout </span>
+            Logout 
+        </button>                               
+    </header>
+
+    {% block inner_nav %}
+
+    {% endblock %}
+
+    {% block content %}
+
+
+    {% endblock %}
+        
+    <script src="{{ url_for('static', path='admin/js/script.js') }}"></script>
+    
+</body>
+
+</html>

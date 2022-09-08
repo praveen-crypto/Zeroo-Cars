@@ -1,0 +1,2030 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="{{ url_for('static', path='common/resources/favico.png'  ) }}" sizes="10x10">
+
+    <title>Buy used car</title>
+
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"   rel="stylesheet">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.24.0/axios.min.js" integrity="sha512-u9akINsQsAkG9xjc1cnGF4zw5TFDwkxuc9vUp5dltDWYCSmyd0meygbvgXrlc/z7/o4a19Fb5V0OUE58J7dcyw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://kit.fontawesome.com/c0b7d13ec3.js" crossorigin="anonymous"></script>
+
+    <link rel="stylesheet" href="{{ url_for('static', path='user/css/individual_cars.css') }}">
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    
+    <!-- <script async src="https://www.googletagmanager.com/gtag/js?id=G-BS7FVMKV4M"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-BS7FVMKV4M');
+    </script> -->
+
+</head>
+<body>
+    <nav class="navbar d-none d-lg-block">
+        <div class="container desktop_nav">
+            <a class="navbar-brand" href="/">
+                <img class="nav_logo" src="{{ url_for('static', path='common/resources/logo-light.png'  ) }}" alt="">
+            </a>
+
+            <ul class="nav_list navbar-nav" >
+                <li class=" nav-item buy_car {{buy_car}}">
+                    <a href="/buy-used-car" class="nav-link">BUY CAR</a>
+                </li>
+                
+                <li class="nav-item sell_car {{sell_car}}">
+                    <a href="#" class="nav-link" data-bs-toggle="modal" data-bs-target="#sellcarModal">SELL CAR</a>
+                </li>
+
+                <li class="nav-item contact_us {{contact_us}}">
+                    <a href="#" class="nav-link" data-bs-toggle="modal" data-bs-target="#contactModal" >CONTACT US</a>
+                </li>
+
+                <li class="nav-item about_us {{about_us}}">
+                    <a href="#" class="nav-link" data-bs-toggle="modal" data-bs-target="#aboutModal">ABOUT US</a>
+                </li>
+                
+                <li class="nav-item faq {{faq}}">
+                    <a href="/#accordion_zeroo_faq" class="nav-link"> FAQ's  </a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    
+    <div class="container specific_car">
+        <nav class="mobile_nav">
+            <a href="/buy-used-car" id="buy_car_back_button" >  
+                <i class="fa fa-arrow-left link-dark" aria-hidden="true"></i>
+            </a>
+        </nav>
+
+        <header >
+            <h5 class="car_title">-</h5>
+            
+            <div class="book_now">
+                <a href="#" class="nav-link p-0" data-bs-toggle="modal" data-bs-target="#bookNowModal">
+                    <span class="bg-secondary text-white border border-2 border-secondary p-1">BOOK NOW</span><span class="border border-secondary border-2 p-1 carPrice"> </span>                
+                </a>
+            </div>
+        </header>
+
+        <div class="row car_carousel">
+            <div class="title">
+                <h5 class="p-0 m-0 carouselTitle">INTERIOR</h5>
+            </div>
+
+            <div id="car_carousel_control" class="carousel" data-interval="false">
+
+                <div class="carousel-inner mt-0">
+                    <!-- <div class="carousel-item active">
+                        <img src="https://picsum.photos/600/300" class="d-block w-100 carousel_images" alt="...">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="https://picsum.photos/600/300" class="d-block w-100" alt="...">
+                    </div> -->
+                </div>
+
+                <button class="carousel-control-prev" type="button" data-bs-target="#car_carousel_control" data-bs-slide="prev">
+                  <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                  <span class="visually-hidden">Previous</span>
+                </button>
+
+                <button class="carousel-control-next" type="button" data-bs-target="#car_carousel_control" data-bs-slide="next">
+                  <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                  <span class="visually-hidden">Next</span>
+                </button>
+            </div>
+
+            <div class="image_selector text-center ">
+                <button id="interior_carousel_image" class="active">Interior</button>
+                <button id="exterior_carousel_image">Exterior</button>
+                <!-- <button id="engine_carousel_image">Engine</button>
+                <button id="wheels_carousel_image">Wheels</button> -->
+            </div>
+        </div>
+
+        
+        <div class="row">
+            <!-- GENERAL DETAILS -->
+            <div class="col-12 general_details">
+                <div class="head">
+                    <h6>General details</h6>
+                </div>
+                <div class="row outer-body g-0 justify-content-center ">
+                    <div class="col-5 col-lg-3 make_year">
+                        <div class="title">
+                            Make year
+                        </div>
+                        <div class="body">
+                            
+                        </div>
+                    </div>
+                    
+                    <div class="col-5 col-lg-3 fuel">
+                        <div class="title">
+                            Fuel type
+                        </div>
+                        <div class="body">
+                            
+                        </div>
+                    </div>
+                    
+                    <div class="col-5 col-lg-3 km_driven">
+                        <div class="title">
+                            Kilometer driven
+                        </div>
+                        <div class="body">
+                            
+                        </div>
+                    </div>
+                    
+                    <div class="col-5 col-lg-3 transmission">
+                        <div class="title">
+                            Transmission
+                        </div>
+                        <div class="body">
+                            
+                        </div>
+                    </div>
+                    
+                    <div class="col-5 col-lg-3 no_of_owners">
+                        <div class="title">
+                            Owner
+                        </div>
+                        <div class="body">
+                            
+                        </div>
+                    </div>
+                    
+                    <div class="col-5 col-lg-3 insurance_validity">
+                        <div class="title">
+                            Insurance
+                        </div>
+                        <div class="body">
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Inspection Report -->
+            <div class="col-12  inspection_report">
+                <div class="head">
+                    <h6>Inspection report</h6>
+                </div>
+                
+                <div class="row body ">
+                    <div class="col-12 col-lg-6 overall_rating_report">                
+                        <a href="#" class="nav-link" id="report_overall_rating" data-bs-toggle="modal" data-bs-target="#inspectionreportmodal">
+                            <span>Overall rating</span>
+                            <i class="fas fa-angle-right"></i>
+                        </a>
+                    </div>
+    
+                    <div class="col-12 col-lg-6 exterior_report">
+                        <a href="#" class="nav-link" id="report_overall_rating" data-bs-toggle="modal" data-bs-target="#inspectionreportmodal">
+                            <span>Exterior</span>
+                            <i class="fas fa-angle-right"></i>                
+                        </a>    
+                    </div>
+    
+                    <div class="col-12 col-lg-6 interior_report">
+                        <a href="#" class="nav-link" id="report_overall_rating" data-bs-toggle="modal" data-bs-target="#inspectionreportmodal">
+                            <span>Interior</span>
+                            <i class="fas fa-angle-right"></i>               
+                        </a>    
+                    </div>
+                    
+                    <div class="col-12 col-lg-6 system_and_functions_report">
+                        <a href="#" class="nav-link" id="report_overall_rating" data-bs-toggle="modal" data-bs-target="#inspectionreportmodal">
+                            <span>System and functions </span>
+                            <i class="fas fa-angle-right"></i>
+                        </a>       
+                                    
+                    </div>
+    
+                    <div class="col-12 col-lg-6 suspension_and_brakes_report">
+                        <a href="#" class="nav-link" id="report_overall_rating" data-bs-toggle="modal" data-bs-target="#inspectionreportmodal">
+                            <span>Suspension and brakes</span>
+                            <i class="fas fa-angle-right"></i>
+                        </a>        
+                    </div >
+    
+                    <div class="col-12 col-lg-6 wheels_report">
+                        <a href="#" class="nav-link" id="report_overall_rating" data-bs-toggle="modal" data-bs-target="#inspectionreportmodal">
+                            <span>Wheel report</span>
+                            <i class="fas fa-angle-right"></i>
+                        </a>
+                        
+                    </div>
+    
+                    <div class="col-12 col-lg-6 hood_and_bonets_report">
+                        <a href="#" class="nav-link" id="report_overall_rating" data-bs-toggle="modal" data-bs-target="#inspectionreportmodal">
+                            <span>Hood and bonets</span>
+                            <i class="fas fa-angle-right"></i>
+                        </a>
+                    </div>
+                    
+                    <div class="col-12 col-lg-6 vehicle_document_report">
+                        <a href="#" class="nav-link" id="report_overall_rating" data-bs-toggle="modal" data-bs-target="#inspectionreportmodal">
+                            <span>Vehicle document</span><i class="fas fa-angle-right"></i>
+                        </a>                    
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- <div class="row general_details ">
+            <div class="col-12 head">
+                <h6>General details</h6>
+            </div>
+            <div class="row outer-body g-0 justify-content-center ">
+                <div class="col-5 make_year">
+                    <div class="title">
+                        Make year
+                    </div>
+                    <div class="body">
+                        2017
+                    </div>
+                </div>
+                
+                <div class="col-5 fuel">
+                    <div class="title">
+                        Fuel type
+                    </div>
+                    <div class="body">
+                        Petrol
+                    </div>
+                </div>
+                
+                <div class="col-5 km_driven">
+                    <div class="title">
+                        Kilometer driven
+                    </div>
+                    <div class="body">
+                        30,000 KM
+                    </div>
+                </div>
+                
+                <div class="col-5 transmission">
+                    <div class="title">
+                        Transmission
+                    </div>
+                    <div class="body">
+                        Manual
+                    </div>
+                </div>
+                
+                <div class="col-5 no_of_owners">
+                    <div class="title">
+                        Owner
+                    </div>
+                    <div class="body">
+                        1st Owner
+                    </div>
+                </div>
+                
+                <div class="col-5 insurance_validity">
+                    <div class="title">
+                        Insurance
+                    </div>
+                    <div class="body">
+                        Sep 2022
+                    </div>
+                </div>
+            </div>
+        </div> -->
+        
+        <!-- <div class="row inspection_report" >
+            <div class="head">
+                <h6>Inspection report</h6>
+            </div>
+
+            <div class="body ">
+                <div class="col-12 overall_rating_report">                
+                    <a href="#" class="nav-link" id="report_overall_rating" data-bs-toggle="modal" data-bs-target="#inspectionreportmodal">
+                        <span>Overall rating</span>
+                        <i class="fas fa-angle-right"></i>
+                    </a>
+                </div>
+
+                <div class="col-12 exterior_report">
+                    <a href="#" class="nav-link" id="report_overall_rating" data-bs-toggle="modal" data-bs-target="#inspectionreportmodal">
+                        <span>Exterior</span>
+                        <i class="fas fa-angle-right"></i>                
+                    </a>    
+                </div>
+
+                <div class="col-12 interior_report">
+                    <a href="#" class="nav-link" id="report_overall_rating" data-bs-toggle="modal" data-bs-target="#inspectionreportmodal">
+                        <span>Interior</span>
+                        <i class="fas fa-angle-right"></i>               
+                    </a>    
+                </div>
+                
+                <div class="col-12 system_and_functions_report">
+                    <a href="#" class="nav-link" id="report_overall_rating" data-bs-toggle="modal" data-bs-target="#inspectionreportmodal">
+                        <span>System and functions </span>
+                        <i class="fas fa-angle-right"></i>
+                    </a>       
+                                
+                </div>
+
+                <div class="col-12 suspension_and_brakes_report">
+                    <a href="#" class="nav-link" id="report_overall_rating" data-bs-toggle="modal" data-bs-target="#inspectionreportmodal">
+                        <span>Suspension and brakes</span>
+                        <i class="fas fa-angle-right"></i>
+                    </a>        
+                </div >
+
+                <div class="col-12 wheels_report">
+                    <a href="#" class="nav-link" id="report_overall_rating" data-bs-toggle="modal" data-bs-target="#inspectionreportmodal">
+                        <span>Wheel report</span>
+                        <i class="fas fa-angle-right"></i>
+                    </a>
+                    
+                </div>
+
+                <div class="col-12 hood_and_bonets_report">
+                    <a href="#" class="nav-link" id="report_overall_rating" data-bs-toggle="modal" data-bs-target="#inspectionreportmodal">
+                        <span>Hood and bonets</span>
+                        <i class="fas fa-angle-right"></i>
+                    </a>
+                </div>
+
+                <div class="col-12 vehicle_document_report">
+                    <a href="#" class="nav-link" id="report_overall_rating" data-bs-toggle="modal" data-bs-target="#inspectionreportmodal">
+                        <span>Vehicle document</span><i class="fas fa-angle-right"></i>
+                    </a>                    
+                </div>
+            </div>
+        </div> -->
+        
+        <!-- Inspection Report MODAL -->
+        <div class="modal p-0" id="inspectionreportmodal" class="inspectionReportModal" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal-dialog modal-fullscreen modal-dialog-scrollable">
+                <div class="modal-content">
+                    <div class="modal-header p-3 border-1 ">                        
+                        <button  class="border-0 bg-white ps-2 " data-bs-dismiss="modal" aria-label="Close"><i class="fas fa-arrow-left"></i></button>
+                    </div>
+
+                    <div class="modal-body ">
+                        <div class="container-fluid overall_rating_section ">
+                            <div class="row justify-content-evenly">
+
+                                <div class="col-12 col-lg-6  left">
+                                    <div class="title">
+                                        <h6 class="carName"></h6>
+                                    </div>
+                                    <div class="image_container">
+                                        <!-- <img src="https://freepngimg.com/thumb/car/4-2-car-png-hd.png" alt=""> -->
+                                    </div>
+                                    <div class="zeroo_rating">
+                                        <p>ZEROO RATING <span class="rating"></span> </p>
+                                        <div class="rating_group">                                            
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-12 col-lg-6 mt-lg-0 right">
+                                    <div class="title">
+                                        <h6>Overall Rating</h6>
+                                    </div>
+                                    <div class="content mt-lg-5">
+                                        <div class="overall_rating_exterior">
+                                            <span>Exterior condition</span>
+                                            <img src="{{ url_for('static', path='user/resources/car.png') }}" alt="exterior image">
+                                            <div class="rating"></div>
+                                        </div>
+                                        <div class="overall_rating_engine">
+                                            <span>Engine condition</span>
+                                            <img src="{{ url_for('static', path='user/resources/engine.png') }}" alt="engine image">
+                                            <div class="rating"></div>                  
+                                        </div>
+                                        <div class="overall_rating_interior">
+                                            <span>Interior condition</span>
+                                            <img src="{{ url_for('static', path='user/resources/seat.png') }}" alt="interior image">
+                                            <div class="rating"></div>
+                                        </div>
+                                        <div class="overall_rating_checkpoint">
+                                            <span>Checkpoints fulfilled</span>
+                                            <img src="{{ url_for('static', path='user/resources/checkpoint.png') }}" alt="checkpoint image">
+                                            <div class="rating"></div>                                            
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="container-fluid mt-lg-5 ">
+                            <div class="row justify-content-around  ">
+                                <div class="col-12  exterior_rating_section item">
+                                    <div class="title">
+                                        <h6>Exterior</h6>
+                                    </div>
+                                    <div class="body ">
+                                        <div class="front_bonnet  ">
+                                            <div class="text">Front bonnet</div>                                            
+                                            <div class="rating"></div>
+                                        </div>
+                                        <div class="license_plate  ">
+                                            <div class="text   ">License plate</div>
+                                            <div class="rating"></div>
+                                        </div>
+                                        <div class="ffront_bumper">
+                                            <div class="text">Front bumper</div>
+                                            <div class="rating"></div>
+                                        </div>
+                                        <div class="boot">
+                                            <div class="text">Boot</div>
+                                            <div class="rating"></div>
+                                        </div>
+                                        <div class="roof">
+                                            <div class="text">Roof</div>
+                                            <div class="rating"></div>
+                                        </div>
+                                        <div class="pillars">
+                                            <div class="text">Pillars</div>
+                                            <div class="rating"></div>
+                                        </div>
+                                        <div class="fuel_lid">
+                                            <div class="text">Fuel lid</div>
+                                            <div class="rating"></div>
+                                        </div>
+                                        <div class="rear_glass">
+                                            <div class="text">Rear glass</div>
+                                            <div class="rating"></div>
+                                        </div>
+                                        <div class="rear_bumper">
+                                            <div class="text">Rear bumper</div>
+                                            <div class="rating"></div>
+                                        </div>
+                                        <div class="running_board">
+                                            <div class="text">Running board</div>
+                                            <div class="rating"></div>
+                                        </div>
+                                        <div class="lh_side_fender">
+                                            <div class="text">Lh side fender</div>
+                                            <div class="rating"></div>
+                                        </div>
+                                        <div class="paint_peel_off">
+                                            <div class="text">Paint peel off</div>
+                                            <div class="rating"></div>
+                                        </div>
+                                        <div class="rh_side_fender">
+                                            <div class="text">Rh side fender</div>
+                                            <div class="rating"></div>
+                                        </div>
+                                        <div class="paint_condition">
+                                            <div class="text">Paint condition</div>
+                                            <div class="rating"></div>
+                                        </div>
+                                        <div class="paint_overspray">
+                                            <div class="text">Paint overspray</div>
+                                            <div class="rating"></div>
+                                        </div>
+                                        <div class="windsheld_front">
+                                            <div class="text">Windsheld front</div>
+                                            <div class="rating"></div>
+                                        </div>
+                                        <div class="exteriors_remark">
+                                            <div class="text">Exteriors remark</div>
+                                            <div class="rating"></div>
+                                        </div>
+                                        <div class="rh_quarter_panel">
+                                            <div class="text">Rh quarter panel</div>
+                                            <div class="rating"></div>
+                                        </div>
+                                        <div class="lh_side_rear_door">
+                                            <div class="text">Lh side rear door</div>
+                                            <div class="rating"></div>
+                                        </div>
+                                        <div class="rh_side_rear_door">
+                                            <div class="text">Rh side rear door</div>
+                                            <div class="rating"></div>
+                                        </div>
+                                        <div class="side_view_mirrors">
+                                            <div class="text">Side view mirrors</div>
+                                            <div class="rating"></div>
+                                        </div>
+                                        <div class="lh_side_front_door">
+                                            <div class="text">Lh side front door</div>
+                                            <div class="rating"></div>
+                                        </div>
+                                        <div class="lh_side_quarter_panel">
+                                            <div class="text">Lh side quarter panel</div>
+                                            <div class="rating"></div>
+                                        </div>
+                                                
+                                    </div>
+                                    <div class="remark">
+        
+                                    </div>
+                                </div>
+
+                                <div class="col-12   interior_rating_section item">
+                                    <div class="title">
+                                        <h6>Interior</h6>
+                                    </div>
+                                    <div class="body">
+                                        <div class="horns">
+                                            <div class="text">Horns</div>
+                                            <div class="rating"></div>
+                                        </div>
+                                        <div class="pedals">
+                                            <div class="text">Pedals</div>
+                                            <div class="rating"></div>
+                                        </div>
+                                        <div class="steering">
+                                            <div class="text">Steering</div>
+                                            <div class="rating"></div>
+                                        </div>
+                                        <div class="dash_board">
+                                            <div class="text">Dash board</div>
+                                            <div class="rating"></div>
+                                        </div>
+                                        <div class="hand_brake">
+                                            <div class="text">Hand brake</div>
+                                            <div class="rating"></div>
+                                        </div>
+                                        <div class="upholstery">
+                                            <div class="text">Upholstery</div>
+                                            <div class="rating"></div>
+                                        </div>
+                                        <div class="hazard_lights">
+                                            <div class="text">Hazard lights</div>
+                                            <div class="rating"></div>
+                                        </div>
+                                        <div class="boot_condition">
+                                            <div class="text">Boot condition</div>
+                                            <div class="rating"></div>
+                                        </div>
+                                        <div class="cruise_control">
+                                            <div class="text">Cruise control</div>
+                                            <div class="rating"></div>
+                                        </div>
+                                        <div class="interior_trims">
+                                            <div class="text">Interior trims</div>
+                                            <div class="rating"></div>
+                                        </div>
+                                        <div class="rear_view_camera">
+                                            <div class="text">Rear view camera</div>
+                                            <div class="rating"></div>
+                                        </div>
+                                        <div class="odometer_assembly">
+                                            <div class="text">Odometer assembly</div>
+                                            <div class="rating"></div>
+                                        </div>
+                                        <div class="carpet_and_floormat">
+                                            <div class="text">Carpet and floormat</div>
+                                            <div class="rating"></div>
+                                        </div>
+                                        <div class="door_pannel_and_hinges">
+                                            <div class="text">Door pannel and hinges</div>
+                                            <div class="rating"></div>
+                                        </div>
+                                        <div class="wheel_spanner_available">
+                                            <div class="text">Wheel spanner available</div>
+                                            <div class="rating"></div>
+                                        </div>
+                                        <div class="jack_and_tommy_available">
+                                            <div class="text">Jack and tommy available</div>
+                                            <div class="rating"></div>
+                                        </div>
+                                        <div class="centeal_lock_keyless_entry">
+                                            <div class="text">Centeal lock keyless entry</div>
+                                            <div class="rating"></div>
+                                        </div>
+                                        <div class="accessorie_audio_and_covers">
+                                            <div class="text">Accessorie audio and covers</div>
+                                            <div class="rating"></div>
+                                        </div>
+                                        <div class="combination_switch_assembly">
+                                            <div class="text">Combination switch assembly</div>
+                                            <div class="rating"></div>
+                                        </div>
+                                        <div class="seat_and_seat_belt_condition">
+                                            <div class="text">Seat and seat belt condition</div>
+                                            <div class="rating"></div>
+                                        </div>
+                                                                                                    
+        
+                                    </div>
+                                    <div class="remark">
+                                        <div class="title"></div>
+                                        <div class="interior_remark"></div>
+                                    </div>                            
+                                </div>
+        
+                                <div class="col-12    system_and_functions_rating_section">
+                                    <div class="title">
+                                        <h6>System and Functions</h6>
+                                    </div>
+                                    <div class="body">
+                                        <div class="abs">
+                                            <div class="text">Abs</div>
+                                            <div class="rating"></div>
+                                        </div>
+                                        <div class="esp">
+                                            <div class="text">Esp</div>
+                                            <div class="rating"></div>
+                                        </div>
+                                        <div class="heater">
+                                            <div class="text">Heater</div>
+                                            <div class="rating"></div>
+                                        </div>
+                                        <div class="airbags">
+                                            <div class="text">Airbags</div>
+                                            <div class="rating"></div>
+                                        </div>
+                                        <div class="cooling">
+                                            <div class="text">Cooling</div>
+                                            <div class="rating"></div>
+                                        </div>
+                                        <div class="fog_lamp">
+                                            <div class="text">Fog lamp</div>
+                                            <div class="rating"></div>
+                                        </div>
+                                        <div class="ac_blower">
+                                            <div class="text">Ac blower</div>
+                                            <div class="rating"></div>
+                                        </div>
+                                        <div class="alterrnator">
+                                            <div class="text">Alterrnator</div>
+                                            <div class="rating"></div>
+                                        </div>
+                                        <div class="remote_lock">
+                                            <div class="text">Remote lock</div>
+                                            <div class="rating"></div>
+                                        </div>
+                                        <div class="music_system">
+                                            <div class="text">Music system</div>
+                                            <div class="rating"></div>
+                                        </div>
+                                        <div class="power_window">
+                                            <div class="text">Power window</div>
+                                            <div class="rating"></div>
+                                        </div>
+                                        <div class="ac_compressor">
+                                            <div class="text">Ac compressor</div>
+                                            <div class="rating"></div>
+                                        </div>
+                                        <div class="starter_motor">
+                                            <div class="text">Starter motor</div>
+                                            <div class="rating"></div>
+                                        </div>
+                                        <div class="battery_condition">
+                                            <div class="text">Battery condition</div>
+                                            <div class="rating"></div>
+                                        </div>
+                                        <div class="head_and_tail_lamp">
+                                            <div class="text">Head and tail lamp</div>
+                                            <div class="rating"></div>
+                                        </div>
+                                        <div class="interior_light_check">
+                                            <div class="text">Interior light check</div>
+                                            <div class="rating"></div>
+                                        </div>
+                                        <div class="transmission_control">
+                                            <div class="text">Transmission control</div>
+                                            <div class="rating"></div>
+                                        </div>
+                                        <div class="reverse_parking__assist">
+                                            <div class="text">Reverse parking  assist</div>
+                                            <div class="rating"></div>
+                                        </div>
+                                        <div class="accessories_audio_covers">
+                                            <div class="text">Accessories audio covers</div>
+                                            <div class="rating"></div>
+                                        </div>
+                                        <div class="ignition_and_fuel_system">
+                                            <div class="text">Ignition and fuel system</div>
+                                            <div class="rating"></div>
+                                        </div>
+                                        <div class="wiper_assembly_and_blades">
+                                            <div class="text">Wiper assembly and blades</div>
+                                            <div class="rating"></div>
+                                        </div>
+                                        <div class="system_and_functions_remark">
+                                            <div class="text">System and functions remark</div>
+                                            <div class="rating"></div>
+                                        </div>
+                                    </div>
+                                    <div class="remark">
+                                        <div class="title"></div>
+                                        <div class="interior_remark"></div>
+                                    </div>                            
+                                </div>                                
+                            
+                                <div class="col-12   suspension_and_brakes_section">
+                                    <div class="title">
+                                        <h6>Suspension and Brakes</h6> 
+                                    </div>
+                                    <div class="body">
+                                        <div class="front_disc_and_pads">
+                                            <div class="text">Front disc and pads</div>
+                                            <div class="rating"></div>
+                                        </div>
+                                        <div class="rear_drum_and_shoes">
+                                            <div class="text">Rear drum and shoes</div>
+                                            <div class="rating"></div>
+                                        </div>
+                                        <div class="rear_shock_assembly">
+                                            <div class="text">Rear shock assembly</div>
+                                            <div class="rating"></div>
+                                        </div>
+                                        <div class="front_strut_assembly">
+                                            <div class="text">Front strut assembly</div>
+                                            <div class="rating"></div>
+                                        </div>
+                                        <div class="steering_box_assembly">
+                                            <div class="text">Steering box assembly</div>
+                                            <div class="rating"></div>
+                                        </div>
+                                        <div class="power_steering_assembly">
+                                            <div class="text">Power steering assembly</div>
+                                            <div class="rating"></div>
+                                        </div>                               
+                                                                            
+                                    </div>
+                                    <div class="remark">
+                                        <div class="title"></div>
+                                        <div class="suspension_and_brakes_remark"></div>
+                                    </div>                            
+                                </div>
+                                
+                                <div class="col-12   hood_and_bonnet_section">
+                                    <div class="title">
+                                        <h6>Hood and Bonnet</h6>
+                                    </div>
+                                    <div class="body">
+                                        <div class="wiring">
+                                            <div class="text">Wiring</div>
+                                            <div class="rating"></div>
+                                        </div>
+                                        <div class="radiator">
+                                            <div class="text">Radiator</div>
+                                            <div class="rating"></div>
+                                        </div>
+                                        <div class="engine_oil">
+                                            <div class="text">Engine oil</div>
+                                            <div class="rating"></div>
+                                        </div>
+                                        <div class="coolant_level">
+                                            <div class="text">Coolant level</div>
+                                            <div class="rating"></div>
+                                        </div>
+                                        <div class="rh_side_apron">
+                                            <div class="text">Rh side apron</div>
+                                            <div class="rating"></div>
+                                        </div>
+                                        <div class="undercarriage">
+                                            <div class="text">Undercarriage</div>
+                                            <div class="rating"></div>
+                                        </div>  
+                                        <div class="exhaust_system">
+                                            <div class="text">Exhaust system</div>
+                                            <div class="rating"></div>
+                                        </div>  
+                                        <div class="brake_fluid_level">
+                                            <div class="text">Brake fluid level</div>
+                                            <div class="rating"></div>
+                                        </div>  
+                                        <div class="oil_and_fluid_leakage">
+                                            <div class="text">Oil and fluid leakage</div>
+                                            <div class="rating"></div>
+                                        </div>  
+                                        <div class="chassis_and_vehicle_frame">
+                                            <div class="text">Chassis and vehicle frame</div>
+                                            <div class="rating"></div>
+                                        </div>  
+                                        <div class="brake_and_coolant_hose_pipe">
+                                            <div class="text">Brake and coolant hose pipe</div>
+                                            <div class="rating"></div>
+                                        </div>                                                               
+                                                                            
+                                    </div>
+                                    <div class="remark">
+                                        <div class="title"></div>
+                                        <div class="hood_and_bonnet_remark"></div>
+                                    </div>                            
+                                </div>
+        
+                                <div class="col-12   wheels_rating_section">
+                                    <div class="title">
+                                        <h6>Wheels</h6>
+                                    </div>
+                                    <div class="body">
+                                        <div class="alloy_wheels">
+                                            <div class="text">Alloy wheels</div>
+                                            <div class="rating"></div>
+                                        </div>
+                                        <div class="tyre_condition">
+                                            <div class="text">Tyre condition</div>
+                                            <div class="rating"></div>
+                                        </div>
+                                        <div class="number_of_tyres">
+                                            <div class="text">Number of tyres</div>
+                                            <div class="rating"></div>
+                                        </div>
+                                        <div class="spare_tyre_condition">
+                                            <div class="text">Spare tyre condition</div>
+                                            <div class="rating"></div>
+                                        </div>                              
+                                        
+                                    </div>
+                                    <div class="remark">
+                                        <div class="title"></div>
+                                        <div class="wheels_remark"></div>
+                                    </div>                            
+                                </div>
+        
+                                <div class="col-12   documents_rating_section">
+                                    <div class="title">
+                                        <h6>Documents</h6>
+                                    </div>
+                                    <div class="body">
+                                        <div class="insurance">
+                                            <div class="text">Insurance</div>
+                                            <div class="rating"></div>
+                                        </div>
+                                        <div class="rc_status">
+                                            <div class="text">Rc status</div>
+                                            <div class="rating"></div>
+                                        </div>
+                                        <div class="fc_validity">
+                                            <div class="text">Fc validity</div>
+                                            <div class="rating"></div>
+                                        </div>
+                                        <!-- <div class="vehicle_service_log">
+                                            <div class="text">Vehicle service log</div>
+                                            <div class="rating"></div>
+                                        </div>      -->
+                                        <div class="number_of_owner">
+                                            <div class="text">Number of owner</div>
+                                            <div class="rating"></div>
+                                        </div>                                                    
+                                        
+                                    </div>
+                                    <div class="remark">
+                                        <div class="title"></div>
+                                        <div class="vehicle_documents_remarks"></div>
+                                    </div>                            
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Specification And Feature  -->
+        <div class="row specification_and_feature ">
+            <div class="col-xs-12 col-md-6 specification ">
+                <h6 class="head"> Maruti Vitara Brezza </h6>
+                <div class="body">                    
+                    <div class="item specArai">
+                        <span class="left">ARAI mileage</span>
+                        <span class="right"></span>
+                    </div>
+                    <div class="item specFuelType">
+                        <span class="left">Fuel type</span>
+                        <span class="right"></span>
+                    </div>
+                    <div class="item specCylinder">
+                        <span class="left">No.of cylinder</span>
+                        <span class="right"></span>
+                    </div>
+                    <div class="item specMaxTorque">
+                        <span class="left">Max Torque(nm@rpm)</span>
+                        <span class="right"></span>
+                    </div>
+                    <div class="item specBodyType">
+                        <span class="left">Body type</span>
+                        <span class="right"></span>
+                    </div>
+                    <div class="item specCityMileage">
+                        <span class="left">City mileage</span>
+                        <span class="right"></span>
+                    </div>
+                    <!-- <div class="item specEngineDisplacement">
+                        <span class="left">Engine Displacement(cc)</span>
+                        <span class="right"></span>
+                    </div> -->
+                    <div class="item specPower">
+                        <span class="left">Max power (bhp@rpm)</span>
+                        <span class="right"></span>
+                    </div>
+                    <div class="item specSeat">
+                        <span class="left">Seating capacity</span>
+                        <span class="right"></span>
+                    </div>
+                    <div class="item specFuelCapacity">
+                        <span class="left">Fuel tank capacity</span>
+                        <span class="right"></span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-xs-12 col-md-6 features ">
+                <h6 class="head">Key Features of Maruti Vitara Brezza </h6>                  
+                <div class=" body">
+                    <div class="item fPowerSteering">
+                        <span class="left">Power steering</span>
+                        <span class="right"></span>
+                    </div>
+
+                    <div class="item fLBS">
+                        <span class="left">Anti lock braking system</span>
+                        <span class="right"></span>
+                    </div>
+
+                    <div class="item fAirbag">
+                        <span class="left">Driver airbag</span>
+                        <span class="right"></span>
+                    </div>
+
+                    <div class="item fClimateControl">
+                        <span class="left">Automatic climate control</span>
+                        <span class="right" ></span>
+                    </div>
+
+                    <div class="item fAlloyWheels">
+                        <span class="left">Alloy wheels</span>
+                        <span class="right"></span>
+                    </div>
+
+                    <div class="item fPowerWindow">
+                        <span class="left">Power windows front</span>
+                        <span class="right"></span>
+                    </div>
+
+                    <div class="item fAirConditioner">
+                        <span class="left">Air conditioner</span>
+                        <span class="right"></span>
+                    </div>
+
+                    <div class="item fPassengerAirbag">
+                        <span class="left">Passenger airbag</span>
+                        <span class="right"></span>
+                    </div>
+
+                    <div class="item fFogLight">
+                        <span class="left">Fog lights-front</span>
+                        <span class="right"></span>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        
+        <!-- Technical Specifications  -->
+        <div class="row technical_specs">
+            <div class="col-12 title">
+                <h6 class="heading"></h6>
+            </div>
+            
+            <div class="col-12 body">
+                <div class="row ">
+                    <div class="col-5 left">
+                        <div class="list-group" id="scroll_item" >
+                            <a class="s1 list-group-item list-group-item-action active" href="#scrollspy1">Engine and Transmission</a>
+                            <a class="s2 list-group-item list-group-item-action" href="#scrollspy2">Fuel and Performance</a>
+                            <a class="s3 list-group-item list-group-item-action" href="#scrollspy3">Suspension and Breaks</a>
+                            <a class="s4 list-group-item list-group-item-action" href="#scrollspy4">Dimensions and Capacity</a>
+                            <a class="s5 list-group-item list-group-item-action" href="#scrollspy5">Comfort and Convenience</a>
+                            <a class="s6 list-group-item list-group-item-action" href="#scrollspy6">Interior</a>
+                            <a class="s7 list-group-item list-group-item-action" href="#scrollspy7">Exterior</a>
+                            <a class="s8 list-group-item list-group-item-action" href="#scrollspy8">Safety</a>
+                            <a class="s9 list-group-item list-group-item-action" href="#scrollspy9">Entertainment and Communication</a>
+                        </div>
+                    </div>
+                    
+                    <div class="col-7 right" >
+                        <div class="scrollspy-example "  id="scroll_list">
+                            <div class="engine_and_transmission" >
+                                <a name="scrollspy1"></a>
+                                <h6 class="head">Engine and Transmission</h6>
+                                <div class="item gear_box">
+                                    <span class="left ">Gear box</span>
+                                    <span class="right"></span>
+                                </div>
+                                <div class="item max_power">
+                                    <span class="left ">Max power</span>
+                                    <span class="right"></span>
+                                </div>
+                                <div class="item drive_type" >
+                                    <span class="left ">Drive type</span>
+                                    <span class="right"></span>
+                                </div>
+                                <div class="item max_torque">
+                                    <span class="left ">Max torque</span>
+                                    <span class="right"></span>
+                                </div>
+                                <div class="item engine_type">
+                                    <span class="left ">Engine type</span>
+                                    <span class="right"></span>
+                                </div>
+                                <div class="item mild_hybrid">
+                                    <span class="left ">Mild hybrid</span>
+                                    <span class="right"></span>
+                                </div>
+                                <div class="item super_charger">
+                                    <span class="left ">Super charger</span>
+                                    <span class="right"></span>
+                                </div>
+                                <div class="item turbo_charger">
+                                    <span class="left ">Turbo charger</span>
+                                    <span class="right"></span>
+                                </div>
+                                <div class="item cubic_capacity">
+                                    <span class="left ">Cubic capacity</span>
+                                    <span class="right"></span>
+                                </div>
+                                <div class="item transmission_type">
+                                    <span class="left ">Transmission type</span>
+                                    <span class="right"></span>
+                                </div>
+                                <div class="item number_of_cylinder">
+                                    <span class="left ">Number of cylinder</span>
+                                    <span class="right"></span>
+                                </div>
+                                <div class="item valve_configration">
+                                    <span class="left ">Valve configration</span>
+                                    <span class="right"></span>
+                                </div>
+                                <div class="item valves_per_cylinder">
+                                    <span class="left ">Valves per cylinder</span>
+                                    <span class="right"></span>
+                                </div>                        
+                            </div>
+                            
+                            <div class="fuel_and_performance" >
+                                <a name="scrollspy2"></a>
+                                                      
+                                <h6 class="head">Fuel and Performance</h6>
+                                <div class="item fuel_type">
+                                    <span class="left ">Fuel type</span>
+                                    <span class="right"></span>
+                                </div> 
+                                <div class="item city_mileage">
+                                    <span class="left ">City mileage</span>
+                                    <span class="right"></span>
+                                </div> 
+                                <div class="item mileage_arai">
+                                    <span class="left ">Mileage arai</span>
+                                    <span class="right"></span>
+                                </div> 
+                                <div class="item fuel_tank_capacity">
+                                    <span class="left ">Fuel tank capacity</span>
+                                    <span class="right"></span>
+                                </div> 
+                                <div class="item emission_norm_compliance">
+                                    <span class="left ">Emission norm compliance</span>
+                                    <span class="right"></span>
+                                </div> 
+                            
+                            </div>
+
+                            <div class="suspension_and_breaks" > 
+                                <a name="scrollspy3"></a>                                                     
+                                <h6 class="head">Suspension and Breaks</h6>
+                                <div class="item front_disc_and_pads">
+                                    <span class="left ">Front disc and pads</span>
+                                    <span class="right"></span>
+                                </div>
+                                <div class="item rear_drum_and_shoes">
+                                    <span class="left ">Rear drum and shoes</span>
+                                    <span class="right"></span>
+                                </div>
+                                <div class="item rear_shock_assembly">
+                                    <span class="left ">Rear shock assembly</span>
+                                    <span class="right"></span>
+                                </div>
+                                <div class="item front_strut_assembly">
+                                    <span class="left ">Front strut assembly</span>
+                                    <span class="right"></span>
+                                </div>
+                                <div class="item steering_box_assembly">
+                                    <span class="left ">Steering box assembly</span>
+                                    <span class="right"></span>
+                                </div>
+                                <div class="item power_steering_assembly">
+                                    <span class="left ">Power steering assembly</span>
+                                    <span class="right"></span>
+                                </div>
+                                <!-- <div class="item suspension_and_brakes_remark" >
+                                    <span class="left ">Suspension and brakes remark</span>
+                                    <span class="right"></span>
+                                </div>                                                                                                       -->
+                            </div>  
+                            
+                            <div class="dimensions_and_capacity" >
+                                <a name="scrollspy4"></a>                          
+                                <h6 class="head">Dimensions and Capacity</h6>
+                                <div class="item width">
+                                    <span class="left  ">Width</span>
+                                    <span class="right"></span>
+                                </div>
+                                <div class="item height">
+                                    <span class="left ">Height</span>
+                                    <span class="right"></span>
+                                </div>
+                                <div class="item length">
+                                    <span class="left ">Length</span>
+                                    <span class="right"></span>
+                                </div>
+                                <div class="item body_type">
+                                    <span class="left ">Body type</span>
+                                    <span class="right"></span>
+                                </div>
+                                <div class="item rear_tread">
+                                    <span class="left ">Rear tread</span>
+                                    <span class="right"></span>
+                                </div>
+                                <div class="item wheel_base">
+                                    <span class="left ">Wheel base</span>
+                                    <span class="right"></span>
+                                </div>
+                                <div class="item kerb_weight">
+                                    <span class="left ">Kerb weight</span>
+                                    <span class="right"></span>
+                                </div>
+                                <div class="item no_of_doors">
+                                    <span class="left ">No of doors</span>
+                                    <span class="right"></span>
+                                </div>
+                                <div class="item gross_weight">
+                                    <span class="left ">Gross weight</span>
+                                    <span class="right"></span>
+                                </div>
+                                <div class="item seating_capacity">
+                                    <span class="left ">Seating capacity</span>
+                                    <span class="right"></span>
+                                </div>
+                            </div>                             
+                            
+                            <div class="comfort_and_convenience" >
+                                <a name="scrollspy5"></a>
+                                <h6 class="head">Comfort and Convenience</h6>
+                                <div class="item heater">
+                                    <span class="left ">Heater</span>
+                                    <span class="right"></span>
+                                </div>
+                                <div class="item power_boot">
+                                    <span class="left ">Power boot</span>
+                                    <span class="right"></span>
+                                </div>
+                                <div class="item trunk_light">
+                                    <span class="left ">Trunk light</span>
+                                    <span class="right"></span>
+                                </div>
+                                <div class="item usb_charger">
+                                    <span class="left ">Usb charger</span>
+                                    <span class="right"></span>
+                                </div>
+                                <div class="item rear_curtain">
+                                    <span class="left ">Rear curtain</span>
+                                    <span class="right"></span>
+                                </div>
+                                <div class="item battery_saver">
+                                    <span class="left ">Battery saver</span>
+                                    <span class="right"></span>
+                                </div>
+                                <div class="item keyless_entry">
+                                    <span class="left ">Keyless entry</span>
+                                    <span class="right"></span>
+                                </div>
+                                <div class="item rear_ac_vents">
+                                    <span class="left ">Rear ac vents</span>
+                                    <span class="right"></span>
+                                </div>
+                                <div class="item tailgate_ajar">
+                                    <span class="left ">Tailgate ajar</span>
+                                    <span class="right"></span>
+                                </div>
+                                <div class="item vanity_mirror">
+                                    <span class="left ">Vanity mirror</span>
+                                    <span class="right"></span>
+                                </div>
+                                <div class="item voice_control">
+                                    <span class="left ">Voice control</span>
+                                    <span class="right"></span>
+                                </div>
+                                <div class="item cruise_control">
+                                    <span class="left ">Cruise control</span>
+                                    <span class="right"></span>
+                                </div>
+                                <div class="item power_steering">
+                                    <span class="left ">Power steering</span>
+                                    <span class="right"></span>
+                                </div>
+                                <div class="item air_conditioner" >
+                                    <span class="left ">Air conditioner</span>
+                                    <span class="right"></span>
+                                </div>
+                                <div class="item parking_sensors">
+                                    <span class="left ">Parking sensors</span>
+                                    <span class="right"></span>
+                                </div>
+                                <div class="item cup_holders_rear">
+                                    <span class="left ">Cup holders rear</span>
+                                    <span class="right"></span>
+                                </div>
+                                <div class="item cup_holders_front">
+                                    <span class="left ">Cup holders front</span>
+                                    <span class="right"></span>
+                                </div>
+                                <div class="item glove_box_cooling">
+                                    <span class="left ">Glove box cooling</span>
+                                    <span class="right"></span>
+                                </div>
+                                <div class="item heated_seats_rear">
+                                    <span class="left ">Heated seats rear</span>
+                                    <span class="right"></span>
+                                </div>
+                                <div class="item navigation_system">
+                                    <span class="left ">Navigation system</span>
+                                    <span class="right"></span>
+                                </div>
+                                <div class="item rear_reading_lamp">
+                                    <span class="left ">Rear reading lamp</span>
+                                    <span class="right"></span>
+                                </div>
+                                <div class="item foldable_rear_seat">
+                                    <span class="left ">Foldable rear seat</span>
+                                    <span class="right"></span>
+                                </div>
+                                <div class="item heated_seats_front">
+                                    <span class="left ">Heated seats front</span>
+                                    <span class="right"></span>
+                                </div>
+                                <div class="item power_windows_rear">
+                                    <span class="left ">Power windows rear</span>
+                                    <span class="right"></span>
+                                </div>
+                                <div class="item power_windowsfront">
+                                    <span class="left ">Power windows front</span>
+                                    <span class="right"></span>
+                                </div>
+                                <div class="item rear_seat_headrest">
+                                    <span class="left ">Rear seat headrest</span>
+                                    <span class="right"></span>
+                                </div>
+                                <div class="item adjustable_headrest">
+                                    <span class="left ">Adjustable headrest</span>
+                                    <span class="right"></span>
+                                </div>
+                                <div class="item adjustable_steering">
+                                    <span class="left ">Adjustable steering</span>
+                                    <span class="right"></span>
+                                </div>
+                                <div class="item air_quality_control">
+                                    <span class="left ">Air quality control</span>
+                                    <span class="right"></span>
+                                </div>
+                                <div class="item remote_trunk_opener">
+                                    <span class="left ">Remote trunk opener</span>
+                                    <span class="right"></span>
+                                </div>
+                                <div class="item seat_lumbar_support">
+                                    <span class="left ">Seat lumbar support</span>
+                                    <span class="right"></span>
+                                </div>
+                                <div class="item find_my_car_location">
+                                    <span class="left ">Find my car location</span>
+                                    <span class="right"></span>
+                                </div>
+                                <div class="item gear_shift_indicator">
+                                    <span class="left ">Gear shift indicator</span>
+                                    <span class="right"></span>
+                                </div>                                
+                                <div class="item luggage_hook_and_net">
+                                    <span class="left ">Luggage hook and net</span>
+                                    <span class="right"></span>
+                                </div>
+                                <div class="item lane_change_indicator">
+                                    <span class="left ">Lane change indicator</span>
+                                    <span class="right"></span>
+                                </div>
+                                <div class="item accessory_power_outlet">
+                                    <span class="left ">Accessory power outlet</span>
+                                    <span class="right"></span>
+                                </div>
+                                <div class="item low_fuel_warning_light">
+                                    <span class="left ">Low fuel warning light</span>
+                                    <span class="right"></span>
+                                </div>
+                                <div class="item remote_fuel_lid_opener">
+                                    <span class="left ">Remote fuel lid opener</span>
+                                    <span class="right"></span>
+                                </div>
+                                <div class="item central_console_armrest">
+                                    <span class="left ">Central console armrest</span>
+                                    <span class="right"></span>
+                                </div>
+                                <div class="item smart_access_card_entry">
+                                    <span class="left ">Smart access card entry</span>
+                                    <span class="right"></span>
+                                </div>
+                                <div class="item engine_start_stop_button">
+                                    <span class="left ">Engine start stop button</span>
+                                    <span class="right"></span>
+                                </div>
+                                <div class="item remote_engine_start_stop">
+                                    <span class="left ">Remote engine start stop</span>
+                                    <span class="right"></span>
+                                </div>
+                                <div class="item active_noise_cancellation">
+                                    <span class="left ">Active noise cancellation</span>
+                                    <span class="right"></span>
+                                </div>
+                                <div class="item automatic_climate_control">
+                                    <span class="left ">Automatic climate control</span>
+                                    <span class="right"></span>
+                                </div>
+                                <div class="item rear_seat_centre_arm_rest">
+                                    <span class="left ">Rear seat centre arm rest</span>
+                                    <span class="right"></span>
+                                </div>
+                                <div class="item real_time_vehicle_tracking">
+                                    <span class="left ">Real time vehicle tracking</span>
+                                    <span class="right"></span>
+                                </div>
+                                <div class="item remote_horn_and_light_control">
+                                    <span class="left ">Remote horn and light control</span>
+                                    <span class="right"></span>
+                                </div> 
+                                <div class="item steering_wheel_gearshift_paddles">
+                                    <span class="left ">Steering wheel gearshift paddles</span>
+                                    <span class="right"></span>
+                                </div>
+                                <div class="item height_adjustable_front_seat_belts">
+                                    <span class="left ">Height adjustable front seat belts</span>
+                                    <span class="right"></span>
+                                </div>      
+                                <div class="item drive_modes">
+                                    <span class="left ">Drive modes</span>
+                                    <span class="right"></span>
+                                </div>      
+                            </div>
+
+                            <div class="tech_interior">
+                                <a name="scrollspy6"></a>                   
+                                <h6 class="head">Interior</h6>
+                                <div class="item lighting">
+                                    <span class="left ">Lighting</span>
+                                    <span class="right"></span>
+                                </div>
+                                <div class="item tachometer">
+                                    <span class="left ">Tachometer</span>
+                                    <span class="right"></span>
+                                </div>
+                                <div class="item digital_clock" >
+                                    <span class="left ">Digital clock</span>
+                                    <span class="right"></span>
+                                </div>
+                                <div class="item leather_seats">
+                                    <span class="left ">Leather seats</span>
+                                    <span class="right"></span>
+                                </div>
+                                <div class="item digital_odometer">
+                                    <span class="left ">Digital odometer</span>
+                                    <span class="right"></span>
+                                </div>
+                                <div class="item ventilated_seats">
+                                    <span class="left ">Ventilated seats</span>
+                                    <span class="right"></span>
+                                </div>
+                                <div class="item cigarette_lighter">
+                                    <span class="left ">Cigarette lighter</span>
+                                    <span class="right"></span>
+                                </div>
+                                <div class="item fabric_upholstery">
+                                    <span class="left ">Fabric upholstery</span>
+                                    <span class="right"></span>
+                                </div>
+                                <div class="item glove_compartment">
+                                    <span class="left ">Glove compartment</span>
+                                    <span class="right"></span>
+                                </div>
+                                <div class="item dual_tone_dashboard">
+                                    <span class="left ">Dual tone dashboard</span>
+                                    <span class="right"></span>
+                                </div>
+                                <div class="item leather_steering_wheel">
+                                    <span class="left ">Leather steering wheel</span>
+                                    <span class="right"></span>
+                                </div>
+                                <div class="item electric_adjustable_seats">
+                                    <span class="left ">Electric adjustable seats</span>
+                                    <span class="right"></span>
+                                </div>
+                                <div class="item folding_table_in_the_rear">
+                                    <span class="left ">Folding table in the rear</span>
+                                    <span class="right"></span>
+                                </div>
+                                <div class="item electronic_multi_tripmeter">
+                                    <span class="left ">Electronic multi tripmeter</span>
+                                    <span class="right"></span>
+                                </div>
+                                <div class="item outside__temperature_display">
+                                    <span class="left ">Outside  temperature display</span>
+                                    <span class="right"></span>
+                                </div>
+                                <div class="item height_adjustable_driver_seat">
+                                    <span class="left ">Height adjustable driver seat</span>
+                                    <span class="right"></span>
+                                </div>
+                                <div class="item driving_experience_control_eco">
+                                    <span class="left ">Driving experience control eco</span>
+                                    <span class="right"></span>
+                                </div>
+                                <div class="item leather_wrap_gear_shift_selector">
+                                    <span class="left ">Leather wrap gear shift selector</span>
+                                    <span class="right"></span>
+                                </div>
+                            </div>                            
+                            
+                            <div class="tech_exterior" >
+                                <a name="scrollspy7"></a>
+                                <h6 class="head">Exterior</h6>
+                                <div class="item led_drls">
+                                    <span class="left ">Led drls</span>
+                                    <span class="right"></span>
+                                </div>
+                                <div class="item lighting">
+                                    <span class="left ">Lighting</span>
+                                    <span class="right"></span>
+                                </div>
+                                <div class="item sun_roof">
+                                    <span class="left ">Sun roof</span>
+                                    <span class="right"></span>
+                                </div>
+                                <div class="item moon_roof">
+                                    <span class="left ">Moon roof</span>
+                                    <span class="right"></span>
+                                </div>
+                                <div class="item tyre_size">
+                                    <span class="left ">Tyre size</span>
+                                    <span class="right"></span>
+                                </div>
+                                <div class="item tyre_type" >
+                                    <span class="left ">Tyre type</span>
+                                    <span class="right"></span>
+                                </div>
+                                <div class="item alloy_wheels">
+                                    <span class="left ">Alloy wheels</span>
+                                    <span class="right"></span>
+                                </div>
+                                <div class="item rear_spoiler">
+                                    <span class="left ">Rear spoiler</span>
+                                    <span class="right"></span>
+                                </div>
+                                <div class="item roof_carrier">
+                                    <span class="left ">Roof carrier</span>
+                                    <span class="right"></span>
+                                </div>
+                                <div class="item side_stepper">
+                                    <span class="left ">Side stepper</span>
+                                    <span class="right"></span>
+                                </div>
+                                <div class="item tinted_glass">
+                                    <span class="left ">Tinted glass</span>
+                                    <span class="right"></span>
+                                </div>
+                                <div class="item trunk_opener">
+                                    <span class="left ">Trunk opener</span>
+                                    <span class="right"></span>
+                                </div>
+                                <div class="item wheel_covers">
+                                    <span class="left ">Wheel covers</span>
+                                    <span class="right"></span>
+                                </div>
+                                <div class="item chrome_grille">
+                                    <span class="left ">Chrome grille</span>
+                                    <span class="right"></span>
+                                </div>
+                                <div class="item led_fog_lamps">
+                                    <span class="left ">Led fog lamps</span>
+                                    <span class="right"></span>
+                                </div>
+                                <div class="item power_antenna">
+                                    <span class="left ">Power antenna</span>
+                                    <span class="right"></span>
+                                </div>
+                                <div class="item chrome_garnish">
+                                    <span class="left ">Chrome garnish</span>
+                                    <span class="right"></span>
+                                </div>
+                                <div class="item led_headlights">
+                                    <span class="left ">Led headlights</span>
+                                    <span class="right"></span>
+                                </div>
+                                <div class="item led_taillights">
+                                    <span class="left ">Led taillights</span>
+                                    <span class="right"></span>
+                                </div>
+                                <div class="item fog_lights_rear">
+                                    <span class="left ">Fog lights rear</span>
+                                    <span class="right"></span>
+                                </div>
+                                <div class="item smoke_headlamps">
+                                    <span class="left ">Smoke headlamps</span>
+                                    <span class="right"></span>
+                                </div>
+                                <div class="item fog_lights_front">
+                                    <span class="left ">Fog lights front</span>
+                                    <span class="right"></span>
+                                </div>
+                                <div class="item alloy_wheels_size">
+                                    <span class="left ">Alloy wheels size</span>
+                                    <span class="right"></span>
+                                </div>
+                                <div class="item halogen_headlamps">
+                                    <span class="left ">Halogen headlamps</span>
+                                    <span class="right"></span>
+                                </div>
+                                <div class="item rear_window_wiper">
+                                    <span class="left ">Rear window wiper</span>
+                                    <span class="right"></span>
+                                </div>
+                                <div class="item integrated_antenna">
+                                    <span class="left ">Integrated antenna</span>
+                                    <span class="right"></span>
+                                </div>
+                                <div class="item rain_sensing_wiper">
+                                    <span class="left ">Rain sensing wiper</span>
+                                    <span class="right"></span>
+                                </div>
+                                <div class="item rear_window_washer">
+                                    <span class="left ">Rear window washer</span>
+                                    <span class="right"></span>
+                                </div>
+                                <div class="item rear_window_defogger">
+                                    <span class="left ">Rear window defogger</span>
+                                    <span class="right"></span>
+                                </div>
+                                <div class="item adjustable_headlights">
+                                    <span class="left ">Adjustable headlights</span>
+                                    <span class="right"></span>
+                                </div>
+                                <div class="item removable_convertible_top">
+                                    <span class="left ">Removable convertible top</span>
+                                    <span class="right"></span>
+                                </div>
+                                <div class="item electric_folding_rear_view_mirror">
+                                    <span class="left ">Electric folding rear view mirror</span>
+                                    <span class="right"></span>
+                                </div>
+                                <div class="item outside_rear_view_mirror_turn_indicators">
+                                    <span class="left ">Outside rear view mirror turn indicators</span>
+                                    <span class="right"></span>
+                                </div>
+                                <div class="item power_adjustable_exterior_rear_view_mirror">
+                                    <span class="left ">Power adjustable exterior rear view mirror</span>
+                                    <span class="right"></span>
+                                </div>
+                                <div class="item manually_adjustable_exterior_rear_view_mirror">
+                                    <span class="left ">Manually adjustable exterior rear view mirror</span>
+                                    <span class="right"></span>
+                                </div>
+                                
+                            </div>
+                            
+                            <div class="safety" >    
+                                <a name="scrollspy8"></a>                        
+                                <h6 class="head">Safety</h6>
+                                <div class="item ebd">
+                                    <span class="left ">Ebd</span>
+                                    <span class="right"></span>
+                                </div>
+                                <div class="item clutch_lock" >
+                                    <span class="left ">Clutch lock</span>
+                                    <span class="right"></span>
+                                </div>
+                                <div class="item hill_assist">
+                                    <span class="left ">Hill assist</span>
+                                    <span class="right"></span>
+                                </div>
+                                <div class="item rear_camera">
+                                    <span class="left ">Rear camera</span>
+                                    <span class="right"></span>
+                                </div>
+                                <div class="item brake_assist">
+                                    <span class="left ">Brake assist</span>
+                                    <span class="right"></span>
+                                </div>
+                                <div class="item crash_sensor">
+                                    <span class="left ">Crash sensor</span>
+                                    <span class="right"></span>
+                                </div>
+                                <div class="item knee_airbags">
+                                    <span class="left ">Knee airbags</span>
+                                    <span class="right"></span>
+                                </div>
+                                <div class="item driver_airbag">
+                                    <span class="left ">Driver airbag</span>
+                                    <span class="right"></span>
+                                </div>
+                                <div class="item central_locking">
+                                    <span class="left ">Central locking</span>
+                                    <span class="right"></span>
+                                </div>
+                                <div class="item geo_fence_alert">
+                                    <span class="left ">Geo fence alert</span>
+                                    <span class="right"></span>
+                                </div>
+                                <div class="item head_up_display">
+                                    <span class="left ">Head up display</span>
+                                    <span class="right"></span>
+                                </div>
+                                <div class="item rear_seat_belts">
+                                    <span class="left ">Rear seat belts</span>
+                                    <span class="right"></span>
+                                </div>
+                                <div class="item view_camera_360">
+                                    <span class="left ">View camera 360</span>
+                                    <span class="right"></span>
+                                </div>
+                                <div class="item xenon_headlamps">
+                                    <span class="left ">Xenon headlamps</span>
+                                    <span class="right"></span>
+                                </div>
+                                <div class="item adjustable_seats">
+                                    <span class="left ">Adjustable seats</span>
+                                    <span class="right"></span>
+                                </div>
+                                <div class="item anti_theft_alarm">
+                                    <span class="left ">Anti theft alarm</span>
+                                    <span class="right"></span>
+                                </div>
+                                <div class="item number_of_airbag">
+                                    <span class="left ">Number of airbag</span>
+                                    <span class="right"></span>
+                                </div>
+                                <div class="item passenger_airbag">
+                                    <span class="left ">Passenger airbag</span>
+                                    <span class="right"></span>
+                                </div>
+                                <div class="item power_door_locks">
+                                    <span class="left ">Power door locks</span>
+                                    <span class="right"></span>
+                                </div>
+                                <div class="item side_airbag_rear">
+                                    <span class="left ">Side airbag rear</span>
+                                    <span class="right"></span>
+                                </div>
+                                <div class="item traction_control">
+                                    <span class="left ">Traction control</span>
+                                    <span class="right"></span>
+                                </div>
+                                <div class="item anti_theft_device">
+                                    <span class="left ">Anti theft device</span>
+                                    <span class="right"></span>
+                                </div>
+                                <div class="item door_ajar_warning">
+                                    <span class="left ">Door ajar warning</span>
+                                    <span class="right"></span>
+                                </div>
+                                <div class="item seat_belt_warning">
+                                    <span class="left ">Seat belt warning</span>
+                                    <span class="right"></span>
+                                </div>
+                                <div class="item side_airbag_front">
+                                    <span class="left ">Side airbag front</span>
+                                    <span class="right"></span>
+                                </div>
+                                <div class="item side_impact_beams">
+                                    <span class="left ">Side impact beams</span>
+                                    <span class="right"></span>
+                                </div>
+                                <div class="item blind_spot_monitor">
+                                    <span class="left ">Blind spot monitor</span>
+                                    <span class="right"></span>
+                                </div>
+                                <div class="item child_safety_locks">
+                                    <span class="left ">Child safety locks</span>
+                                    <span class="right"></span>
+                                </div>
+                                <div class="item engine_immobilizer">
+                                    <span class="left ">Engine immobilizer</span>
+                                    <span class="right"></span>
+                                </div>
+                                <div class="item front_impact_beams">
+                                    <span class="left ">Front impact beams</span>
+                                    <span class="right"></span>
+                                </div>
+                                <div class="item automatic_headlamps">
+                                    <span class="left ">Automatic headlamps</span>
+                                    <span class="right"></span>
+                                </div>
+                                <div class="item engine_check_warning"  >
+                                    <span class="left ">Engine check warning</span>
+                                    <span class="right"></span>
+                                </div>
+                                <div class="item hill_descent_control">
+                                    <span class="left ">Hill descent control</span>
+                                    <span class="right"></span>
+                                </div>
+                                <div class="item tyre_pressure_monitor">
+                                    <span class="left ">Tyre pressure monitor</span>
+                                    <span class="right"></span>
+                                </div>
+                                <div class="item anti_lock_braking_system ">
+                                    <span class="left ">Anti lock braking system</span>
+                                    <span class="right"></span>
+                                </div>
+                                <div class="item follow_me_home_headlamps">
+                                    <span class="left ">Follow me home headlamps</span>
+                                    <span class="right"></span>
+                                </div>
+                                <div class="item isofix_child_seat_mounts">
+                                    <span class="left ">Isofix child seat mounts</span>
+                                    <span class="right"></span>
+                                </div>
+                                <div class="item centrally_mounted_fuel_tank">
+                                    <span class="left ">Centrally mounted fuel tank</span>
+                                    <span class="right"></span>
+                                </div>
+                                <div class="item electronic__stability_control">
+                                    <span class="left ">Electronic  stability control</span>
+                                    <span class="right"></span>
+                                </div>
+                                <div class="item speed_sensing_auto_door__lock">
+                                    <span class="left ">Speed sensing auto door  lock</span>
+                                    <span class="right"></span>
+                                </div>
+                                <div class="item day_and_night_rear_view_mirror">
+                                    <span class="left ">Day and night rear view mirror</span>
+                                    <span class="right"></span>
+                                </div>
+                                <div class="item impact_sensing_auto_door_unlock">
+                                    <span class="left ">Impact sensing auto door unlock</span>
+                                    <span class="right"></span>
+                                </div>
+                                <div class="item passenger_side_rear_view_mirror">
+                                    <span class="left ">Passenger side rear view mirror</span>
+                                    <span class="right"></span>
+                                </div>
+                                <div class="item vehicle_stability_control_system">
+                                    <span class="left ">Vehicle stability control system</span>
+                                    <span class="right"></span>
+                                </div>
+                                <div class="item pretensioners_and_force_limiter_seatbelts">
+                                    <span class="left ">Pretensioners and force limiter seatbelts</span>
+                                    <span class="right"></span>
+                                </div>                            
+                            </div>
+                            
+                            <div class="entertainment_and_communication" >
+                                <a name="scrollspy9"></a>
+                                <h6 class="head">Entertainment and Communication</h6>
+                                <div class="item radio">
+                                    <span class="left ">Radio</span>
+                                    <span class="right"></span>
+                                </div>
+                                <div class="item cd_player">
+                                    <span class="left ">Cd player</span>
+                                    <span class="right"></span>
+                                </div>
+                                <div class="item cd_changer">
+                                    <span class="left ">Cd changer</span>
+                                    <span class="right"></span>
+                                </div>
+                                <div class="item dvd_player">
+                                    <span class="left ">Dvd player</span>
+                                    <span class="right"></span>
+                                </div>
+                                <div class="item android_auto">
+                                    <span class="left ">Android auto</span>
+                                    <span class="right"></span>
+                                </div>
+                                <div class="item connectivity">
+                                    <span class="left ">Connectivity</span>
+                                    <span class="right"></span>
+                                </div>
+                                <div class="item touch_screen">
+                                    <span class="left ">Touch screen</span>
+                                    <span class="right"></span>
+                                </div>
+                                <div class="item apple_carplay">
+                                    <span class="left ">Apple carplay</span>
+                                    <span class="right"></span>
+                                </div>
+                                <div class="item speakers_rear">
+                                    <span class="left ">Speakers rear</span>
+                                    <span class="right"></span>
+                                </div>
+                                <div class="item speakers_front">
+                                    <span class="left ">Speakers front</span>
+                                    <span class="right"></span>
+                                </div>
+                                <div class="item internal_storage" >
+                                    <span class="left ">Internal storage</span>
+                                    <span class="right"></span>
+                                </div>
+                                <div class="item touch_screen_size">
+                                    <span class="left ">Touch screen size</span>
+                                    <span class="right"></span>
+                                </div>
+                                <div class="item wifi_connectivity">
+                                    <span class="left ">Wifi connectivity</span>
+                                    <span class="right"></span>
+                                </div>
+                                <div class="item number_of_speakers">
+                                    <span class="left ">Number of speakers</span>
+                                    <span class="right"></span>
+                                </div>
+                                <div class="item integrated_2din_audio">
+                                    <span class="left ">Integrated 2din audio</span>
+                                    <span class="right"></span>
+                                </div>
+                                <div class="item bluetooth_connectivity">
+                                    <span class="left ">Bluetooth connectivity</span>
+                                    <span class="right"></span>
+                                </div>
+                                <div class="item usb_and_auxiliary_input">
+                                    <span class="left ">Usb and auxiliary input</span>
+                                    <span class="right"></span>
+                                </div>
+                                <div class="item rear_entertainment_system">
+                                    <span class="left ">Rear entertainment system</span>
+                                    <span class="right"></span>
+                                </div>
+                                <div class="item audio_system_remote_control">
+                                    <span class="left ">Audio system remote control</span>
+                                    <span class="right"></span>
+                                </div>
+                            </div>
+                            
+                            <div class="place_holder">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+
+    <footer class="page-footer footer ">
+        <div class="container ">
+            <div class="row">
+                <div class="left col-12  col-lg-6">
+                    <div class="footer-logo col-12">
+                        <img class="logo" src="{{ url_for('static', path='common/resources/logo-dark.png'  ) }}" alt="">
+                    </div>
+                    <p class="small-1">
+                        ZEROO Cars is a used car showroom that aims to provide the best customer service and high-quality vehicles to the market. 
+                        ZEROO Cars uses a state-of-the-art vehicle valuation system to help customers choose the car that suits their needs. 
+                    </p>
+                    <div class="social_media">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-whatsapp"></i></a>
+                    </div>
+                </div>
+
+                <div class="right col-12 col-lg-6">
+                    <div class="company">
+                        <div class="title ">
+                            COMPANY
+                        </div>
+                        <div class="body small-1">
+                            <a href="#">About Us</a>
+                            <a href="#">Contact Us</a>
+                        </div>
+                    </div>
+                    <div class="support">
+                        <div class="title">
+                            SUPPORT
+                        </div>
+                        <div class="body small-1">
+                            <span><i class="fas fa-phone-alt"></i> 1800-000-000</span>
+                            <span><i class="fas fa-envelope"></i>zeroocarz@gmail.com</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-4  legal_copyright small-1">
+                    Copyright &copy; 2022 Zeroo cars Inc. All rights reserved.
+                </div>
+                
+                {#<div class="col-lg-4 legal_rights">
+                    <a href="#" class="small-1">Privacy Policy</a> | <a href="#" class="small-2">Terms and Conditions</a>
+                </div> #}
+            </div>
+        </div>
+    </footer>
+    
+    <!-- SELL CAR Modal -->
+    <div class="modal fade "   id="sellcarModal" tabindex="-1"  >
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header bg-warning">
+                    <h4 class=" text-center text-white">SELL YOUR CAR</h4>
+                    <button type="button" class="btn-close m-0 text-white border-0" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+
+                <div class="modal-body">
+                    <div class="sellcar">
+                        <input type="text" class="form-control mb-3 shadow-none"  name="name" id="sellerName" placeholder="Your name" >
+                        <input type="phone" class="form-control mb-3 shadow-none"  name="phone" id="sellerPhone" maxlength="10" placeholder="Phone" >
+                        <input type="email" class="form-control mb-3 shadow-none" name="mail" id="sellerMail" placeholder="Email" >
+                        <input type="text" class="form-control mb-3 shadow-none" name="car_name" id="sellerCarBrand" placeholder="Car Brand">
+                        <input type="text" class="form-control mb-3 shadow-none" name="car_model" id="carModel" placeholder="Car Model" >
+                        <input type="text" maxlength="4"  class="form-control mb-3 shadow-none" name="registration year" id="sellerRegYear" placeholder="Registration Year" >
+                        <!-- <input type="number" class="form-control mb-3 shadow-none"  name="kilometer" id="kilometer" placeholder="Kilometer" > -->
+                        <!-- <input type="text" class="form-control mb-3 shadow-none" name="fuel_type" id="fuel_type" placeholder="Fuel Type" > -->
+                        
+                        <!-- <textarea name="contact_message" class="form-control shadow-none" id="contact_message" rows="5" placeholder="Your Message" ></textarea> -->
+                        <input type="submit" class="form-control shadow-none border-none " id="sellCarSubmit" value="SUBMIT">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- CONTACT US Modal -->
+    <div class="modal fade "  id="contactModal" tabindex="-1"  aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header bg-warning">
+                    <h4 class=" text-white">CONTACT US</h4>
+                    <button type="button" class="btn-close m-0" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="contact_us ">
+                        <input type="text" class="form-control shadow-none" name="contact_name" id="contactName" placeholder="Your Name">
+                        <input type="email" class="form-control shadow-none"  name="contact_mail" id="contactMail" placeholder="Your Email">
+                        <textarea name="contact_message" class="form-control shadow-none" id="contactMessage" rows="5" placeholder="Your Message" ></textarea>
+                        
+                        <input type="submit" class="form-control " value="SUBMIT" id="contactSubmit">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ABOUT US Modal -->
+    <div class="modal fade "  id="aboutModal" tabindex="-1"  aria-hidden="true">
+        <div class="modal-dialog ">
+            <div class="modal-content">
+                <div class="modal-header ">
+                    <img class="nav_logo" width="100px" src="{{ url_for('static', path='common/resources/logo-light.png'  ) }}" alt="">
+                    
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    On The Way....
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- BOOK NOW Modal -->
+    <div class="modal fade "  id="bookNowModal" tabindex="-1"  aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header bg-warning">
+                    <h4 class=" text-white">BOOK NOW</h4>
+                    <button type="button" class="btn-close m-0" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="bookNow ">
+                        <input type="text" class="form-control shadow-none mb-2"  name="customer name" id="bookNowName" placeholder="Your Name">
+                        <input type="phone" class="form-control shadow-none mb-2"  name="customer phone" id="bookNowPhone" maxlength="10" placeholder="Your Phone">
+                        <input type="email" class="form-control shadow-none mb-2"  name="customer email" id="bookNowMail" placeholder="Your Email">
+                        <!-- <textarea  class="form-control shadow-none" name="contact_message" id="contactMessage" rows="5" placeholder="Your Message" ></textarea> -->
+                        
+                        <input type="submit" class="form-control bg-warning text-white mt-5 " value="SUBMIT" id="bookNowSubmit">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', path='user/js/individual_car.js') }}"></script>
+    
+    <script>
+        AOS.init();
+    </script>
+
+</body>
+</html>

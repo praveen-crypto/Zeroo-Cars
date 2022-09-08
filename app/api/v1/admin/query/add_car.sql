@@ -1,0 +1,34 @@
+INSERT INTO basic
+(
+  regestration_number,
+  owner_name,
+  owner_phone_number,
+  car_name,
+  chassis_number,
+  history,
+  kilometer,
+  model,
+  brand,
+  manufacture_year,
+  color,
+  number_plate,
+  price,
+  viewable
+)
+VALUES
+(
+  %(regestration_number)s,
+  %(owner_name)s,
+  %(owner_phone_number)s,
+  %(car_name)s,
+  %(chassis_number)s,
+  %(history)s,
+  %(kilometer)s,
+  %(model)s,
+  %(brand)s,
+  %(manufacture_year)s,
+  %(color)s,
+  %(number_plate)s,
+  %(price)s,
+  false
+)

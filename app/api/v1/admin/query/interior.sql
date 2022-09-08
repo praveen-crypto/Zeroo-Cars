@@ -1,0 +1,46 @@
+delete from interior where REGESTRATION_NUMBER=%(regestration_number)s;
+
+INSERT INTO interior
+(
+  REGESTRATION_NUMBER,
+  TACHOMETER,
+  ELECTRONIC_MULTI_TRIPMETER,
+  LEATHER_SEATS,
+  FABRIC_UPHOLSTERY,
+  LEATHER_STEERING_WHEEL,
+  LEATHER_WRAP_GEAR_SHIFT_SELECTOR,
+  GLOVE_COMPARTMENT,
+  DIGITAL_CLOCK,
+  OUTSIDE__TEMPERATURE_DISPLAY,
+  CIGARETTE_LIGHTER,
+  DIGITAL_ODAMETER,
+  ELECTRIC_ADJUSTABLE_SEATS,
+  DRIVING_EXPERIENCE_CONTROL_ECO,
+  FOLDING_TABLE_IN_THE_REAR,
+  HEIGHT_ADJUSTABLE_DRIVER_SEAT,
+  VENTILATED_SEATS,
+  DUAL_TONE_DASHBOARD,
+  LIGHTING
+)
+VALUES
+(
+  %(regestration_number)s,
+%(tachometer)s,
+%(electronic_multi_tripmeter)s,
+%(leather_seats)s,
+%(fabric_upholstery)s,
+%(leather_steering_wheel)s,
+%(leather_wrap_gear_shift_selector)s,
+%(glove_compartment)s,
+%(digital_clock)s,
+%(outside__temperature_display)s,
+%(cigarette_lighter)s,
+%(digital_odameter)s,
+%(electric_adjustable_seats)s,
+%(driving_experience_control_eco)s,
+%(folding_table_in_the_rear)s,
+%(height_adjustable_driver_seat)s,
+%(ventilated_seats)s,
+%(dual_tone_dashboard)s,
+%(lighting)s
+);

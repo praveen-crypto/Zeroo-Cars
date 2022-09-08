@@ -1,0 +1,1 @@
+select photo from photos where id =%(id)s;

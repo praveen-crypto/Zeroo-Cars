@@ -1,0 +1,1 @@
+delete from photos where id = %(id)s;

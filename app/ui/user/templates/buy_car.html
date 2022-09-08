@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="{{ url_for('static', path='common/resources/favico.png'  ) }}" sizes="10x10">
+
+    <title>Used Cars</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"   rel="stylesheet">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+      
+    <link rel="stylesheet" href="{{ url_for('static', path='common/css/nouislider.css') }}">
+
+    <link rel="stylesheet" href="{{ url_for('static', path='user/css/buy_car.css') }}">
+
+
+    <link rel="stylesheet" href="{{ url_for('static', path='common/css/owl.carousel.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', path='common/css/owl.theme.default.css') }}">
+
+    <script src="{{ url_for('static', path='common/js/owl.carousel.min.js') }}"></script>
+
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <!-- <script async src="https://www.googletagmanager.com/gtag/js?id=G-BS7FVMKV4M"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-BS7FVMKV4M');
+    </script> -->
+</head>
+
+<body>    
+    <nav cass="navbar">
+        <div class="mobile_nav">
+            <button class="btn nav_btn">
+                <span class="material-icons" > menu </span>
+            </button>
+                        
+            <a href="/" >
+                <img class="nav_logo" src="{{ url_for('static', path='common/resources/logo-light.png'  ) }}" alt="">
+            </a>
+                        
+            <div class="circle"></div>
+            <div class="nav_list_outer">
+                <div class="nav_list_header">
+                    <button class="btn nav_list_btn">
+                        <span class="material-icons" > cancel </span>
+                    </button>
+                    <a href="/" >
+                        <img class="nav_logo" src="{{ url_for('static', path='common/resources/logo-dark.png'  ) }}" alt="">
+                    </a>
+                </div>
+                <ul class="nav_list_body" >                    
+                    <li class=" nav-item buy_car {{buy_car}}">
+                        <a href="/buy-used-car" class="nav-link">BUY CAR</a>
+                    </li>
+                                        
+                    <li class="nav-item dashboard {{dashboard}}">
+                        <a href="#" class="nav-link" data-bs-toggle="modal" data-bs-target="#sellcarModal">SELL CAR</a>
+                    </li>
+    
+                    <li class="nav-item contact_us {{dashboard}}">
+                        <a href="#" class="nav-link" data-bs-toggle="modal" data-bs-target="#contactModal" >CONTACT US</a>
+                    </li>
+    
+                    <li class="nav-item about_us {{dashboard}}">
+                        <a href="#" class="nav-link" data-bs-toggle="modal" data-bs-target="#aboutModal">ABOUT US</a>
+                    </li>
+                    
+                    <li class="nav-item faq {{dashboard}}">
+                        <a href="/#accordion_zeroo_faq" class="nav-link"> FAQ's  </a>
+                    </li>                    
+                </ul>
+            </div>
+        </div>   
+        
+        <div class="container desktop_nav">
+            <a class="navbar-brand" href="/">
+                <img class="nav_logo" src="{{ url_for('static', path='common/resources/logo-light.png'  ) }}" alt="">
+            </a>
+
+            <ul class="nav_list navbar-nav" >
+                <li class=" nav-item buy_car {{buy_car}}">
+                    <a href="/buy-used-car" class="nav-link">BUY CAR</a>
+                </li>
+                
+                <li class="nav-item sell_car {{sell_car}}">
+                    <a href="#" class="nav-link" data-bs-toggle="modal" data-bs-target="#sellcarModal">SELL CAR</a>
+                </li>
+
+                <li class="nav-item contact_us {{contact_us}}">
+                    <a href="#" class="nav-link" data-bs-toggle="modal" data-bs-target="#contactModal" >CONTACT US</a>
+                </li>
+
+                <li class="nav-item about_us {{about_us}}">
+                    <a href="#" class="nav-link" data-bs-toggle="modal" data-bs-target="#aboutModal">ABOUT US</a>
+                </li>
+                
+                <li class="nav-item faq {{faq}}">
+                    <a href="/#accordion_zeroo_faq" class="nav-link"> FAQ's  </a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    
+    <div class="page-wrapper container buycars">
+        <!-- <div class="filter_container owl-1 owl-carousel">
+            <div class="dropdown filter_options">
+                <button class="btn btn-warning btn-sm dropdown-toggle text-white shadow-none" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                  filter
+                </button>
+            </div>
+            <div class="dropdown filter_options">
+                <button class="btn btn-warning btn-sm dropdown-toggle text-white shadow-none" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                  filter
+                </button>
+            </div>
+            <div class="dropdown filter_options">
+                <button class="btn btn-warning btn-sm dropdown-toggle text-white shadow-none" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                  filter
+                </button>
+            </div>
+            <div class="dropdown filter_options">
+                <button class="btn btn-warning btn-sm dropdown-toggle text-white shadow-none" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                  filter
+                </button>
+            </div>
+            <div class="dropdown filter_options">
+                <button class="btn btn-warning btn-sm dropdown-toggle text-white shadow-none" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                  filter
+                </button>
+            </div>
+        </div> -->
+
+        <aside class="aside">
+            <div class="mobile_filters">
+                
+            </div>
+
+            <div class="filters">
+                <div class="filter_budget">
+                    <p>Budget</p>
+                    <div class="price_text">
+                        <p id="min_price">Rs --</p> <p id="max_price">Rs --</p>
+                    </div>
+                    <div class="range_container">
+                        <div id="slider" style="height: 10px; width: 100%;"></div>
+                    </div>
+                </div>
+
+                <div class="filter_brand">
+                    <p >Brand</p>
+                    <div class="brand_list">
+                        <div class="brand_maruti">
+                            <input type="checkbox" name="maruti" id="maruti">
+                            <label for="maruti">Maruti Suzuki</label>
+                        </div>
+                        <div class="brand_hyundai">
+                            <input type="checkbox" name="hyundai" id="hyundai">
+                            <label for="hyundai">Hyundai</label>
+                        </div>
+                        <div class="brand_honda">
+                            <input type="checkbox" name="Honda" id="Honda">
+                            <label for="honda">Honda</label>
+                        </div>
+                        <div class="brand_volkswagen">
+                            <input type="checkbox" name="volkswagen" id="volkswagen">
+                            <label for="volkswagen">Volkswagen</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="filter_year">
+                    <p>Year</p>                    
+                    <div class="year_range ">
+                        <div id="dateSlider" style="height: 10px; width: 100%;"></div>
+                    </div>
+                </div>
+
+                <div class="filter_kilometer">
+                    <p>KM Driven</p>
+                    <div class="kilometer_list">
+                        <div class="list_1">
+                            <input type="radio" id="kilometer_1" name="kilometer" value="100">
+                            <label for="kilometer_1">10000 KM - 30000 KM</label>
+                        </div>
+
+                        <div class="list_2">                            
+                            <input type="radio" id="kilometer_2" name="kilometer" value="3100">
+                            <label for="kilometer_2">31000 KM - 60000 KM</label>
+                        </div>
+
+                        <div class="list_3">
+                            <input type="radio" id="kilometer_3" name="kilometer" value="6100">
+                            <label for="kilometer_3">61000 KM - 100000 KM</label>
+                        </div>
+
+                        <div class="list_4">
+                            <input type="radio" id="kilometer_4" name="kilometer" value="1000"> 
+                            <label for="kilometer_4">100000+ KM</label>
+                        </div>    
+                    </div>
+                </div>
+            </div>
+        </aside>
+        
+        <main class="">
+            <div class="bread_crumbs mt-3" aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                  <li class="breadcrumb-item"><a href="/">Home</a></li>
+                  <li class="breadcrumb-item active"><a href="/buy-used-car">Buy Cars</a></li>                  
+                </ol>                
+            </div>
+            
+            <div id="carouselExampleIndicators">
+                <!-- <div id="carouselExampleIndicators">
+                    
+                </div> -->
+            </div>
+            
+            <div class="card_list" id="used_car_list">
+                <!-- <a href="/buy-used-car/volkswagen/001" class="car_card">
+                    <div class="car_image_container">  
+                        <div class="car_bg">
+                        </div>
+                        <img class="car_image" src="https://freepngimg.com/thumb/car/4-2-car-png-hd.png" alt="">
+                    </div>
+                    <div class="card_content">
+                        <h6 class="title">2014 Volkswagen Vento</h6>
+                        <span class="kilometer small-2"> 25000 km</span>
+                        <span class="fuel small-2">Petrol</span>
+                        <span class="transmission small-2"> Manual </span>   
+                        <hr>
+                        <h6 class="price " > Rs 4,40,000 </h6>                        
+                        <span class="location small-1"> Avadi, Chennai </span>  
+                    </div>
+                </a>  -->
+            </div>
+
+        </main>
+    </div>
+    
+    <footer class="page-footer footer ">
+        <div class="container ">
+            <div class="row">
+                <div class="left col-12  col-lg-6">
+                    <div class="footer-logo col-12">
+                        <img class="logo" src="{{ url_for('static', path='common/resources/logo-dark.png'  ) }}" alt="">
+                    </div>
+                    <p class="small-1">
+                        ZEROO Cars is a used car showroom that aims to provide the best customer service and high-quality vehicles to the market. 
+                        ZEROO Cars uses a state-of-the-art vehicle valuation system to help customers choose the car that suits their needs. 
+                    </p>
+                    <div class="social_media">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-whatsapp"></i></a>
+                    </div>
+                </div>
+
+                <div class="right col-12 col-lg-6">
+                    <div class="company">
+                        <div class="title ">
+                            COMPANY
+                        </div>
+                        <div class="body small-1">
+                            <a href="#">About Us</a>
+                            <a href="#">Contact Us</a>
+                        </div>
+                    </div>
+                    <div class="support">
+                        <div class="title">
+                            SUPPORT
+                        </div>
+                        <div class="body small-1">
+                            <span><i class="fas fa-phone-alt"></i> 1800-000-000</span>
+                            <span><i class="fas fa-envelope"></i>zeroocarz@gmail.com</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-4  legal_copyright small-1">
+                    Copyright &copy; 2022 Zeroo cars Inc. All rights reserved.
+                </div>
+                
+                {#<div class="col-lg-4 legal_rights">
+                    <a href="#" class="small-1">Privacy Policy</a> | <a href="#" class="small-2">Terms and Conditions</a>
+                </div> #}
+            </div>
+        </div>
+    </footer>
+    
+    <!-- SELL CAR Modal -->
+    <div class="modal fade "   id="sellcarModal" tabindex="-1"  >
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header bg-warning">
+                    <h4 class=" text-center text-white">SELL YOUR CAR</h4>
+                    <button type="button" class="btn-close m-0 text-white border-0" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+
+                <div class="modal-body">
+                    <div class="sellcar">
+                        <input type="text" class="form-control mb-3 shadow-none"  name="name" id="sellerName" placeholder="Your name" >
+                        <input type="phone" class="form-control mb-3 shadow-none"  name="phone" id="sellerPhone" maxlength="10" placeholder="Phone" >
+                        <input type="email" class="form-control mb-3 shadow-none" name="mail" id="sellerMail" placeholder="Email" >
+                        <input type="text" class="form-control mb-3 shadow-none" name="car_name" id="sellerCarBrand" placeholder="Car Brand">
+                        <input type="text" class="form-control mb-3 shadow-none" name="car_model" id="carModel" placeholder="Car Model" >
+                        <input type="text" maxlength="4"  class="form-control mb-3 shadow-none" name="registration year" id="sellerRegYear" placeholder="Registration Year" >
+                        <!-- <input type="number" class="form-control mb-3 shadow-none"  name="kilometer" id="kilometer" placeholder="Kilometer" > -->
+                        <!-- <input type="text" class="form-control mb-3 shadow-none" name="fuel_type" id="fuel_type" placeholder="Fuel Type" > -->
+                        
+                        <!-- <textarea name="contact_message" class="form-control shadow-none" id="contact_message" rows="5" placeholder="Your Message" ></textarea> -->
+                        <input type="submit" class="form-control shadow-none border-none " id="sellCarSubmit" value="SUBMIT">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- CONTACT US Modal -->
+    <div class="modal fade "  id="contactModal" tabindex="-1"  aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header bg-warning">
+                    <h4 class=" text-white">CONTACT US</h4>
+                    <button type="button" class="btn-close m-0" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="contact_us ">
+                        <input type="text" class="form-control shadow-none" name="contact_name" id="contactName" placeholder="Your Name">
+                        <input type="email" class="form-control shadow-none"  name="contact_mail" id="contactMail" placeholder="Your Email">
+                        <textarea name="contact_message" class="form-control shadow-none" id="contactMessage" rows="5" placeholder="Your Message" ></textarea>
+                        
+                        <input type="submit" class="form-control " value="SUBMIT" id="contactSubmit">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ABOUT US Modal -->
+    <div class="modal fade "  id="aboutModal" tabindex="-1"  aria-hidden="true">
+        <div class="modal-dialog ">
+            <div class="modal-content">
+                <div class="modal-header ">
+                    <img class="nav_logo" width="100px" src="{{ url_for('static', path='common/resources/logo-light.png'  ) }}" alt="">
+                    
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    On The Way....
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.24.0/axios.min.js" integrity="sha512-u9akINsQsAkG9xjc1cnGF4zw5TFDwkxuc9vUp5dltDWYCSmyd0meygbvgXrlc/z7/o4a19Fb5V0OUE58J7dcyw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script src="{{ url_for('static', path='common/js/owl.carousel.min.js') }}"></script>
+
+    <script src="{{ url_for('static', path='common/js/nouislider.js') }}"></script>
+    <script src="{{ url_for('static', path='user/js/buy_car.js') }}"></script>
+    
+
+</body>
+</html>

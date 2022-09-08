@@ -1,0 +1,54 @@
+delete from system_and_functions where REGESTRATION_NUMBER=%(regestration_number)s;
+
+INSERT INTO system_and_functions
+(
+  REGESTRATION_NUMBER,
+  ACCESSORIES_AUDIO_COVERS,
+  TRANSMISSION_CONTROL,
+  AC_BLOWER,
+  COOLING,
+  HEATER,
+  ABS,
+  AIRBAGS,
+  ESP,
+  REVERSE_PARKING__ASSIST,
+  STARTER_MOTOR,
+  ALTERRNATOR,
+  AC_COMPRESSOR,
+  WIPER_ASSEMBLY_AND_BLADES,
+  BATTERY_CONDITION,
+  IGNITION_AND_FUEL_SYSTEM,
+  HEAD_AND_TAIL_LAMP,
+  FOG_LAMP,
+  REMOTE_LOCK,
+  INTERIOR_LIGHT_CHECK,
+  POWER_WINDOW,
+  MUSIC_SYSTEM,
+  SYSTEM_AND_FUNCTIONS_REMARK
+)
+VALUES
+(
+  %(regestration_number)s,
+%(accessories_audio_covers)s,
+%(transmission_control)s,
+%(ac_blower)s,
+%(cooling)s,
+%(heater)s,
+%(abs)s,
+%(airbags)s,
+%(esp)s,
+%(reverse_parking__assist)s,
+%(starter_motor)s,
+%(alterrnator)s,
+%(ac_compressor)s,
+%(wiper_assembly_and_blades)s,
+%(battery_condition)s,
+%(ignition_and_fuel_system)s,
+%(head_and_tail_lamp)s,
+%(fog_lamp)s,
+%(remote_lock)s,
+%(interior_light_check)s,
+%(power_window)s,
+%(music_system)s,
+%(system_and_functions_remark)s
+);

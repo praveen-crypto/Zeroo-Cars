@@ -1,0 +1,1706 @@
+{% extends "admin.html" %}
+
+{% block title %}
+<h6 class="title">
+    
+</h6>
+{% endblock %}
+
+{% block inner_nav %}
+<div class="car-nav">
+    <ul>
+        <li>
+            <button class="nav_add_car active" style="background-color: white; border: 0; cursor: pointer;"> Add car </button>
+        </li>
+        <li>
+            <button  class="nav_archive_car " style="background-color: white; border: 0; cursor: pointer;"> Archived cars </button>
+        </li>
+        <li>
+            <button class="navLiveCar" style="background-color: white; border: 0; cursor: pointer;"> Live cars </button>
+        </li>        
+        <li>
+            <button  class="navSoldCars " style="background-color: white; border: 0; cursor: pointer;"> Sold cars </button>
+        </li>
+    </ul>
+</div>
+{% endblock %}
+
+{% block content %}
+<main>
+    <div class="cars">
+        <div class="add-car" id="add_car">
+            <div class="item">
+                <label for="car_brand">Car Brand</label>
+                <!-- <input type="text" name="car_brand" id="car_brand" placeholder="Car Brand" required> -->
+                <select name="car_brand" id="car_brand">
+                </select>
+            </div>
+    
+            <div class="item">
+                <label for="car_model">Car Model</label>
+                <input type="text" name="car_model" id="car_model" placeholder="Car Model" required>            
+            </div>
+    
+            <div class="item">
+                <label for="car_mfg_year">Car manufacture year</label>
+                <input type="text" name="car_mfg_year" id="car_mfg_year" placeholder="Car manufacture year" required>            
+            </div>
+    
+            <div class="item">
+                <label for="reg_number">Car registration number</label>
+                <input type="text" name="reg_number" id="reg_number" placeholder="Registration Number" maxlength="10" required>
+            </div>
+    
+            <div class="item">
+                <label for="kilometer">Kilometer driven</label>
+                <input type="text" name="kilometer" id="kilometer" placeholder="Kilometer Driven" required>            
+            </div>
+    
+            <div class="item">
+                <label for="color">Car color</label>
+                <input type="text" name="color" id="car_color" placeholder="Car color" required>
+            </div>
+            
+            <div class="item">
+                <label for="owner_name">Owner name</label>
+                <input type="text" name="owner_name" id="owner_name" placeholder="Owner name"  required>
+            </div>
+    
+            <div class="item">
+                <label for="owner_number">Owner phone number</label>
+                <input type="number" name="owner_number" id="owner_number" placeholder="Owner phone number" required>
+            </div>
+    
+            <div class="item">
+                <label for="chassis_number">Chassis Number</label>
+                <input type="text" name="chassis_number" id="chassis_number" placeholder="Chassis Number" maxlength="18" required>
+            </div>
+    
+            <div class="item">
+                <label for="car_price">Car Price</label>
+                <input type="number" name="car_price" id="car_price" placeholder="Car price" required>
+            </div>
+    
+            <div class="item">
+                <label for="history">Car Service History</label>
+                <input type="text" name="history" id="history" placeholder="History" required>
+            </div>
+    
+            <div class="submit">
+                <intput type="submit" class="add-car-submit" id="add_car_submit">Add Car</button>
+            </div>
+        </div>
+        
+        <div class="list-car" id="car_lists">
+            <div class="car-card">
+                <div class="car_image_container">
+                    <img class="car_image" src="" alt="">
+                </div>
+                <div class="card_content">
+                    <span class="title">Title</span>
+                    <span class="id small-1">Id</span>
+                    <span class="owner_name small-1">Owner name</span>
+                    <span class="date small-1" >Date created</span>
+                    <button class="modify_btn" > Modify </button>
+                </div>
+            </div> 
+        </div>
+        
+        <div class="archive-car" id="archive_car">
+            
+        </div>
+
+        <div class="soldCars" id="soldCars">
+            
+        </div>
+        
+        <!-- MODIFY CAR INFORMATIONS MODAL -->
+        <div class="modal amendCarDetail">
+            <div class="modal_header">
+                <h5 class="title">Modify Car Informations</h4>
+                <button class="close_modal" ><span class="material-icons">cancel</span></button>
+            </div>
+            
+            <div class="modal_navbar">
+                <a href="#" class="nav_list active" id="nav_general">General details</a>
+                <a href="#" class="nav_list " id="nav_specs">Specs & Features</a>       
+                <a href="#" class="nav_list " id="nav_images">Images</a>            
+            </div>
+            
+            <div class="general_details">
+                <div class="item">
+                    <label for="car_brand_update">Car Brand</label>
+                    <!-- <input type="text" name="car_brand_update" id="car_brand_update" placeholder="Car Brand" required>-->
+                    <select name="car_brand" id="car_brand_update">
+                    </select>
+                </div>
+                
+                <div class="item">
+                    <label for="car_model_update">Car Model</label>
+                    <input type="text" name="car_model_update" id="car_model_update" placeholder="Car Model" required>            
+                </div>
+                
+                <div class="item">
+                    <label for="car_mfg_year_update">Car manufacture year</label>
+                    <input type="text" name="car_mfg_year_update" id="car_mfg_year_update" placeholder="Car manufacture year" required>            
+                </div>
+                
+                <div class="item">
+                    <label for="reg_number_update">Car registration number</label>
+                    <input type="text" name="reg_number_update" id="reg_number_update" placeholder="Registration Number" maxlength="10" required>
+                </div>
+                
+                <div class="item">
+                    <label for="kilometer_update">Kilometer driven</label>
+                    <input type="text" name="kilometer_update" id="kilometer_update" placeholder="Kilometer Driven" required>            
+                </div>
+                
+                <div class="item">
+                    <label for="color_update">Car color</label>
+                    <input type="text" name="color_update" id="car_color_update" placeholder="Car color" required>
+                </div>
+                
+                <div class="item">
+                    <label for="owner_name_update">Owner name</label>
+                    <input type="text" name="owner_name_update" id="owner_name_update" placeholder="Owner name"  required>
+                </div>
+                
+                <div class="item">
+                    <label for="owner_number_update">Owner phone number</label>
+                    <input type="number" name="owner_number_update" id="owner_number_update" placeholder="Owner phone number" required>
+                </div>
+        
+                <div class="item">
+                    <label for="chassis_number_update">Chassis Number</label>
+                    <input type="text" name="chassis_number_update" id="chassis_number_update" maxlength="18" placeholder="Chassis Number" required>
+                </div>
+        
+                <div class="item">
+                    <label for="car_price_update">Car Price</label>
+                    <input type="number" name="car_price_update" id="car_price_update" placeholder="Car price" required>
+                </div>
+        
+                <div class="item">
+                    <label for="history_update">Car Service History</label>
+                    <input type="text" name="history" id="history_update" placeholder="History" required>
+                </div>
+                
+                <intput type="submit" class="update_car_submit text-white" id="update_car_submit">Update</button>
+                
+            </div>
+            
+            <div class="specs_and_features">
+                <div class="comfort_and_convenience_outer">
+                    <button class="accordion"  id="cac_btn">Comfort and Convenience</button>
+                    <form class="comfort_and_convenience panel">        
+                        <div class="item">
+                            <input type="checkbox" id="heater"   >
+                            <label for="heater">Heater</label>                    
+                        </div>
+                        <div class="item">
+                            <input type="checkbox" id="power_boot"   >
+                            <label for="power_boot">Power boot</label>                    
+                        </div>                
+                        <div class="item">
+                            <input type="checkbox" id="trunk_light"   >
+                            <label for="trunk_light">Trunk light</label>                    
+                        </div>
+                        <div class="item">
+                            <input type="checkbox" id="usb_charger"   >
+                            <label for="usb_charger">Usb charger</label>                    
+                        </div>
+                        <div class="item">
+                            <input type="checkbox" id="rear_curtain"   >
+                            <label for="rear_curtain">Rear curtain</label>                    
+                        </div>
+                        <div class="item">
+                            <input type="checkbox" id="battery_saver"   >
+                            <label for="battery_saver">Battery saver</label>                    
+                        </div>
+                        <div class="item">
+                            <input type="checkbox" id="keyless_entry"   >
+                            <label for="keyless_entry">Keyless entry</label>                    
+                        </div>
+                        <div class="item">
+                            <input type="checkbox" id="rear_ac_vents"   >
+                            <label for="rear_ac_vents">Rear ac vents</label>                    
+                        </div>
+                        <div class="item">
+                            <input type="checkbox" id="tailgate_ajar"   >
+                            <label for="tailgate_ajar">Tailgate ajar</label>                    
+                        </div>
+                        <div class="item">
+                            <input type="checkbox" id="vanity_mirror"   >
+                            <label for="vanity_mirror">Vanity mirror</label>                    
+                        </div>
+                        <div class="item">
+                            <input type="checkbox" id="voice_control"   >
+                            <label for="voice_control">Voice control</label>                    
+                        </div>
+                        <div class="item">
+                            <input type="checkbox" id="cruise_control"   >
+                            <label for="cruise_control">Cruise control</label>                    
+                        </div>
+                        <div class="item">
+                            <input type="checkbox" id="power_steering"   >
+                            <label for="power_steering">Power steering</label>                    
+                        </div>
+                        <div class="item">
+                            <input type="checkbox" id="air_conditioner"   >
+                            <label for="air_conditioner">Air conditioner</label>                    
+                        </div>
+                        <div class="item">
+                            <input type="checkbox" id="parking_sensors"   >
+                            <label for="parking_sensors">Parking sensors</label>                    
+                        </div>
+                        <div class="item">
+                            <input type="checkbox" id="cup_holders_rear"   >
+                            <label for="cup_holders_rear">Cup holders rear</label>                    
+                        </div>
+                        <div class="item">
+                            <input type="checkbox" id="cup_holders_front"   >
+                            <label for="cup_holders_front">Cup holders front</label>                    
+                        </div>
+                        <div class="item">
+                            <input type="checkbox" id="glove_box_cooling"   >
+                            <label for="glove_box_cooling">Glove box cooling</label>                    
+                        </div>
+                        <div class="item">
+                            <input type="checkbox" id="heated_seats_rear"   >
+                            <label for="heated_seats_rear">Heated seats rear</label>                    
+                        </div>
+                        <div class="item">
+                            <input type="checkbox" id="navigation_system"   >
+                            <label for="navigation_system">Navigation system</label>                    
+                        </div>
+                        <div class="item">
+                            <input type="checkbox" id="rear_reading_lamp"   >
+                            <label for="rear_reading_lamp">Rear reading lamp</label>                    
+                        </div>
+                        <div class="item">
+                            <input type="checkbox" id="foldable_rear_seat"   >
+                            <label for="foldable_rear_seat">Foldable rear seat</label>                    
+                        </div>
+                        <div class="item">
+                            <input type="checkbox" id="heated_seats_front"   >
+                            <label for="heated_seats_front">Heated seats front</label>                    
+                        </div>
+                        <div class="item">
+                            <input type="checkbox" id="power_windows_rear"   >
+                            <label for="power_windows_rear">Power windows rear</label>                    
+                        </div>
+                        <div class="item">
+                            <input type="checkbox" id="power_windowsfront"   >
+                            <label for="power_windowsfront">Power windowsfront</label>                    
+                        </div>
+                        <div class="item">
+                            <input type="checkbox" id="rear_seat_headrest"   >
+                            <label for="rear_seat_headrest">Rear seat headrest</label>                    
+                        </div>
+                        <div class="item">
+                            <input type="checkbox" id="adjustable_headrest"   >
+                            <label for="adjustable_headrest">Adjustable headrest</label>                    
+                        </div>
+                        <div class="item">
+                            <input type="checkbox" id="adjustable_steering"   >
+                            <label for="adjustable_steering">Adjustable steering</label>                    
+                        </div>
+                        <div class="item">
+                            <input type="checkbox" id="air_quality_control"   >
+                            <label for="air_quality_control">Air quality control</label>                    
+                        </div>
+                        <div class="item">
+                            <input type="checkbox" id="remote_trunk_opener"   >
+                            <label for="remote_trunk_opener">Remote trunk opener</label>                    
+                        </div>
+                        <div class="item">
+                            <input type="checkbox" id="seat_lumbar_support"   >
+                            <label for="seat_lumbar_support">Seat lumbar support</label>                    
+                        </div>
+                        <div class="item">
+                            <input type="checkbox" id="find_my_car_location"   >
+                            <label for="find_my_car_location">Find my car location</label>                    
+                        </div>
+                        <div class="item">
+                            <input type="checkbox" id="gear_shift_indicator"   >
+                            <label for="gear_shift_indicator">Gear shift indicator</label>                    
+                        </div>
+                        <div class="item">
+                            <input type="checkbox" id="luggage_hook_and_net"   >
+                            <label for="luggage_hook_and_net">Luggage hook and net</label>                    
+                        </div>
+                        <div class="item">
+                            <input type="checkbox" id="lane_change_indicator"   >
+                            <label for="lane_change_indicator">Lane change indicator</label>                    
+                        </div>
+                        <div class="item">
+                            <input type="checkbox" id="accessory_power_outlet"   >
+                            <label for="accessory_power_outlet">Accessory power outlet</label>                    
+                        </div>
+                        <div class="item">
+                            <input type="checkbox" id="low_fuel_warning_light"   >
+                            <label for="low_fuel_warning_light">Low fuel warning light</label>                    
+                        </div>
+                        <div class="item">
+                            <input type="checkbox" id="remote_fuel_lid_opener"   >
+                            <label for="remote_fuel_lid_opener">Remote fuel lid opener</label>                    
+                        </div>
+                        <div class="item">
+                            <input type="checkbox" id="central_console_armrest"   >
+                            <label for="central_console_armrest">Central console armrest</label>                    
+                        </div>
+                        <div class="item">
+                            <input type="checkbox" id="smart_access_card_entry"   >
+                            <label for="smart_access_card_entry">Smart access card entry</label>                    
+                        </div>
+                        <div class="item">
+                            <input type="checkbox" id="engine_start_stop_button"   >
+                            <label for="engine_start_stop_button">Engine start stop button</label>                    
+                        </div>
+                        <div class="item">
+                            <input type="checkbox" id="remote_engine_start_stop"   >
+                            <label for="remote_engine_start_stop">Remote engine start stop</label>                    
+                        </div>
+                        <div class="item">
+                            <input type="checkbox" id="active_noise_cancellation"   >
+                            <label for="active_noise_cancellation">Active noise cancellation</label>                    
+                        </div>
+                        <div class="item">
+                            <input type="checkbox" id="automatic_climate_control"   >
+                            <label for="automatic_climate_control">Automatic climate control</label>                    
+                        </div>
+                        <div class="item">
+                            <input type="checkbox" id="rear_seat_centre_arm_rest"   >
+                            <label for="rear_seat_centre_arm_rest">Rear seat centre arm rest</label>                    
+                        </div>
+                        <div class="item">
+                            <input type="checkbox" id="real_time_vehicle_tracking"   >
+                            <label for="real_time_vehicle_tracking">Real time vehicle tracking</label>                    
+                        </div>
+                        <div class="item">
+                            <input type="checkbox" id="remote_horn_and_light_control"   >
+                            <label for="remote_horn_and_light_control">Remote horn and light control</label>                    
+                        </div>
+                        <div class="item">
+                            <input type="checkbox" id="steering_wheel_gearshift_paddles"   >
+                            <label for="steering_wheel_gearshift_paddles">Steering wheel gearshift paddles</label>                    
+                        </div>
+                        <div class="item">
+                            <input type="checkbox" id="height_adjustable_front_seat_belts"   >
+                            <label for="height_adjustable_front_seat_belts">Height adjustable front seat belts</label>                    
+                        </div>
+                        <div class="item">
+                            <label for="drive_modes">Drive modes</label>  
+                            <input type="number" id="drive_modes" placeholder="Drive modes" required >                                      
+                        </div>
+                        <input type="submit" id="cac_apply" value="Apply">
+                    </form>
+                </div>
+    
+                <div class="dimensions_and_capacity_outer">
+                    <button class="accordion"  id="dac_btn">Dimensions and Capacity</button>
+                    <form class="dimensions_and_capacity panel" name="dimensions-and-capacity">
+                        <div class="item">                   
+                            <label for="width">Width</label>     
+                            <input type="number" id="width"  required >               
+                        </div>
+                        <div class="item">                    
+                            <label for="height">Height</label>     
+                            <input type="number" id="height" required >               
+                        </div>
+                        <div class="item">                    
+                            <label for="length">Length</label>     
+                            <input type="number" id="length" required >               
+                        </div>
+                        <div class="item">                    
+                            <label for="body_type">Body type</label>                             
+                            <select name="body_type" id="body_type" required>
+                                <option value="HatchBack">HatchBack</option>
+                                <option value="Sedan">Sedan</option>
+                                <option value="SUV">SUV</option>
+                            </select>               
+                        </div>
+                        <div class="item">                    
+                            <label for="rear_tread">Rear tread</label>     
+                            <input type="number" id="rear_tread" required >               
+                        </div>
+                        <div class="item">                    
+                            <label for="wheel_base">Wheel base</label>     
+                            <input type="number" id="wheel_base" required >               
+                        </div>
+                        <div class="item">                    
+                            <label for="front_tread">Front tread</label>     
+                            <input type="number" id="front_tread" required >               
+                        </div>
+                        <div class="item">                    
+                            <label for="kerb_weight">Kerb weight</label>     
+                            <input type="number" id="kerb_weight" required >               
+                        </div>
+                        <div class="item">                    
+                            <label for="no_of_doors">No of doors</label>     
+                            <input type="number" id="no_of_doors" required >               
+                        </div>
+                        <div class="item">                    
+                            <label for="gross_weight">Gross weight</label>     
+                            <input type="number" id="gross_weight" required >               
+                        </div>
+                        <div class="item">                    
+                            <label for="seating_capacity">Seating capacity</label>     
+                            <input type="number" id="seating_capacity" required >               
+                        </div>
+                        <input type="submit" id="dac_apply" value="Apply">
+                    </form>
+                </div>
+                
+                <div class="engine_and_transmission_outer">
+                    <button class="accordion" >engine and transmission</button>
+                    <form class="engine_and_transmission panel">
+                        <div class="item">                    
+                            <label for="gear_box">Gear box</label>     
+                            <input type="text" id="gear_box"  >               
+                        </div>
+                        <div class="item">                    
+                            <label for="max_power">Max power</label>     
+                            <input type="text" id="max_power"  >               
+                        </div>
+                        <div class="item">                    
+                            <label for="drive_type">Drive type</label>     
+                            <input type="text" id="drive_type"  >               
+                        </div>
+                        <div class="item">                    
+                            <label for="max_torque">Max torque</label>     
+                            <input type="text" id="max_torque"  >               
+                        </div>
+                        <div class="item">                    
+                            <label for="engine_type">Engine type</label>     
+                            <input type="text" id="engine_type" >               
+                        </div>
+                        <div class="item">             
+                            <input type="checkbox" id="mild_hybrid" >        
+                            <label for="mild_hybrid">Mild hybrid</label>     
+                                        
+                        </div>
+                        <div class="item">                    
+                            <input type="checkbox" id="super_charger"  > 
+                            <label for="super_charger">Super charger</label>    
+                        </div>
+                        <div class="item">                    
+                            <input type="checkbox" id="turbo_charger"  >               
+                            <label for="turbo_charger">Turbo charger</label>     
+                        </div>
+                        <div class="item">                    
+                            <label for="cubic_capacity">Cubic capacity</label>     
+                            <input type="number" id="cubic_capacity"  >               
+                        </div>
+                        <div class="item">                    
+                            <label for="transmission_type">Transmission type</label>     
+                            <input type="text" id="transmission_type"  >               
+                        </div>
+                        <div class="item">                    
+                            <label for="number_of_cylinder">Number of cylinder</label>     
+                            <input type="number" id="number_of_cylinder"  >               
+                        </div>
+                        <div class="item">                    
+                            <label for="valve_configration">Valve configration</label>     
+                            <input type="text" id="valve_configration"  >               
+                        </div>
+                        <div class="item">                    
+                            <label for="valves_per_cylinder">Valves per cylinder</label>     
+                            <input type="number" id="valves_per_cylinder"  >               
+                        </div>
+                        <input type="submit" id="eat_apply" value="Apply">
+                    </form>
+                </div>
+                
+                <div class="entertainment_and_communication_outer">
+                    <button class="accordion" >entertainment and communication</button>
+                    <form class="entertainment_and_communication panel">        
+                        <div class="item">                    
+                            <input type="checkbox" id="radio" required >
+                            <label for="radio">Radio</label>
+                        </div>
+                        <div class="item">                    
+                            <input type="checkbox" id="cd_player" required >               
+                            <label for="cd_player">Cd player</label>     
+                        </div>
+                        <div class="item">                    
+                            <input type="checkbox" id="cd_changer" required >               
+                            <label for="cd_changer">Cd changer</label>     
+                        </div>
+                        <div class="item">                    
+                            <input type="checkbox" id="dvd_player" required >               
+                            <label for="dvd_player">Dvd player</label>     
+                        </div>
+                        <div class="item">                    
+                            <input type="checkbox" id="android_auto" required >               
+                            <label for="android_auto">Android auto</label>     
+                        </div>
+                        <div class="item">                    
+                            <label for="connectivity">Connectivity</label>     
+                            <input type="text" id="connectivity" required >               
+                        </div>
+                        <div class="item">                    
+                            <input type="checkbox" id="touch_screen" required >               
+                            <label for="touch_screen">Touch screen</label>     
+                        </div>
+                        <div class="item">                    
+                            <input type="checkbox" id="apple_carplay" required >               
+                            <label for="apple_carplay">Apple carplay</label>     
+                        </div>
+                        <div class="item">                    
+                            <input type="checkbox" id="speakers_rear" required >               
+                            <label for="speakers_rear">Speakers rear</label>     
+                        </div>
+                        <div class="item">                    
+                            <input type="checkbox" id="speakers_front" required >               
+                            <label for="speakers_front">Speakers front</label>     
+                        </div>
+                        <div class="item">                    
+                            <input type="checkbox" id="internal_storage" required >               
+                            <label for="internal_storage">Internal storage</label>     
+                        </div>
+                        <div class="item">                    
+                            <label for="touch_screen_size">Touch screen size</label>     
+                            <input type="number" id="touch_screen_size" required >               
+                        </div>
+                        <div class="item">                    
+                            <input type="checkbox" id="wifi_connectivity" required >               
+                            <label for="wifi_connectivity">Wifi connectivity</label>     
+                        </div>
+                        <div class="item">                    
+                            <label for="number_of_speakers">Number of speakers</label>     
+                            <input type="number" id="number_of_speakers" required >               
+                        </div>
+                        <div class="item">                    
+                            <input type="checkbox" id="integrated_2din_audio" required >               
+                            <label for="integrated_2din_audio">Integrated 2din audio</label>     
+                        </div>
+                        <div class="item">                    
+                            <input type="checkbox" id="bluetooth_connectivity" required >               
+                            <label for="bluetooth_connectivity">Bluetooth connectivity</label>     
+                        </div>
+                        <div class="item">                    
+                            <input type="checkbox" id="usb_and_auxiliary_input" required >               
+                            <label for="usb_and_auxiliary_input">Usb and auxiliary input</label>     
+                        </div>
+                        <div class="item">                    
+                            <input type="checkbox" id="rear_entertainment_system" required >               
+                            <label for="rear_entertainment_system">Rear entertainment system</label>     
+                        </div>
+                        <div class="item">                    
+                            <input type="checkbox" id="audio_system_remote_control" required >               
+                            <label for="audio_system_remote_control">Audio system remote control</label>     
+                        </div>
+                        <input type="submit" id="eac_apply" value="Apply">
+                    </form>
+                </div>        
+                
+                <div class="exterior_outer">
+                    <button class="accordion" >exterior</button>
+                    <form class="exterior panel">           
+                        <div class="item">                    
+                            <input type="checkbox" id="led_drls"   >               
+                            <label for="led_drls">Led drls</label>     
+                        </div>
+                        <div class="item">                    
+                            <input type="checkbox" id="lighting"   >               
+                            <label for="lighting">Lighting</label>     
+                        </div>
+                        <div class="item">                    
+                            <input type="checkbox" id="sun_roof"   >               
+                            <label for="sun_roof">Sun roof</label>     
+                        </div>
+                        <div class="item">                    
+                            <input type="checkbox" id="moon_roof"   >               
+                            <label for="moon_roof">Moon roof</label>     
+                        </div>
+                        <div class="item">                    
+                            <input type="checkbox" id="roof_rail"   >               
+                            <label for="roof_rail">Roof rail</label>     
+                        </div>
+                        <div class="item">                   
+                            <label for="tyre_size">Tyre size</label>   
+                            <input type="number" id="tyre_size" required >   
+                        </div>
+                        <div class="item">
+                            <input type="checkbox" id="tyre_type"   >               
+                            <label for="tyre_type">Tyre type</label>     
+                        </div>
+                        <div class="item">                    
+                            <input type="checkbox" id="alloy_wheels"   >               
+                            <label for="alloy_wheels">Alloy wheels</label>     
+                        </div>
+                        <div class="item">                    
+                            <input type="checkbox" id="rear_spoiler"   >               
+                            <label for="rear_spoiler">Rear spoiler</label>     
+                        </div>
+                        <div class="item">                    
+                            <input type="checkbox" id="roof_carrier"   >               
+                            <label for="roof_carrier">Roof carrier</label>     
+                        </div>
+                        <div class="item">                    
+                            <input type="checkbox" id="side_stepper"   >               
+                            <label for="side_stepper">Side stepper</label>     
+                        </div>
+                        <div class="item">                    
+                            <input type="checkbox" id="tinted_glass"   >               
+                            <label for="tinted_glass">Tinted glass</label>     
+                        </div>
+                        <div class="item">                    
+                            <input type="checkbox" id="trunk_opener"   >               
+                            <label for="trunk_opener">Trunk opener</label>     
+                        </div>
+                        <div class="item">                    
+                            <input type="checkbox" id="wheel_covers"   >               
+                            <label for="wheel_covers">Wheel covers</label>     
+                        </div>
+                        <div class="item">                    
+                            <input type="checkbox" id="chrome_grille"   >               
+                            <label for="chrome_grille">Chrome grille</label>     
+                        </div>
+                        <div class="item">                    
+                            <input type="checkbox" id="led_fog_lamps"   >               
+                            <label for="led_fog_lamps">Led fog lamps</label>     
+                        </div>
+                        <div class="item">                    
+                            <input type="checkbox" id="power_antenna"   >               
+                            <label for="power_antenna">Power antenna</label>     
+                        </div>
+                        <div class="item">                    
+                            <input type="checkbox" id="chrome_garnish"   >               
+                            <label for="chrome_garnish">Chrome garnish</label>     
+                        </div>
+                        <div class="item">                    
+                            <input type="checkbox" id="led_headlights"   >               
+                            <label for="led_headlights">Led headlights</label>     
+                        </div>
+                        <div class="item">                    
+                            <input type="checkbox" id="led_taillights"   >               
+                            <label for="led_taillights">Led taillights</label>     
+                        </div>
+                        <div class="item">                    
+                            <input type="checkbox" id="fog_lights_rear"   >               
+                            <label for="fog_lights_rear">Fog lights rear</label>     
+                        </div>
+                        <div class="item">                    
+                            <input type="checkbox" id="smoke_headlamps"   >               
+                            <label for="smoke_headlamps">Smoke headlamps</label>     
+                        </div>
+                        <div class="item">                    
+                            <input type="checkbox" id="fog_lights_front"   >               
+                            <label for="fog_lights_front">Fog lights front</label>     
+                        </div>
+                        <div class="item">                                                      
+                            <label for="alloy_wheels_size">Alloy wheels size</label>  
+                            <input type="number" id="alloy_wheels_size" required >    
+                        </div>
+                        <div class="item">                    
+                            <input type="checkbox" id="halogen_headlamps"   >               
+                            <label for="halogen_headlamps">Halogen headlamps</label>     
+                        </div>
+                        <div class="item">                    
+                            <input type="checkbox" id="rear_window_wiper"   >               
+                            <label for="rear_window_wiper">Rear window wiper</label>     
+                        </div>
+                        <div class="item">                    
+                            <input type="checkbox" id="integrated_antenna"   >               
+                            <label for="integrated_antenna">Integrated antenna</label>     
+                        </div>
+                        <div class="item">                    
+                            <input type="checkbox" id="rain_sensing_wiper"   >               
+                            <label for="rain_sensing_wiper">Rain sensing wiper</label>     
+                        </div>
+                        <div class="item">                    
+                            <input type="checkbox" id="rear_window_washer"   >               
+                            <label for="rear_window_washer">Rear window washer</label>     
+                        </div>
+                        <div class="item">                    
+                            <input type="checkbox" id="rear_window_defogger"   >               
+                            <label for="rear_window_defogger">Rear window defogger</label>     
+                        </div>
+                        <div class="item">                    
+                            <input type="checkbox" id="adjustable_headlights"   >               
+                            <label for="adjustable_headlights">Adjustable headlights</label>     
+                        </div>
+                        <div class="item">                    
+                            <input type="checkbox" id="removable_convertible_top"   >               
+                            <label for="removable_convertible_top">Removable convertible top</label>     
+                        </div>
+                        <div class="item">                    
+                            <input type="checkbox" id="electric_folding_rear_view_mirror"   >               
+                            <label for="electric_folding_rear_view_mirror">Electric folding rear view mirror</label>     
+                        </div>
+                        <div class="item">                    
+                            <input type="checkbox" id="outside_rear_view_mirror_turn_indicators"   >               
+                            <label for="outside_rear_view_mirror_turn_indicators">Outside rear view mirror turn indicators</label>     
+                        </div>
+                        <div class="item">                    
+                            <input type="checkbox" id="power_adjustable_exterior_rear_view_mirror"   >               
+                            <label for="power_adjustable_exterior_rear_view_mirror">Power adjustable exterior rear view mirror</label>     
+                        </div>
+                        <div class="item">                    
+                            <input type="checkbox" id="manually_adjustable_exterior_rear_view_mirror"   >               
+                            <label for="manually_adjustable_exterior_rear_view_mirror">Manually adjustable exterior rear view mirror</label>     
+                        </div>
+                        <input type="submit" id="exterior_apply" value="Apply">
+                    </form>
+                </div>
+    
+                <div class="exteriors_report_outer">
+                    <button class="accordion" >exteriors report</button>
+                    <form class="exteriors_report panel">        
+                        <div class="item">
+                            <label for="boot">Boot</label>  
+                            <input type="number" id="boot" required >   
+                        </div>
+                        <div class="item">                    
+                            <label for="roof">Roof</label>  
+                            <input type="number" id="roof" required >   
+                        </div>
+                        <div class="item">                    
+                            <label for="pillars">Pillars</label>  
+                            <input type="number" id="pillars" required >   
+                        </div>
+                        <div class="item">                    
+                            <label for="fuel_lid">Fuel lid</label>  
+                            <input type="number" id="fuel_lid" required >   
+                        </div>
+                        <div class="item">                        
+                            <label for="rear_glass">Rear glass</label>  
+                            <input type="number" id="rear_glass" required >   
+                        </div>
+                        <div class="item">                    
+                            <label for="rear_bumper">Rear bumper</label>  
+                            <input type="number" id="rear_bumper" required >   
+                        </div>
+                        <div class="item">                       
+                            <label for="front_bonnet">Front bonnet</label>  
+                            <input type="number" id="front_bonnet" required >   
+                        </div>
+                        <div class="item">                     
+                            <label for="ffront_bumper">Ffront bumper</label>  
+                            <input type="number" id="ffront_bumper" required >   
+                        </div>
+                        <div class="item">                    
+                                        
+                            <label for="license_plate">License plate</label>  
+                            <input type="number" id="license_plate" required >   
+                        </div>
+                        <div class="item">                    
+                                        
+                            <label for="running_board">Running board</label>  
+                            <input type="number" id="running_board" required >   
+                        </div>
+                        <div class="item">                    
+                                        
+                            <label for="lh_side_fender">Lh side fender</label>  
+                            <input type="number" id="lh_side_fender" required >   
+                        </div>
+                        <div class="item">                    
+                                        
+                            <label for="paint_peel_off">Paint peel off</label>  
+                            <input type="number" id="paint_peel_off" required >   
+                        </div>
+                        <div class="item">                    
+                                        
+                            <label for="rh_side_fender">Rh side fender</label>  
+                            <input type="number" id="rh_side_fender" required >   
+                        </div>
+                        <div class="item">                    
+                                        
+                            <label for="paint_condition">Paint condition</label>  
+                            <input type="number" id="paint_condition" required >   
+                        </div>
+                        <div class="item">                    
+                                        
+                            <label for="paint_overspray">Paint overspray</label>  
+                            <input type="number" id="paint_overspray" required >   
+                        </div>
+                        <div class="item">                    
+                                        
+                            <label for="windsheld_front">Windsheld front</label>  
+                            <input type="number" id="windsheld_front" required >   
+                        </div>
+                        <div class="item">                    
+                                        
+                            <label for="exteriors_remark">Exteriors remark</label>  
+                            <input type="text" id="exteriors_remark" required >   
+                        </div>
+                        <div class="item">                    
+                                        
+                            <label for="rh_quarter_panel">Rh quarter panel</label>  
+                            <input type="number" id="rh_quarter_panel" required >   
+                        </div>
+                        <div class="item">                    
+                                        
+                            <label for="lh_side_rear_door">Lh side rear door</label>  
+                            <input type="number" id="lh_side_rear_door" required >   
+                        </div>
+                        <div class="item">                    
+                                        
+                            <label for="rh_side_rear_door">Rh side rear door</label>  
+                            <input type="number" id="rh_side_rear_door" required >   
+                        </div>
+                        <div class="item">                    
+                                        
+                            <label for="side_view_mirrors">Side view mirrors</label>  
+                            <input type="number" id="side_view_mirrors" required >   
+                        </div>
+                        <div class="item">                    
+                                        
+                            <label for="lh_side_front_door">Lh side front door</label>  
+                            <input type="number" id="lh_side_front_door" required >   
+                        </div>
+                        <div class="item">                    
+                                        
+                            <label for="lh_side_quarter_panel">Lh side quarter panel</label>  
+                            <input type="number" id="lh_side_quarter_panel" required >   
+                        </div>
+                        <input type="submit" id="extrep_apply" value="Apply">
+                    </form>
+                </div>
+                
+                <div class="features_outer">
+                    <button class="accordion" >features</button>
+                    <form class="features panel">        
+                        <div class="item">                    
+                            <input type="checkbox" id="abs"   >
+                            <label for="abs">Abs</label>  
+                            
+                        </div>
+                        <div class="item">                    
+                            <input type="checkbox" id="alloy_wheels"   >
+                            <label for="alloy_wheels">Alloy wheels</label>  
+                            
+                        </div>
+                        <div class="item">                    
+                            <input type="checkbox" id="driver_airbag"   >
+                            <label for="driver_airbag">Driver airbag</label>  
+                            
+                        </div>
+                        <div class="item">                    
+                            <input type="checkbox" id="power_steering"   >
+                            <label for="power_steering">Power steering</label>  
+                            
+                        </div>
+                        <div class="item">                    
+                            <input type="checkbox" id="air_conditioner"   >
+                            <label for="air_conditioner">Air conditioner</label>  
+                            
+                        </div>
+                        <div class="item">                    
+                            <input type="checkbox" id="fog_lights_front"   >
+                            <label for="fog_lights_front">Fog lights front</label>  
+                            
+                        </div>
+                        <div class="item">                    
+                            <input type="checkbox" id="passenger_airbag"   >
+                            <label for="passenger_airbag">Passenger airbag</label>  
+                            
+                        </div>
+                        <div class="item">                    
+                            <input type="checkbox" id="power_windows_front"   >
+                            <label for="power_windows_front">Power windows front</label>  
+                            
+                        </div>
+                        <div class="item">                    
+                            <input type="checkbox" id="automatic_climate_control"   >
+                            <label for="automatic_climate_control">Automatic climate control</label>  
+                            
+                        </div>
+                        <input type="submit" id="feature_apply" value="Apply">
+                    </form>
+                </div>
+    
+                <div class="fuel_and_performance_outer">
+                    <button class="accordion" >fuel and performance</button>
+                    <form class="fuel_and_performance panel">           
+                        <div class="item">                  
+                            <label for="fuel_type">Fuel type</label>
+                            <select name="fuel_type" id="fule_type">
+                            </select>                        
+                        </div>
+                        <div class="item">
+                            <label for="city_mileage">City mileage</label>  
+                            <input type="number" id="city_mileage" required >   
+                        </div>
+                        <div class="item">
+                            <label for="mileage_arai">Mileage arai</label>  
+                            <input type="number" id="mileage_arai" required >   
+                        </div>
+                        <div class="item">                  
+                            <label for="fuel_tank_capacity">Fuel tank capacity</label>  
+                            <input type="number" id="fuel_tank_capacity" required >   
+                        </div>
+                        <div class="item">                  
+                            <label for="emission_norm_compliance">Emission norm compliance</label>  
+                            <input type="text" id="emission_norm_compliance" required >   
+                        </div>
+                        <input type="submit" id="fap_apply" value="Apply">
+                    </form>
+                </div>
+    
+                <div class="hood_and_bonnet_outer">
+                    <button class="accordion" >hood and bonnet</button>
+                    <form class="hood_and_bonnet panel">           
+                        <div class="item">                 
+                            <label for="wiring">Wiring</label>  
+                            <input type="number" id="wiring" required >   
+                        </div>
+                        <div class="item">                 
+                            <label for="radiator">Radiator</label>  
+                            <input type="number" id="radiator" required >   
+                        </div>
+                        <div class="item">
+                            <label for="engine_oil">Engine oil</label>  
+                            <input type="number" id="engine_oil" required >   
+                        </div>
+                        <div class="item">
+                            <label for="coolant_level">Coolant level</label>  
+                            <input type="number" id="coolant_level" required >   
+                        </div>
+                        <div class="item">
+                            <label for="rh_side_apron">Rh side apron</label>  
+                            <input type="number" id="rh_side_apron" required >   
+                        </div>
+                        <div class="item">
+                            <label for="undercarriage">Undercarriage</label>  
+                            <input type="number" id="undercarriage" required >   
+                        </div>
+                        <div class="item">
+                            <label for="exhaust_system">Exhaust system</label>  
+                            <input type="number" id="exhaust_system" required >   
+                        </div>
+                        <div class="item">              
+                            <label for="brake_fluid_level">Brake fluid level</label>  
+                            <input type="number" id="brake_fluid_level" required >   
+                        </div>
+                        <div class="item">                  
+                            <label for="oil_and_fluid_leakage">Oil and fluid leakage</label>  
+                            <input type="number" id="oil_and_fluid_leakage" required >   
+                        </div>
+                        
+                        <div class="item">                  
+                            <label for="chassis_and_vehicle_frame">Chassis and vehicle frame</label>  
+                            <input type="number" id="chassis_and_vehicle_frame" required >   
+                        </div>
+                        <div class="item">                  
+                            <label for="brake_and_coolant_hose_pipe">Brake and coolant hose pipe</label>  
+                            <input type="number" id="brake_and_coolant_hose_pipe" required >   
+                        </div>
+                        <div class="item">                  
+                            <label for="hood_and_bonnet_remark">Hood and bonnet remark</label>  
+                            <input type="number" id="hood_and_bonnet_remark" required >   
+                        </div>
+                        <input type="submit" id="hab_apply" value="Apply">
+                    </form>
+                </div>
+    
+                <div class="interior_outer">
+                    <button class="accordion" >interior</button>
+                    <form class="interior panel">           
+                        <div class="item">
+                            <label for="lighting">Lighting</label>  
+                            <input type="text" id="lighting" required >   
+                        </div>
+                        <div class="item">
+                            <input type="checkbox" id="tachometer" required >   
+                            <label for="tachometer">Tachometer</label>  
+                        </div>
+                        <div class="item">
+                            <input type="checkbox" id="digital_clock" required >   
+                            <label for="digital_clock">Digital clock</label>  
+                        </div>
+                        <div class="item">                  
+                            <input type="checkbox" id="leather_seats" required >   
+                            <label for="leather_seats">Leather seats</label>  
+                        </div>
+                        <div class="item">                  
+                            <input type="checkbox" id="digital_odameter" required >   
+                            <label for="digital_odameter">Digital odameter</label>  
+                        </div>
+                        <div class="item">                  
+                            <input type="checkbox" id="ventilated_seats" required >   
+                            <label for="ventilated_seats">Ventilated seats</label>  
+                        </div>
+                        <div class="item">                  
+                            <input type="checkbox" id="cigarette_lighter" required >   
+                            <label for="cigarette_lighter">Cigarette lighter</label>  
+                        </div>
+                        <div class="item">                  
+                            <input type="checkbox" id="fabric_upholstery" required >   
+                            <label for="fabric_upholstery">Fabric upholstery</label>  
+                        </div>
+                        <div class="item">                  
+                            <input type="checkbox" id="glove_compartment" required >   
+                            <label for="glove_compartment">Glove compartment</label>  
+                        </div>
+                        <div class="item">                  
+                            <input type="checkbox" id="dual_tone_dashboard" required >   
+                            <label for="dual_tone_dashboard">Dual tone dashboard</label>  
+                        </div>
+                        <div class="item">                  
+                            <input type="checkbox" id="leather_steering_wheel" required >   
+                            <label for="leather_steering_wheel">Leather steering wheel</label>  
+                        </div>
+                        <div class="item">                  
+                            <input type="checkbox" id="electric_adjustable_seats" required >   
+                            <label for="electric_adjustable_seats">Electric adjustable seats</label>  
+                        </div>
+                        <div class="item">                  
+                            <input type="checkbox" id="folding_table_in_the_rear" required >   
+                            <label for="folding_table_in_the_rear">Folding table in the rear</label>  
+                        </div>
+                        <div class="item">                  
+                            <input type="checkbox" id="electronic_multi_tripmeter" required >   
+                            <label for="electronic_multi_tripmeter">Electronic multi tripmeter</label>  
+                        </div>
+                        <div class="item">                  
+                            <input type="checkbox" id="outside__temperature_display" required >   
+                            <label for="outside__temperature_display">Outside  temperature display</label>  
+                        </div>
+                        <div class="item">                  
+                            <input type="checkbox" id="height_adjustable_driver_seat" required >   
+                            <label for="height_adjustable_driver_seat">Height adjustable driver seat</label>  
+                        </div>
+                        <div class="item">                  
+                            <input type="checkbox" id="driving_experience_control_eco" required >   
+                            <label for="driving_experience_control_eco">Driving experience control eco</label>  
+                        </div>
+                        <div class="item">                  
+                            <input type="checkbox" id="leather_wrap_gear_shift_selector" required >   
+                            <label for="leather_wrap_gear_shift_selector">Leather wrap gear shift selector</label>  
+                        </div>
+                        <input type="submit" id="intr_apply" value="Apply">
+                    </form>
+                </div>
+    
+                <div class="interiors_report_outer">
+                    <button class="accordion" >interiors report</button>
+                    <form class="interiors_report panel">
+                        <div class="item">                 
+                            <label for="horns">Horns</label>  
+                            <input type="number" id="horns" required >   
+                        </div>
+                        <div class="item">                  
+                            <label for="pedals">Pedals</label>  
+                            <input type="number" id="pedals" required >   
+                        </div>
+                        <div class="item">                  
+                            <label for="steering">Steering</label>  
+                            <input type="number" id="steering" required >   
+                        </div>
+                        <div class="item">                  
+                            <label for="dash_board">Dash board</label>  
+                            <input type="number" id="dash_board" required >   
+                        </div>
+                        <div class="item">                  
+                            <label for="hand_brake">Hand brake</label>  
+                            <input type="number" id="hand_brake" required >   
+                        </div>
+                        <div class="item">                  
+                            <label for="upholstery">Upholstery</label>  
+                            <input type="number" id="upholstery" required >   
+                        </div>
+                        <div class="item">                  
+                            <label for="hazard_lights">Hazard lights</label>  
+                            <input type="number" id="hazard_lights" required >   
+                        </div>
+                        <div class="item">                  
+                            <label for="boot_condition">Boot condition</label>  
+                            <input type="number" id="boot_condition" required >   
+                        </div>
+                        <div class="item">                  
+                            <input type="checkbox" id="cruise_control" required >   
+                            <label for="cruise_control">Cruise control</label>  
+                        </div>
+                        <div class="item">                  
+                            <label for="interior_trims">Interior trims</label>  
+                            <input type="number" id="interior_trims" required >   
+                        </div>
+                        
+                        <div class="item">                  
+                            <label for="rear_view_camera">Rear view camera</label>  
+                            <input type="number" id="rear_view_camera" required >   
+                        </div>
+                        <div class="item">                  
+                            <label for="odometer_assembly">Odometer assembly</label>  
+                            <input type="number" id="odometer_assembly" required >   
+                        </div>
+                        <div class="item">                  
+                            <label for="carpet_and_floormat">Carpet and floormat</label>  
+                            <input type="number" id="carpet_and_floormat" required >   
+                        </div>
+                        <div class="item">                  
+                            <label for="door_pannel_and_hinges">Door pannel and hinges</label>  
+                            <input type="number" id="door_pannel_and_hinges" required >   
+                        </div>
+                        <div class="item">                  
+                            <input type="checkbox" id="wheel_spanner_available" required >   
+                            <label for="wheel_spanner_available">Wheel spanner available</label>  
+                        </div>
+                        <div class="item">
+                            <input type="checkbox" id="jack_and_tommy_available" required >   
+                            <label for="jack_and_tommy_available">Jack and tommy available</label>  
+                        </div>
+                        <div class="item">
+                            <label for="centeal_lock_keyless_entry">Centeal lock keyless entry</label>  
+                            <input type="number" id="centeal_lock_keyless_entry" required >   
+                        </div>
+                        <div class="item">                  
+                            <label for="accessorie_audio_and_covers">Accessorie audio and covers</label>  
+                            <input type="number" id="accessorie_audio_and_covers" required >   
+                        </div>
+                        <div class="item">                  
+                            <label for="combination_switch_assembly">Combination switch assembly</label>  
+                            <input type="number" id="combination_switch_assembly" required >   
+                        </div>
+                        <div class="item">                  
+                            <label for="seat_and_seat_belt_condition">Seat and seat belt condition</label>  
+                            <input type="number" id="seat_and_seat_belt_condition" required >   
+                        </div>
+                        <div class="item">                  
+                            <label for="interior_remark">Interior remark</label>  
+                            <input type="text" id="interior_remark" required >   
+                        </div>
+                        <input type="submit" id="intrp_apply" value="Apply">
+                    </form>
+                </div>
+    
+                <div class="over_all_rating_outer">
+                    <button class="accordion" >over all rating</button>
+                    <form class="over_all_rating panel">            
+                        <div class="item">                 
+                            <label for="zeroo_rating">Zeroo rating</label>  
+                            <!-- <input type="number" id="zeroo_rating" required > -->
+                            <select name="zeroo_rating" id="zeroo_rating">
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                            </select>   
+                        </div>
+                        <div class="item">                  
+                            <label for="exterior_condition">Exterior condition</label>  
+                            <!-- <input type="text" id="exterior_condition" required >    -->
+                            <select name="exterior_condition" id="exterior_condition">
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                            </select>
+                        </div>
+                        <div class="item">                  
+                            <label for="interior_condition">Interior condition</label>  
+                            <!-- <input type="text" id="interior_condition" required >    -->
+                            <select name="interior_condition" id="interior_condition">
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                            </select>
+                        </div>
+                        <div class="item">                  
+                            <label for="checkpoints_fulfilled">Checkpoints fulfilled</label>  
+                            <!-- <input type="number" id="checkpoints_fulfilled" required >    -->
+                            <select name="checkpoints_fulfilled" id="checkpoints_fulfilled">
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                            </select>
+                        </div>
+                        <input type="submit" id="oar_apply" value="Apply">
+                    </form>
+                </div>
+    
+                <div class="safety_outer">
+                    <button class="accordion" >safety</button>
+                    <form class="safety panel">        
+                        <div class="item">
+                            <input type="checkbox" id="ebd"   >   
+                            <label for="ebd">Ebd</label>  
+                        </div>
+                        <div class="item">                  
+                            <input type="checkbox" id="clutch_lock"   >   
+                            <label for="clutch_lock">Clutch lock</label>  
+                        </div>
+                        <div class="item">                 
+                            <input type="checkbox" id="hill_assist"   >   
+                            <label for="hill_assist">Hill assist</label>  
+                        </div>
+                        <div class="item">                  
+                            <input type="checkbox" id="rear_camera"   >   
+                            <label for="rear_camera">Rear camera</label>  
+                        </div>
+                        <div class="item">                  
+            
+                            <input type="checkbox" id="brake_assist"   >   
+                            <label for="brake_assist">Brake assist</label>  
+                        </div>
+                        <div class="item">                  
+            
+                            <input type="checkbox" id="crash_sensor"   >   
+                            <label for="crash_sensor">Crash sensor</label>  
+                        </div>
+                        <div class="item">                  
+            
+                            <input type="checkbox" id="knee_airbags"   >   
+                            <label for="knee_airbags">Knee airbags</label>  
+                        </div>
+                        <div class="item">                  
+            
+                            <input type="checkbox" id="driver_airbag"   >   
+                            <label for="driver_airbag">Driver airbag</label>  
+                        </div>
+                        <div class="item">                  
+            
+                            <input type="checkbox" id="central_locking"   >   
+                            <label for="central_locking">Central locking</label>  
+                        </div>
+                        <div class="item">                  
+            
+                            <input type="checkbox" id="geo_fence_alert"   >   
+                            <label for="geo_fence_alert">Geo fence alert</label>  
+                        </div>
+                        <div class="item">                  
+            
+                            <input type="checkbox" id="head_up_display"   >   
+                            <label for="head_up_display">Head up display</label>  
+                        </div>
+                        <div class="item">                  
+            
+                            <input type="checkbox" id="rear_seat_belts"   >   
+                            <label for="rear_seat_belts">Rear seat belts</label>  
+                        </div>
+                        <div class="item">                  
+            
+                            <input type="checkbox" id="view_camera_360"   >   
+                            <label for="view_camera_360">View camera 360</label>  
+                        </div>
+                        <div class="item">                  
+            
+                            <input type="checkbox" id="xenon_headlamps"   >   
+                            <label for="xenon_headlamps">Xenon headlamps</label>  
+                        </div>
+                        <div class="item">                  
+            
+                        <input type="checkbox" id="adjustable_seats"   >   
+                        <label for="adjustable_seats">Adjustable seats</label>  
+                        </div>
+                        <div class="item">                  
+            
+                        <input type="checkbox" id="anti_theft_alarm"   >   
+                        <label for="anti_theft_alarm">Anti theft alarm</label>  
+                        </div>
+                        <div class="item">                  
+            
+                        <input type="checkbox" id="number_of_airbag"   >   
+                        <label for="number_of_airbag">Number of airbag</label>  
+                        </div>
+                        <div class="item">                  
+            
+                        <input type="checkbox" id="passenger_airbag"   >   
+                        <label for="passenger_airbag">Passenger airbag</label>  
+                        </div>
+                        <div class="item">                  
+            
+                        <input type="checkbox" id="power_door_locks"   >   
+                        <label for="power_door_locks">Power door locks</label>  
+                        </div>
+                        <div class="item">                  
+            
+                        <input type="checkbox" id="side_airbag_rear"   >   
+                        <label for="side_airbag_rear">Side airbag rear</label>  
+                        </div>
+                        <div class="item">                  
+                        <input type="checkbox" id="traction_control"   >   
+                        <label for="traction_control">Traction control</label>  
+                        </div>
+                        <div class="item">                  
+                        <input type="checkbox" id="anti_theft_device"   >   
+                        <label for="anti_theft_device">Anti theft device</label>  
+                        </div>
+                        <div class="item">                  
+                        <input type="checkbox" id="door_ajar_warning"   >   
+                        <label for="door_ajar_warning">Door ajar warning</label>  
+                        </div>
+                        <div class="item">                  
+                        <input type="checkbox" id="seat_belt_warning"   >   
+                        <label for="seat_belt_warning">Seat belt warning</label>  
+                        </div>
+                        <div class="item">                  
+                        <input type="checkbox" id="side_airbag_front"   >   
+                        <label for="side_airbag_front">Side airbag front</label>  
+                        </div>
+                        <div class="item">                  
+                        <input type="checkbox" id="side_impact_beams"   >   
+                        <label for="side_impact_beams">Side impact beams</label>  
+                        </div>
+                        <div class="item">                  
+                        <input type="checkbox" id="blind_spot_monitor"   >   
+                        <label for="blind_spot_monitor">Blind spot monitor</label>  
+                        </div>
+                        <div class="item">                  
+                        <input type="checkbox" id="child_safety_locks"   >   
+                        <label for="child_safety_locks">Child safety locks</label>  
+                        </div>
+                        <div class="item">                  
+                        <input type="checkbox" id="engine_immobilizer"   >   
+                        <label for="engine_immobilizer">Engine immobilizer</label>  
+                        </div>
+                        <div class="item">                  
+                        <input type="checkbox" id="front_impact_beams"   >   
+                        <label for="front_impact_beams">Front impact beams</label>  
+                        </div>
+                        <div class="item">                  
+                        <input type="checkbox" id="automatic_headlamps"   >   
+                        <label for="automatic_headlamps">Automatic headlamps</label>  
+                        </div>
+                        <div class="item">                  
+                        <input type="checkbox" id="engine_check_warning"   >   
+                        <label for="engine_check_warning">Engine check warning</label>  
+                        </div>
+                        <div class="item">                  
+                        <input type="checkbox" id="hill_descent_control"   >   
+                        <label for="hill_descent_control">Hill descent control</label>  
+                        </div>
+                        <div class="item">                  
+                        <input type="checkbox" id="tyre_pressure_monitor"   >   
+                        <label for="tyre_pressure_monitor">Tyre pressure monitor</label>  
+                        </div>
+                        <div class="item">                  
+                        <input type="checkbox" id="anti_lock_braking_system"   >   
+                        <label for="anti_lock_braking_system">Anti lock braking system</label>  
+                        </div>
+                        <div class="item">                  
+                        <input type="checkbox" id="follow_me_home_headlamps"   >   
+                        <label for="follow_me_home_headlamps">Follow me home headlamps</label>  
+                        </div>
+                        <div class="item">                  
+                        <input type="checkbox" id="isofix_child_seat_mounts"   >   
+                        <label for="isofix_child_seat_mounts">Isofix child seat mounts</label>  
+                        </div>
+                        <div class="item">                  
+                        <input type="checkbox" id="centrally_mounted_fuel_tank"   >   
+                        <label for="centrally_mounted_fuel_tank">Centrally mounted fuel tank</label>  
+                        </div>
+                        <div class="item">                  
+                        <input type="checkbox" id="electronic__stability_control"   >   
+                        <label for="electronic__stability_control">Electronic  stability control</label>  
+                        </div>
+                        <div class="item">                  
+                        <input type="checkbox" id="speed_sensing_auto_door__lock"   >   
+                        <label for="speed_sensing_auto_door__lock">Speed sensing auto door  lock</label>  
+                        </div>
+                        <div class="item">                  
+                        <input type="checkbox" id="day_and_night_rear_view_mirror"   >   
+                        <label for="day_and_night_rear_view_mirror">Day and night rear view mirror</label>  
+                        </div>
+                        <div class="item">                  
+                        <input type="checkbox" id="impact_sensing_auto_door_unlock"   >   
+                        <label for="impact_sensing_auto_door_unlock">Impact sensing auto door unlock</label>  
+                        </div>
+                        <div class="item">                  
+                        <input type="checkbox" id="passenger_side_rear_view_mirror"   >   
+                        <label for="passenger_side_rear_view_mirror">Passenger side rear view mirror</label>  
+                        </div>
+                        <div class="item">                  
+                        <input type="checkbox" id="vehicle_stability_control_system"   >   
+                        <label for="vehicle_stability_control_system">Vehicle stability control system</label>  
+                        </div>
+                        <div class="item">                 
+                        <input type="checkbox" id="pretensioners_and_force_limiter_seatbelts"   >   
+                        <label for="pretensioners_and_force_limiter_seatbelts">Pretensioners and force limiter seatbelts</label>  
+                        </div>
+                        <input type="submit" id="safety_apply" value="Apply">
+                    </form>
+                </div>
+                
+                <div class="suspension_and_brakes_outer">
+                    <button class="accordion" >suspension and brakes</button>
+                    <form class="suspension_and_brakes panel">
+                        <div class="item">                  
+                            <label for="front_disc_and_pads">Front disc and pads</label>  
+                            <input type="number" id="front_disc_and_pads" required >   
+                        </div>
+                        <div class="item">                  
+                            <label for="rear_drum_and_shoes">Rear drum and shoes</label>  
+                            <input type="number" id="rear_drum_and_shoes" required >   
+                        </div>
+                        <div class="item">                  
+                            <label for="rear_shock_assembly">Rear shock assembly</label>  
+                            <input type="number" id="rear_shock_assembly" required >   
+                        </div>
+                        <div class="item">                  
+                            <label for="front_strut_assembly">Front strut assembly</label>  
+                            <input type="number" id="front_strut_assembly" required >   
+                        </div>
+                        <div class="item">                  
+                            <label for="steering_box_assembly">Steering box assembly</label>  
+                            <input type="number" id="steering_box_assembly" required >   
+                        </div>
+                        <div class="item">                  
+                            <label for="power_steering_assembly">Power steering assembly</label>  
+                            <input type="number" id="power_steering_assembly" required >   
+                        </div>
+                        <div class="item">                 
+                            <label for="suspension_and_brakes_remark">Suspension and brakes remark</label>  
+                            <input type="text" id="suspension_and_brakes_remark" required >   
+                        </div>
+                        <input type="submit" id="sab_apply" value="Apply">
+                    </form>
+                </div>
+    
+                <div class="system_and_functions_outer">
+                    <button class="accordion" >system and functions</button>
+                    <form class="system_and_functions panel">
+                        <div class="item">
+                            <input type="checkbox" id="abs" required >   
+                            <label for="abs">Abs</label>  
+                        </div>
+                        <div class="item">                  
+            
+                            <input type="checkbox" id="esp" required >   
+                            <label for="esp">Esp</label>  
+                        </div>
+                        <div class="item">                 
+                            <input type="checkbox" id="heater" required >   
+                            <label for="heater">Heater</label>  
+                    </div>
+                        <div class="item">                  
+            
+                            <input type="checkbox" id="airbags" required >   
+                        <label for="airbags">Airbags</label>  
+                    </div>
+                        <div class="item">                  
+            
+                        <label for="cooling">Cooling</label>  
+                        <input type="number" id="cooling" required >   
+                    </div>
+                        <div class="item">                  
+            
+                        <label for="fog_lamp">Fog lamp</label>  
+                        <input type="number" id="fog_lamp" required >   
+                    </div>
+                        <div class="item">                  
+            
+                        <label for="ac_blower">Ac blower</label>  
+                        <input type="number" id="ac_blower" required >   
+                    </div>
+                        <div class="item">                  
+            
+                        <label for="alterrnator">Alterrnator</label>  
+                        <input type="number" id="alterrnator" required >   
+                    </div>
+                        <div class="item">                  
+            
+                        <label for="remote_lock">Remote lock</label>  
+                        <input type="number" id="remote_lock" required >   
+                    </div>
+                        <div class="item">                  
+            
+                        <label for="music_system">Music system</label>  
+                        <input type="number" id="music_system" required >   
+                    </div>
+                        <div class="item">                  
+            
+                        <label for="power_window">Power window</label>  
+                        <input type="number" id="power_window" required >   
+                    </div>
+                        <div class="item">                  
+            
+                        <label for="ac_compressor">Ac compressor</label>  
+                        <input type="number" id="ac_compressor" required >   
+                    </div>
+                        <div class="item">                  
+            
+                        <label for="starter_motor">Starter motor</label>  
+                        <input type="number" id="starter_motor" required >   
+                    </div>
+                        <div class="item">                  
+            
+                        <label for="battery_condition">Battery condition</label>  
+                        <input type="number" id="battery_condition" required >   
+                    </div>
+                        <div class="item">                  
+            
+                        <label for="head_and_tail_lamp">Head and tail lamp</label>  
+                        <input type="number" id="head_and_tail_lamp" required >   
+                    </div>
+                        <div class="item">                  
+            
+                        <label for="interior_light_check">Interior light check</label>  
+                        <input type="number" id="interior_light_check" required >   
+                    </div>
+                        <div class="item">                  
+            
+                        <label for="transmission_control">Transmission control</label>  
+                        <input type="number" id="transmission_control" required >   
+                    </div>
+                        <div class="item">                  
+            
+                        <label for="reverse_parking__assist">Reverse parking  assist</label>  
+                        <input type="number" id="reverse_parking__assist" required >   
+                    </div>
+                        <div class="item">                  
+            
+                        <label for="accessories_audio_covers">Accessories audio covers</label>  
+                        <input type="number" id="accessories_audio_covers" required >   
+                        </div>
+                        <div class="item">                 
+                            <label for="ignition_and_fuel_system">Ignition and fuel system</label>  
+                            <input type="number" id="ignition_and_fuel_system" required >   
+                        </div>
+                        <div class="item">                  
+                            <label for="wiper_assembly_and_blades">Wiper assembly and blades</label>  
+                            <input type="number" id="wiper_assembly_and_blades" required >   
+                        </div>
+                        <div class="item">                  
+                            <label for="system_and_functions_remark">System and functions remark</label>  
+                            <input type="text" id="system_and_functions_remark" required >   
+                        </div>
+                        <input type="submit" id="saf_apply" value="Apply">
+                    </form>
+                </div>
+    
+                <div class="vehicle_documents_outer">
+                    <button class="accordion" >vehicle documents</button>
+                    <form class="vehicle_documents panel">
+                        <div class="item">                  
+                            <input type="checkbox" id="insurance" required >   
+                            <label for="insurance">Insurance</label>  
+                        </div>
+                        <div class="item">                  
+                            <input type="checkbox" id="rc_status" required >   
+                            <label for="rc_status">Rc status</label>  
+                        </div>
+                        <div class="item">                  
+                            <input type="checkbox" id="fc_validity" required >   
+                            <label for="fc_validity">Fc validity</label>  
+                        </div>                
+                        <div class="item">                  
+                            <input type="checkbox" id="vehicle_service_log" required >   
+                            <label for="vehicle_service_log">Vehicle service log</label>  
+                        </div>
+                        <div class="item">                  
+                            <label   label for="number_of_owner">Number of owner</label>  
+                            <input type="number" id="number_of_owner" required >   
+                        </div>
+                        <div class="item">                  
+                            <label for="vehicle_documents_remarks">Vehicle documents remarks</label>  
+                            <input type="text" id="vehicle_documents_remarks" required >   
+                        </div>
+                        <input type="submit" id="vd_apply" value="Apply">
+                    </form>
+                </div>
+    
+                <div class="wheels_outer">
+                    <button class="accordion" >wheels</button>
+                    <form class="wheels panel">
+                        <div class="item">
+                            <input type="checkbox" id="alloy_wheels" required >   
+                            <label for="alloy_wheels">Alloy wheels</label>  
+                        </div>
+                        
+                        <div class="item">                 
+                            <label for="tyre_condition">Tyre condition</label>
+                            <input type="number" id="tyre_condition" required >
+                        </div>
+    
+                        <div class="item">            
+                            <label for="number_of_tyres">Number of tyres</label>  
+                            <input type="number" id="number_of_tyres" required >   
+                        </div>
+    
+                        <div class="item">
+                            <label for="spare_tyre_condition">Spare tyre condition</label>  
+                            <input type="number" id="spare_tyre_condition" required >
+                        </div>
+    
+                        <div class="item">
+                            <label for="wheels_remark">Wheels remark</label>  
+                            <input type="text" id="wheels_remark" required >   
+                        </div>
+    
+                        <input type="submit" id="whl_apply" value="Apply">
+                    </form>
+                </div>
+            </div>  
+            
+            <div class="car_images">
+                <div class="container">
+                    <div class="nav">
+                        <a href="#" class="thumbnail car_images_nav active"> Thumbnail </a>   
+                        <a href="#" class="exterior car_images_nav"> Exterior </a>              
+                        <a href="#" class="interior car_images_nav"> Interior </a>                        
+                        <!-- <a href="#" class="engine car_images_nav"> Engine </a> -->
+                    </div>
+    
+                    <div class="car_images_body">
+                        <input type="file" class="thumbnail_filepond" id="thumbnail_filepond" name="thumbnail_filepond" multiple data-allow-reorder="true" data-max-file-size="3MB">
+                        
+                        <button  class="btn btn-success" id="upload_imagee"> Upload</button>
+                    </div>
+    
+                    <!-- <div class="car_images_body">
+                        <div class="show_images">
+                                
+                        </div> 
+                    </div> -->
+    
+                    <!-- <div class="car_images_body">
+    
+                         <div class="show_images">
+                            
+                        </div> 
+                        <label class="custom_file_upload">
+                            <input type="file" name="add_image" id="add_image">
+                            Add image
+                        </label>
+                        
+                        <input type="submit" id="image_upload" class="image_upload" value="Upload" > 
+                        
+                    </div>   -->
+                    
+                </div>
+            </div>
+        </div>
+
+        <div class="modal soldCarsModal">
+            <div class="modal_header">
+                <h5 class="title">Sold Car Informations</h4>
+                <button class="close_modal" ><span class="material-icons">cancel</span></button>
+            </div>
+            
+            <div class="modal_body general_details">
+                <div class="item">
+                    <label for="soldPrice">Price</label>
+                    <input type="text" name="soldPrice" id="soldPrice" placeholder="Price" >            
+                </div>
+                
+                <div class="item">
+                    <label for="soldDate">Date</label>
+                    <input type="date" name="soldDate" id="soldDate" placeholder="Date" >            
+                </div>
+
+                <textarea  width="100%" name="notes" id="soldNotes" placeholder="Notes" ></textarea>
+                
+                <intput type="submit" class="soldCarSubmit text-white" id="soldCarSubmit">Update</button>
+            </div>
+        </div>      
+        
+    </div>
+</main>
+{% endblock %}
+
+{% block script %}    
+
+    <script src="{{ url_for('static', path='admin/js/cars.js') }}"></script>
+    
+{% endblock %}
+

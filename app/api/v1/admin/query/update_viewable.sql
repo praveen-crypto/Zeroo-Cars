@@ -1,0 +1,1 @@
+update basic set viewable=%(viewable)s where REGESTRATION_NUMBER = %(regestration_number)s;

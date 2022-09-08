@@ -1,0 +1,1 @@
+select distinct brand from basic;

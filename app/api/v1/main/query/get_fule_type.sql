@@ -1,0 +1,1 @@
+select distinct fule_type from fuel_and_performance;

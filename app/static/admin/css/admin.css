@@ -1,0 +1,1406 @@
+body {
+  height: 100vh;
+  overflow-y: hidden;
+  scrollbar-width: thin;
+  scrollbar-color: #90A4AE #CFD8DC;
+}
+
+body::-webkit-scrollbar {
+  width: 11px;
+}
+
+body::-webkit-scrollbar-track {
+  background: #CFD8DC;
+}
+
+body::-webkit-scrollbar-thumb {
+  background-color: #90A4AE;
+  border-radius: 6px;
+  border: 3px solid #CFD8DC;
+}
+
+.material-icons {
+  font-size: 24px;
+}
+
+main {
+  height: 90vh;
+  width: 100%;
+  grid-area: main;
+}
+
+@media (min-width: 1280px) {
+  @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap");
+  html {
+    font-size: 100%;
+  }
+
+  /*16px*/
+  body {
+    font-family: "Roboto", sans-serif;
+  }
+
+  button {
+    font-size: 9.5pt;
+    font-weight: 600;
+    text-transform: uppercase;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: "Roboto", sans-serif;
+  }
+
+  h1 {
+    font-size: 57.5pt;
+  }
+
+  h2 {
+    font-size: 40pt;
+  }
+
+  h3 {
+    font-size: 28pt;
+  }
+
+  h4 {
+    font-size: 22pt;
+  }
+
+  h5 {
+    font-size: 17.25pt;
+    margin: 1rem 0;
+  }
+
+  h6 {
+    font-size: 13.75pt;
+  }
+
+  .body-1 {
+    font-size: 10.75pt;
+  }
+
+  .body-2 {
+    font-size: 12pt;
+  }
+
+  .small-1 {
+    font-size: 0.875rem;
+  }
+
+  small,
+.small-2 {
+    font-size: 0.75rem;
+  }
+
+  .caption {
+    font-size: 9.5pt;
+  }
+
+  .endnote {
+    font-size: 9.5pt;
+  }
+
+  .footnote {
+    font-size: 8.5pt;
+  }
+
+  body {
+    display: grid;
+    grid-template-rows: 0.1fr 0.1fr 4fr;
+    grid-template-columns: 0.7fr 5fr;
+    grid-template-areas: "nav header" "nav inner-nav" "nav main";
+  }
+  body select {
+    border-radius: 5px;
+    border: 1px solid #BDBDBD;
+    outline: none;
+  }
+  body input:focus {
+    border: 0px solid #9E9E9E !important;
+    box-shadow: 0 0 4px #9E9E9E;
+    outline: none;
+  }
+  body .notice-text {
+    display: none;
+  }
+  body nav, body header {
+    display: block;
+  }
+
+  ::-webkit-scrollbar {
+    width: 2px;
+    margin-right: 5px;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: #ffd230;
+    border-radius: 10px;
+  }
+
+  nav {
+    width: 100%;
+    height: 100%;
+    background-color: #FAFAFA;
+    padding-top: 10%;
+    grid-area: nav;
+  }
+  nav .nav-logo {
+    display: block;
+    width: 60%;
+    height: auto;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  nav ul {
+    height: 60%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  nav ul li {
+    padding: 5px 0px 5px 20px;
+    margin: 0.5rem 0px;
+  }
+  nav ul li a {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: #424242;
+  }
+  nav ul li a .material-icons {
+    vertical-align: middle;
+  }
+  nav ul li a .nav-name {
+    margin-top: 2px;
+    margin-left: 8px;
+  }
+  nav ul li.active {
+    background-color: #424242;
+  }
+  nav ul li.active a {
+    color: #ffffff;
+  }
+  nav ul li:hover {
+    background-color: none;
+  }
+
+  .sub-nav {
+    width: 100%;
+    height: 100%;
+    background-color: #fff;
+    grid-area: header;
+    display: flex;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  }
+  .sub-nav .title {
+    padding-top: 0;
+    margin: auto auto auto 2rem;
+  }
+  .sub-nav .logout {
+    height: 70%;
+    align-self: center;
+    margin: 5px;
+    border: none;
+  }
+  .sub-nav .logout .material-icons {
+    height: 36px;
+    width: 36px;
+    vertical-align: middle;
+  }
+
+  main {
+    width: 90%;
+    margin: 0 auto;
+    overflow-y: scroll;
+    height: 100%;
+    background-color: #fafafa;
+    border-radius: 15px 15px 0px 0;
+  }
+
+  .dashboard .outer-section-1 {
+    margin: 2rem;
+    padding: 1rem;
+    width: auto;
+    height: auto;
+    display: flex;
+    flex-basis: auto;
+    flex-wrap: wrap;
+    justify-content: space-around;
+  }
+  .dashboard .outer-section-1 div {
+    background-color: #ffffff;
+    width: 260px;
+    margin: 2rem;
+    padding: 2rem;
+    border-radius: 5px;
+    box-shadow: inset 1px 1px 4px 1px rgba(0, 0, 0, 0.3);
+    text-align: center;
+  }
+
+  .car-nav {
+    grid-area: inner-nav;
+    width: 90%;
+    height: 100%;
+  }
+  .car-nav ul {
+    display: flex;
+  }
+  .car-nav ul li {
+    list-style: none;
+    margin: auto 1.7rem;
+  }
+  .car-nav ul li a {
+    text-decoration: none;
+  }
+  .car-nav ul li a:active {
+    color: black;
+  }
+  .car-nav ul li a:visited {
+    color: #000000;
+  }
+  .car-nav .active {
+    font-weight: 600;
+    text-decoration: underline;
+  }
+
+  .cars .add-car {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding: 2% 5% 5% 5%;
+  }
+  .cars .add-car .item {
+    display: flex;
+    flex-direction: column;
+    height: 13%;
+    width: 45%;
+    border-radius: 5px;
+    margin: 1rem 1rem 0 0;
+    padding: 0.6rem;
+  }
+  .cars .add-car .item input {
+    padding: 10px;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    width: 100%;
+    border-radius: 5px;
+    font-size: 1rem;
+    background-color: rgb(255, 255, 255);
+  }
+  .cars .add-car .item label {
+    color: #4d505f;
+    margin-bottom: 5px;
+  }
+  .cars .add-car .submit {
+    width: 100%;
+  }
+  .cars .add-car .add-car-submit {
+    display: block;
+    color: #000000;
+    margin: 3% 5% 3% auto;
+    padding: 5px;
+    background-color: #ffd230;
+    width: 30%;
+    border-radius: 5px;
+    text-align: center;
+  }
+  .cars .list-car,
+.cars .archive-car,
+.cars .soldCars {
+    width: 100%;
+    height: auto;
+    padding: 2rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(13rem, 14rem));
+    grid-gap: 1rem;
+  }
+  .cars .list-car .car-card,
+.cars .list-car .archive-car-card,
+.cars .list-car .sold-car-card,
+.cars .archive-car .car-card,
+.cars .archive-car .archive-car-card,
+.cars .archive-car .sold-car-card,
+.cars .soldCars .car-card,
+.cars .soldCars .archive-car-card,
+.cars .soldCars .sold-car-card {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    height: auto;
+    max-height: 21rem;
+    background-color: #ffffff;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    border-radius: 6px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.158);
+  }
+  .cars .list-car .car-card .car_card_checkbox,
+.cars .list-car .car-card .archive_card_checkbox,
+.cars .list-car .car-card .sold_card_checkbox,
+.cars .list-car .archive-car-card .car_card_checkbox,
+.cars .list-car .archive-car-card .archive_card_checkbox,
+.cars .list-car .archive-car-card .sold_card_checkbox,
+.cars .list-car .sold-car-card .car_card_checkbox,
+.cars .list-car .sold-car-card .archive_card_checkbox,
+.cars .list-car .sold-car-card .sold_card_checkbox,
+.cars .archive-car .car-card .car_card_checkbox,
+.cars .archive-car .car-card .archive_card_checkbox,
+.cars .archive-car .car-card .sold_card_checkbox,
+.cars .archive-car .archive-car-card .car_card_checkbox,
+.cars .archive-car .archive-car-card .archive_card_checkbox,
+.cars .archive-car .archive-car-card .sold_card_checkbox,
+.cars .archive-car .sold-car-card .car_card_checkbox,
+.cars .archive-car .sold-car-card .archive_card_checkbox,
+.cars .archive-car .sold-car-card .sold_card_checkbox,
+.cars .soldCars .car-card .car_card_checkbox,
+.cars .soldCars .car-card .archive_card_checkbox,
+.cars .soldCars .car-card .sold_card_checkbox,
+.cars .soldCars .archive-car-card .car_card_checkbox,
+.cars .soldCars .archive-car-card .archive_card_checkbox,
+.cars .soldCars .archive-car-card .sold_card_checkbox,
+.cars .soldCars .sold-car-card .car_card_checkbox,
+.cars .soldCars .sold-car-card .archive_card_checkbox,
+.cars .soldCars .sold-car-card .sold_card_checkbox {
+    position: absolute;
+    top: 4px;
+    left: 4px;
+    width: 15px;
+    height: 15px;
+    border: none;
+  }
+  .cars .list-car .car-card .car_image_container,
+.cars .list-car .car-card .archive_car_image_container,
+.cars .list-car .car-card .sold_car_image_container,
+.cars .list-car .archive-car-card .car_image_container,
+.cars .list-car .archive-car-card .archive_car_image_container,
+.cars .list-car .archive-car-card .sold_car_image_container,
+.cars .list-car .sold-car-card .car_image_container,
+.cars .list-car .sold-car-card .archive_car_image_container,
+.cars .list-car .sold-car-card .sold_car_image_container,
+.cars .archive-car .car-card .car_image_container,
+.cars .archive-car .car-card .archive_car_image_container,
+.cars .archive-car .car-card .sold_car_image_container,
+.cars .archive-car .archive-car-card .car_image_container,
+.cars .archive-car .archive-car-card .archive_car_image_container,
+.cars .archive-car .archive-car-card .sold_car_image_container,
+.cars .archive-car .sold-car-card .car_image_container,
+.cars .archive-car .sold-car-card .archive_car_image_container,
+.cars .archive-car .sold-car-card .sold_car_image_container,
+.cars .soldCars .car-card .car_image_container,
+.cars .soldCars .car-card .archive_car_image_container,
+.cars .soldCars .car-card .sold_car_image_container,
+.cars .soldCars .archive-car-card .car_image_container,
+.cars .soldCars .archive-car-card .archive_car_image_container,
+.cars .soldCars .archive-car-card .sold_car_image_container,
+.cars .soldCars .sold-car-card .car_image_container,
+.cars .soldCars .sold-car-card .archive_car_image_container,
+.cars .soldCars .sold-car-card .sold_car_image_container {
+    width: 100%;
+    height: 53%;
+    margin-right: auto;
+    margin-left: auto;
+  }
+  .cars .list-car .car-card .car_image_container .car_image,
+.cars .list-car .car-card .car_image_container .archive_car_image,
+.cars .list-car .car-card .car_image_container .sold_car_image,
+.cars .list-car .car-card .archive_car_image_container .car_image,
+.cars .list-car .car-card .archive_car_image_container .archive_car_image,
+.cars .list-car .car-card .archive_car_image_container .sold_car_image,
+.cars .list-car .car-card .sold_car_image_container .car_image,
+.cars .list-car .car-card .sold_car_image_container .archive_car_image,
+.cars .list-car .car-card .sold_car_image_container .sold_car_image,
+.cars .list-car .archive-car-card .car_image_container .car_image,
+.cars .list-car .archive-car-card .car_image_container .archive_car_image,
+.cars .list-car .archive-car-card .car_image_container .sold_car_image,
+.cars .list-car .archive-car-card .archive_car_image_container .car_image,
+.cars .list-car .archive-car-card .archive_car_image_container .archive_car_image,
+.cars .list-car .archive-car-card .archive_car_image_container .sold_car_image,
+.cars .list-car .archive-car-card .sold_car_image_container .car_image,
+.cars .list-car .archive-car-card .sold_car_image_container .archive_car_image,
+.cars .list-car .archive-car-card .sold_car_image_container .sold_car_image,
+.cars .list-car .sold-car-card .car_image_container .car_image,
+.cars .list-car .sold-car-card .car_image_container .archive_car_image,
+.cars .list-car .sold-car-card .car_image_container .sold_car_image,
+.cars .list-car .sold-car-card .archive_car_image_container .car_image,
+.cars .list-car .sold-car-card .archive_car_image_container .archive_car_image,
+.cars .list-car .sold-car-card .archive_car_image_container .sold_car_image,
+.cars .list-car .sold-car-card .sold_car_image_container .car_image,
+.cars .list-car .sold-car-card .sold_car_image_container .archive_car_image,
+.cars .list-car .sold-car-card .sold_car_image_container .sold_car_image,
+.cars .archive-car .car-card .car_image_container .car_image,
+.cars .archive-car .car-card .car_image_container .archive_car_image,
+.cars .archive-car .car-card .car_image_container .sold_car_image,
+.cars .archive-car .car-card .archive_car_image_container .car_image,
+.cars .archive-car .car-card .archive_car_image_container .archive_car_image,
+.cars .archive-car .car-card .archive_car_image_container .sold_car_image,
+.cars .archive-car .car-card .sold_car_image_container .car_image,
+.cars .archive-car .car-card .sold_car_image_container .archive_car_image,
+.cars .archive-car .car-card .sold_car_image_container .sold_car_image,
+.cars .archive-car .archive-car-card .car_image_container .car_image,
+.cars .archive-car .archive-car-card .car_image_container .archive_car_image,
+.cars .archive-car .archive-car-card .car_image_container .sold_car_image,
+.cars .archive-car .archive-car-card .archive_car_image_container .car_image,
+.cars .archive-car .archive-car-card .archive_car_image_container .archive_car_image,
+.cars .archive-car .archive-car-card .archive_car_image_container .sold_car_image,
+.cars .archive-car .archive-car-card .sold_car_image_container .car_image,
+.cars .archive-car .archive-car-card .sold_car_image_container .archive_car_image,
+.cars .archive-car .archive-car-card .sold_car_image_container .sold_car_image,
+.cars .archive-car .sold-car-card .car_image_container .car_image,
+.cars .archive-car .sold-car-card .car_image_container .archive_car_image,
+.cars .archive-car .sold-car-card .car_image_container .sold_car_image,
+.cars .archive-car .sold-car-card .archive_car_image_container .car_image,
+.cars .archive-car .sold-car-card .archive_car_image_container .archive_car_image,
+.cars .archive-car .sold-car-card .archive_car_image_container .sold_car_image,
+.cars .archive-car .sold-car-card .sold_car_image_container .car_image,
+.cars .archive-car .sold-car-card .sold_car_image_container .archive_car_image,
+.cars .archive-car .sold-car-card .sold_car_image_container .sold_car_image,
+.cars .soldCars .car-card .car_image_container .car_image,
+.cars .soldCars .car-card .car_image_container .archive_car_image,
+.cars .soldCars .car-card .car_image_container .sold_car_image,
+.cars .soldCars .car-card .archive_car_image_container .car_image,
+.cars .soldCars .car-card .archive_car_image_container .archive_car_image,
+.cars .soldCars .car-card .archive_car_image_container .sold_car_image,
+.cars .soldCars .car-card .sold_car_image_container .car_image,
+.cars .soldCars .car-card .sold_car_image_container .archive_car_image,
+.cars .soldCars .car-card .sold_car_image_container .sold_car_image,
+.cars .soldCars .archive-car-card .car_image_container .car_image,
+.cars .soldCars .archive-car-card .car_image_container .archive_car_image,
+.cars .soldCars .archive-car-card .car_image_container .sold_car_image,
+.cars .soldCars .archive-car-card .archive_car_image_container .car_image,
+.cars .soldCars .archive-car-card .archive_car_image_container .archive_car_image,
+.cars .soldCars .archive-car-card .archive_car_image_container .sold_car_image,
+.cars .soldCars .archive-car-card .sold_car_image_container .car_image,
+.cars .soldCars .archive-car-card .sold_car_image_container .archive_car_image,
+.cars .soldCars .archive-car-card .sold_car_image_container .sold_car_image,
+.cars .soldCars .sold-car-card .car_image_container .car_image,
+.cars .soldCars .sold-car-card .car_image_container .archive_car_image,
+.cars .soldCars .sold-car-card .car_image_container .sold_car_image,
+.cars .soldCars .sold-car-card .archive_car_image_container .car_image,
+.cars .soldCars .sold-car-card .archive_car_image_container .archive_car_image,
+.cars .soldCars .sold-car-card .archive_car_image_container .sold_car_image,
+.cars .soldCars .sold-car-card .sold_car_image_container .car_image,
+.cars .soldCars .sold-car-card .sold_car_image_container .archive_car_image,
+.cars .soldCars .sold-car-card .sold_car_image_container .sold_car_image {
+    width: 100%;
+    height: auto;
+  }
+  .cars .list-car .car-card .modify_btn,
+.cars .list-car .car-card .archive_modify_btn,
+.cars .list-car .car-card .sold_modify_btn,
+.cars .list-car .archive-car-card .modify_btn,
+.cars .list-car .archive-car-card .archive_modify_btn,
+.cars .list-car .archive-car-card .sold_modify_btn,
+.cars .list-car .sold-car-card .modify_btn,
+.cars .list-car .sold-car-card .archive_modify_btn,
+.cars .list-car .sold-car-card .sold_modify_btn,
+.cars .archive-car .car-card .modify_btn,
+.cars .archive-car .car-card .archive_modify_btn,
+.cars .archive-car .car-card .sold_modify_btn,
+.cars .archive-car .archive-car-card .modify_btn,
+.cars .archive-car .archive-car-card .archive_modify_btn,
+.cars .archive-car .archive-car-card .sold_modify_btn,
+.cars .archive-car .sold-car-card .modify_btn,
+.cars .archive-car .sold-car-card .archive_modify_btn,
+.cars .archive-car .sold-car-card .sold_modify_btn,
+.cars .soldCars .car-card .modify_btn,
+.cars .soldCars .car-card .archive_modify_btn,
+.cars .soldCars .car-card .sold_modify_btn,
+.cars .soldCars .archive-car-card .modify_btn,
+.cars .soldCars .archive-car-card .archive_modify_btn,
+.cars .soldCars .archive-car-card .sold_modify_btn,
+.cars .soldCars .sold-car-card .modify_btn,
+.cars .soldCars .sold-car-card .archive_modify_btn,
+.cars .soldCars .sold-car-card .sold_modify_btn {
+    margin-top: 3%;
+    margin-bottom: 5%;
+  }
+  .cars .list-car .car-card .card_content,
+.cars .list-car .car-card .archive_card_content,
+.cars .list-car .car-card .sold_card_content,
+.cars .list-car .archive-car-card .card_content,
+.cars .list-car .archive-car-card .archive_card_content,
+.cars .list-car .archive-car-card .sold_card_content,
+.cars .list-car .sold-car-card .card_content,
+.cars .list-car .sold-car-card .archive_card_content,
+.cars .list-car .sold-car-card .sold_card_content,
+.cars .archive-car .car-card .card_content,
+.cars .archive-car .car-card .archive_card_content,
+.cars .archive-car .car-card .sold_card_content,
+.cars .archive-car .archive-car-card .card_content,
+.cars .archive-car .archive-car-card .archive_card_content,
+.cars .archive-car .archive-car-card .sold_card_content,
+.cars .archive-car .sold-car-card .card_content,
+.cars .archive-car .sold-car-card .archive_card_content,
+.cars .archive-car .sold-car-card .sold_card_content,
+.cars .soldCars .car-card .card_content,
+.cars .soldCars .car-card .archive_card_content,
+.cars .soldCars .car-card .sold_card_content,
+.cars .soldCars .archive-car-card .card_content,
+.cars .soldCars .archive-car-card .archive_card_content,
+.cars .soldCars .archive-car-card .sold_card_content,
+.cars .soldCars .sold-car-card .card_content,
+.cars .soldCars .sold-car-card .archive_card_content,
+.cars .soldCars .sold-car-card .sold_card_content {
+    width: 100%;
+    height: auto;
+    padding: 10px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+  .cars .list-car .car-card .card_content .title,
+.cars .list-car .car-card .card_content .archive-title,
+.cars .list-car .car-card .card_content .sold-title,
+.cars .list-car .car-card .archive_card_content .title,
+.cars .list-car .car-card .archive_card_content .archive-title,
+.cars .list-car .car-card .archive_card_content .sold-title,
+.cars .list-car .car-card .sold_card_content .title,
+.cars .list-car .car-card .sold_card_content .archive-title,
+.cars .list-car .car-card .sold_card_content .sold-title,
+.cars .list-car .archive-car-card .card_content .title,
+.cars .list-car .archive-car-card .card_content .archive-title,
+.cars .list-car .archive-car-card .card_content .sold-title,
+.cars .list-car .archive-car-card .archive_card_content .title,
+.cars .list-car .archive-car-card .archive_card_content .archive-title,
+.cars .list-car .archive-car-card .archive_card_content .sold-title,
+.cars .list-car .archive-car-card .sold_card_content .title,
+.cars .list-car .archive-car-card .sold_card_content .archive-title,
+.cars .list-car .archive-car-card .sold_card_content .sold-title,
+.cars .list-car .sold-car-card .card_content .title,
+.cars .list-car .sold-car-card .card_content .archive-title,
+.cars .list-car .sold-car-card .card_content .sold-title,
+.cars .list-car .sold-car-card .archive_card_content .title,
+.cars .list-car .sold-car-card .archive_card_content .archive-title,
+.cars .list-car .sold-car-card .archive_card_content .sold-title,
+.cars .list-car .sold-car-card .sold_card_content .title,
+.cars .list-car .sold-car-card .sold_card_content .archive-title,
+.cars .list-car .sold-car-card .sold_card_content .sold-title,
+.cars .archive-car .car-card .card_content .title,
+.cars .archive-car .car-card .card_content .archive-title,
+.cars .archive-car .car-card .card_content .sold-title,
+.cars .archive-car .car-card .archive_card_content .title,
+.cars .archive-car .car-card .archive_card_content .archive-title,
+.cars .archive-car .car-card .archive_card_content .sold-title,
+.cars .archive-car .car-card .sold_card_content .title,
+.cars .archive-car .car-card .sold_card_content .archive-title,
+.cars .archive-car .car-card .sold_card_content .sold-title,
+.cars .archive-car .archive-car-card .card_content .title,
+.cars .archive-car .archive-car-card .card_content .archive-title,
+.cars .archive-car .archive-car-card .card_content .sold-title,
+.cars .archive-car .archive-car-card .archive_card_content .title,
+.cars .archive-car .archive-car-card .archive_card_content .archive-title,
+.cars .archive-car .archive-car-card .archive_card_content .sold-title,
+.cars .archive-car .archive-car-card .sold_card_content .title,
+.cars .archive-car .archive-car-card .sold_card_content .archive-title,
+.cars .archive-car .archive-car-card .sold_card_content .sold-title,
+.cars .archive-car .sold-car-card .card_content .title,
+.cars .archive-car .sold-car-card .card_content .archive-title,
+.cars .archive-car .sold-car-card .card_content .sold-title,
+.cars .archive-car .sold-car-card .archive_card_content .title,
+.cars .archive-car .sold-car-card .archive_card_content .archive-title,
+.cars .archive-car .sold-car-card .archive_card_content .sold-title,
+.cars .archive-car .sold-car-card .sold_card_content .title,
+.cars .archive-car .sold-car-card .sold_card_content .archive-title,
+.cars .archive-car .sold-car-card .sold_card_content .sold-title,
+.cars .soldCars .car-card .card_content .title,
+.cars .soldCars .car-card .card_content .archive-title,
+.cars .soldCars .car-card .card_content .sold-title,
+.cars .soldCars .car-card .archive_card_content .title,
+.cars .soldCars .car-card .archive_card_content .archive-title,
+.cars .soldCars .car-card .archive_card_content .sold-title,
+.cars .soldCars .car-card .sold_card_content .title,
+.cars .soldCars .car-card .sold_card_content .archive-title,
+.cars .soldCars .car-card .sold_card_content .sold-title,
+.cars .soldCars .archive-car-card .card_content .title,
+.cars .soldCars .archive-car-card .card_content .archive-title,
+.cars .soldCars .archive-car-card .card_content .sold-title,
+.cars .soldCars .archive-car-card .archive_card_content .title,
+.cars .soldCars .archive-car-card .archive_card_content .archive-title,
+.cars .soldCars .archive-car-card .archive_card_content .sold-title,
+.cars .soldCars .archive-car-card .sold_card_content .title,
+.cars .soldCars .archive-car-card .sold_card_content .archive-title,
+.cars .soldCars .archive-car-card .sold_card_content .sold-title,
+.cars .soldCars .sold-car-card .card_content .title,
+.cars .soldCars .sold-car-card .card_content .archive-title,
+.cars .soldCars .sold-car-card .card_content .sold-title,
+.cars .soldCars .sold-car-card .archive_card_content .title,
+.cars .soldCars .sold-car-card .archive_card_content .archive-title,
+.cars .soldCars .sold-car-card .archive_card_content .sold-title,
+.cars .soldCars .sold-car-card .sold_card_content .title,
+.cars .soldCars .sold-car-card .sold_card_content .archive-title,
+.cars .soldCars .sold-car-card .sold_card_content .sold-title {
+    font-weight: 700;
+    flex: 0 0 200px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+  }
+  .cars .list-car .car-card .card_content .id,
+.cars .list-car .car-card .card_content .owner_name,
+.cars .list-car .car-card .card_content .archive-id,
+.cars .list-car .car-card .card_content .archive-owner-name,
+.cars .list-car .car-card .card_content .sold-id,
+.cars .list-car .car-card .card_content .sold-owner-name,
+.cars .list-car .car-card .archive_card_content .id,
+.cars .list-car .car-card .archive_card_content .owner_name,
+.cars .list-car .car-card .archive_card_content .archive-id,
+.cars .list-car .car-card .archive_card_content .archive-owner-name,
+.cars .list-car .car-card .archive_card_content .sold-id,
+.cars .list-car .car-card .archive_card_content .sold-owner-name,
+.cars .list-car .car-card .sold_card_content .id,
+.cars .list-car .car-card .sold_card_content .owner_name,
+.cars .list-car .car-card .sold_card_content .archive-id,
+.cars .list-car .car-card .sold_card_content .archive-owner-name,
+.cars .list-car .car-card .sold_card_content .sold-id,
+.cars .list-car .car-card .sold_card_content .sold-owner-name,
+.cars .list-car .archive-car-card .card_content .id,
+.cars .list-car .archive-car-card .card_content .owner_name,
+.cars .list-car .archive-car-card .card_content .archive-id,
+.cars .list-car .archive-car-card .card_content .archive-owner-name,
+.cars .list-car .archive-car-card .card_content .sold-id,
+.cars .list-car .archive-car-card .card_content .sold-owner-name,
+.cars .list-car .archive-car-card .archive_card_content .id,
+.cars .list-car .archive-car-card .archive_card_content .owner_name,
+.cars .list-car .archive-car-card .archive_card_content .archive-id,
+.cars .list-car .archive-car-card .archive_card_content .archive-owner-name,
+.cars .list-car .archive-car-card .archive_card_content .sold-id,
+.cars .list-car .archive-car-card .archive_card_content .sold-owner-name,
+.cars .list-car .archive-car-card .sold_card_content .id,
+.cars .list-car .archive-car-card .sold_card_content .owner_name,
+.cars .list-car .archive-car-card .sold_card_content .archive-id,
+.cars .list-car .archive-car-card .sold_card_content .archive-owner-name,
+.cars .list-car .archive-car-card .sold_card_content .sold-id,
+.cars .list-car .archive-car-card .sold_card_content .sold-owner-name,
+.cars .list-car .sold-car-card .card_content .id,
+.cars .list-car .sold-car-card .card_content .owner_name,
+.cars .list-car .sold-car-card .card_content .archive-id,
+.cars .list-car .sold-car-card .card_content .archive-owner-name,
+.cars .list-car .sold-car-card .card_content .sold-id,
+.cars .list-car .sold-car-card .card_content .sold-owner-name,
+.cars .list-car .sold-car-card .archive_card_content .id,
+.cars .list-car .sold-car-card .archive_card_content .owner_name,
+.cars .list-car .sold-car-card .archive_card_content .archive-id,
+.cars .list-car .sold-car-card .archive_card_content .archive-owner-name,
+.cars .list-car .sold-car-card .archive_card_content .sold-id,
+.cars .list-car .sold-car-card .archive_card_content .sold-owner-name,
+.cars .list-car .sold-car-card .sold_card_content .id,
+.cars .list-car .sold-car-card .sold_card_content .owner_name,
+.cars .list-car .sold-car-card .sold_card_content .archive-id,
+.cars .list-car .sold-car-card .sold_card_content .archive-owner-name,
+.cars .list-car .sold-car-card .sold_card_content .sold-id,
+.cars .list-car .sold-car-card .sold_card_content .sold-owner-name,
+.cars .archive-car .car-card .card_content .id,
+.cars .archive-car .car-card .card_content .owner_name,
+.cars .archive-car .car-card .card_content .archive-id,
+.cars .archive-car .car-card .card_content .archive-owner-name,
+.cars .archive-car .car-card .card_content .sold-id,
+.cars .archive-car .car-card .card_content .sold-owner-name,
+.cars .archive-car .car-card .archive_card_content .id,
+.cars .archive-car .car-card .archive_card_content .owner_name,
+.cars .archive-car .car-card .archive_card_content .archive-id,
+.cars .archive-car .car-card .archive_card_content .archive-owner-name,
+.cars .archive-car .car-card .archive_card_content .sold-id,
+.cars .archive-car .car-card .archive_card_content .sold-owner-name,
+.cars .archive-car .car-card .sold_card_content .id,
+.cars .archive-car .car-card .sold_card_content .owner_name,
+.cars .archive-car .car-card .sold_card_content .archive-id,
+.cars .archive-car .car-card .sold_card_content .archive-owner-name,
+.cars .archive-car .car-card .sold_card_content .sold-id,
+.cars .archive-car .car-card .sold_card_content .sold-owner-name,
+.cars .archive-car .archive-car-card .card_content .id,
+.cars .archive-car .archive-car-card .card_content .owner_name,
+.cars .archive-car .archive-car-card .card_content .archive-id,
+.cars .archive-car .archive-car-card .card_content .archive-owner-name,
+.cars .archive-car .archive-car-card .card_content .sold-id,
+.cars .archive-car .archive-car-card .card_content .sold-owner-name,
+.cars .archive-car .archive-car-card .archive_card_content .id,
+.cars .archive-car .archive-car-card .archive_card_content .owner_name,
+.cars .archive-car .archive-car-card .archive_card_content .archive-id,
+.cars .archive-car .archive-car-card .archive_card_content .archive-owner-name,
+.cars .archive-car .archive-car-card .archive_card_content .sold-id,
+.cars .archive-car .archive-car-card .archive_card_content .sold-owner-name,
+.cars .archive-car .archive-car-card .sold_card_content .id,
+.cars .archive-car .archive-car-card .sold_card_content .owner_name,
+.cars .archive-car .archive-car-card .sold_card_content .archive-id,
+.cars .archive-car .archive-car-card .sold_card_content .archive-owner-name,
+.cars .archive-car .archive-car-card .sold_card_content .sold-id,
+.cars .archive-car .archive-car-card .sold_card_content .sold-owner-name,
+.cars .archive-car .sold-car-card .card_content .id,
+.cars .archive-car .sold-car-card .card_content .owner_name,
+.cars .archive-car .sold-car-card .card_content .archive-id,
+.cars .archive-car .sold-car-card .card_content .archive-owner-name,
+.cars .archive-car .sold-car-card .card_content .sold-id,
+.cars .archive-car .sold-car-card .card_content .sold-owner-name,
+.cars .archive-car .sold-car-card .archive_card_content .id,
+.cars .archive-car .sold-car-card .archive_card_content .owner_name,
+.cars .archive-car .sold-car-card .archive_card_content .archive-id,
+.cars .archive-car .sold-car-card .archive_card_content .archive-owner-name,
+.cars .archive-car .sold-car-card .archive_card_content .sold-id,
+.cars .archive-car .sold-car-card .archive_card_content .sold-owner-name,
+.cars .archive-car .sold-car-card .sold_card_content .id,
+.cars .archive-car .sold-car-card .sold_card_content .owner_name,
+.cars .archive-car .sold-car-card .sold_card_content .archive-id,
+.cars .archive-car .sold-car-card .sold_card_content .archive-owner-name,
+.cars .archive-car .sold-car-card .sold_card_content .sold-id,
+.cars .archive-car .sold-car-card .sold_card_content .sold-owner-name,
+.cars .soldCars .car-card .card_content .id,
+.cars .soldCars .car-card .card_content .owner_name,
+.cars .soldCars .car-card .card_content .archive-id,
+.cars .soldCars .car-card .card_content .archive-owner-name,
+.cars .soldCars .car-card .card_content .sold-id,
+.cars .soldCars .car-card .card_content .sold-owner-name,
+.cars .soldCars .car-card .archive_card_content .id,
+.cars .soldCars .car-card .archive_card_content .owner_name,
+.cars .soldCars .car-card .archive_card_content .archive-id,
+.cars .soldCars .car-card .archive_card_content .archive-owner-name,
+.cars .soldCars .car-card .archive_card_content .sold-id,
+.cars .soldCars .car-card .archive_card_content .sold-owner-name,
+.cars .soldCars .car-card .sold_card_content .id,
+.cars .soldCars .car-card .sold_card_content .owner_name,
+.cars .soldCars .car-card .sold_card_content .archive-id,
+.cars .soldCars .car-card .sold_card_content .archive-owner-name,
+.cars .soldCars .car-card .sold_card_content .sold-id,
+.cars .soldCars .car-card .sold_card_content .sold-owner-name,
+.cars .soldCars .archive-car-card .card_content .id,
+.cars .soldCars .archive-car-card .card_content .owner_name,
+.cars .soldCars .archive-car-card .card_content .archive-id,
+.cars .soldCars .archive-car-card .card_content .archive-owner-name,
+.cars .soldCars .archive-car-card .card_content .sold-id,
+.cars .soldCars .archive-car-card .card_content .sold-owner-name,
+.cars .soldCars .archive-car-card .archive_card_content .id,
+.cars .soldCars .archive-car-card .archive_card_content .owner_name,
+.cars .soldCars .archive-car-card .archive_card_content .archive-id,
+.cars .soldCars .archive-car-card .archive_card_content .archive-owner-name,
+.cars .soldCars .archive-car-card .archive_card_content .sold-id,
+.cars .soldCars .archive-car-card .archive_card_content .sold-owner-name,
+.cars .soldCars .archive-car-card .sold_card_content .id,
+.cars .soldCars .archive-car-card .sold_card_content .owner_name,
+.cars .soldCars .archive-car-card .sold_card_content .archive-id,
+.cars .soldCars .archive-car-card .sold_card_content .archive-owner-name,
+.cars .soldCars .archive-car-card .sold_card_content .sold-id,
+.cars .soldCars .archive-car-card .sold_card_content .sold-owner-name,
+.cars .soldCars .sold-car-card .card_content .id,
+.cars .soldCars .sold-car-card .card_content .owner_name,
+.cars .soldCars .sold-car-card .card_content .archive-id,
+.cars .soldCars .sold-car-card .card_content .archive-owner-name,
+.cars .soldCars .sold-car-card .card_content .sold-id,
+.cars .soldCars .sold-car-card .card_content .sold-owner-name,
+.cars .soldCars .sold-car-card .archive_card_content .id,
+.cars .soldCars .sold-car-card .archive_card_content .owner_name,
+.cars .soldCars .sold-car-card .archive_card_content .archive-id,
+.cars .soldCars .sold-car-card .archive_card_content .archive-owner-name,
+.cars .soldCars .sold-car-card .archive_card_content .sold-id,
+.cars .soldCars .sold-car-card .archive_card_content .sold-owner-name,
+.cars .soldCars .sold-car-card .sold_card_content .id,
+.cars .soldCars .sold-car-card .sold_card_content .owner_name,
+.cars .soldCars .sold-car-card .sold_card_content .archive-id,
+.cars .soldCars .sold-car-card .sold_card_content .archive-owner-name,
+.cars .soldCars .sold-car-card .sold_card_content .sold-id,
+.cars .soldCars .sold-car-card .sold_card_content .sold-owner-name {
+    color: #616161;
+    flex: 1 0 30%;
+  }
+  .cars .list-car .car-card .card_content .date,
+.cars .list-car .car-card .card_content .archive-date,
+.cars .list-car .car-card .card_content .sold-date,
+.cars .list-car .car-card .archive_card_content .date,
+.cars .list-car .car-card .archive_card_content .archive-date,
+.cars .list-car .car-card .archive_card_content .sold-date,
+.cars .list-car .car-card .sold_card_content .date,
+.cars .list-car .car-card .sold_card_content .archive-date,
+.cars .list-car .car-card .sold_card_content .sold-date,
+.cars .list-car .archive-car-card .card_content .date,
+.cars .list-car .archive-car-card .card_content .archive-date,
+.cars .list-car .archive-car-card .card_content .sold-date,
+.cars .list-car .archive-car-card .archive_card_content .date,
+.cars .list-car .archive-car-card .archive_card_content .archive-date,
+.cars .list-car .archive-car-card .archive_card_content .sold-date,
+.cars .list-car .archive-car-card .sold_card_content .date,
+.cars .list-car .archive-car-card .sold_card_content .archive-date,
+.cars .list-car .archive-car-card .sold_card_content .sold-date,
+.cars .list-car .sold-car-card .card_content .date,
+.cars .list-car .sold-car-card .card_content .archive-date,
+.cars .list-car .sold-car-card .card_content .sold-date,
+.cars .list-car .sold-car-card .archive_card_content .date,
+.cars .list-car .sold-car-card .archive_card_content .archive-date,
+.cars .list-car .sold-car-card .archive_card_content .sold-date,
+.cars .list-car .sold-car-card .sold_card_content .date,
+.cars .list-car .sold-car-card .sold_card_content .archive-date,
+.cars .list-car .sold-car-card .sold_card_content .sold-date,
+.cars .archive-car .car-card .card_content .date,
+.cars .archive-car .car-card .card_content .archive-date,
+.cars .archive-car .car-card .card_content .sold-date,
+.cars .archive-car .car-card .archive_card_content .date,
+.cars .archive-car .car-card .archive_card_content .archive-date,
+.cars .archive-car .car-card .archive_card_content .sold-date,
+.cars .archive-car .car-card .sold_card_content .date,
+.cars .archive-car .car-card .sold_card_content .archive-date,
+.cars .archive-car .car-card .sold_card_content .sold-date,
+.cars .archive-car .archive-car-card .card_content .date,
+.cars .archive-car .archive-car-card .card_content .archive-date,
+.cars .archive-car .archive-car-card .card_content .sold-date,
+.cars .archive-car .archive-car-card .archive_card_content .date,
+.cars .archive-car .archive-car-card .archive_card_content .archive-date,
+.cars .archive-car .archive-car-card .archive_card_content .sold-date,
+.cars .archive-car .archive-car-card .sold_card_content .date,
+.cars .archive-car .archive-car-card .sold_card_content .archive-date,
+.cars .archive-car .archive-car-card .sold_card_content .sold-date,
+.cars .archive-car .sold-car-card .card_content .date,
+.cars .archive-car .sold-car-card .card_content .archive-date,
+.cars .archive-car .sold-car-card .card_content .sold-date,
+.cars .archive-car .sold-car-card .archive_card_content .date,
+.cars .archive-car .sold-car-card .archive_card_content .archive-date,
+.cars .archive-car .sold-car-card .archive_card_content .sold-date,
+.cars .archive-car .sold-car-card .sold_card_content .date,
+.cars .archive-car .sold-car-card .sold_card_content .archive-date,
+.cars .archive-car .sold-car-card .sold_card_content .sold-date,
+.cars .soldCars .car-card .card_content .date,
+.cars .soldCars .car-card .card_content .archive-date,
+.cars .soldCars .car-card .card_content .sold-date,
+.cars .soldCars .car-card .archive_card_content .date,
+.cars .soldCars .car-card .archive_card_content .archive-date,
+.cars .soldCars .car-card .archive_card_content .sold-date,
+.cars .soldCars .car-card .sold_card_content .date,
+.cars .soldCars .car-card .sold_card_content .archive-date,
+.cars .soldCars .car-card .sold_card_content .sold-date,
+.cars .soldCars .archive-car-card .card_content .date,
+.cars .soldCars .archive-car-card .card_content .archive-date,
+.cars .soldCars .archive-car-card .card_content .sold-date,
+.cars .soldCars .archive-car-card .archive_card_content .date,
+.cars .soldCars .archive-car-card .archive_card_content .archive-date,
+.cars .soldCars .archive-car-card .archive_card_content .sold-date,
+.cars .soldCars .archive-car-card .sold_card_content .date,
+.cars .soldCars .archive-car-card .sold_card_content .archive-date,
+.cars .soldCars .archive-car-card .sold_card_content .sold-date,
+.cars .soldCars .sold-car-card .card_content .date,
+.cars .soldCars .sold-car-card .card_content .archive-date,
+.cars .soldCars .sold-car-card .card_content .sold-date,
+.cars .soldCars .sold-car-card .archive_card_content .date,
+.cars .soldCars .sold-car-card .archive_card_content .archive-date,
+.cars .soldCars .sold-car-card .archive_card_content .sold-date,
+.cars .soldCars .sold-car-card .sold_card_content .date,
+.cars .soldCars .sold-car-card .sold_card_content .archive-date,
+.cars .soldCars .sold-car-card .sold_card_content .sold-date {
+    flex: 1 0 100%;
+  }
+  .cars .list-car .car-card .card_content .modify_btn,
+.cars .list-car .car-card .card_content .archive_modify_btn,
+.cars .list-car .car-card .card_content .sold_btn,
+.cars .list-car .car-card .archive_card_content .modify_btn,
+.cars .list-car .car-card .archive_card_content .archive_modify_btn,
+.cars .list-car .car-card .archive_card_content .sold_btn,
+.cars .list-car .car-card .sold_card_content .modify_btn,
+.cars .list-car .car-card .sold_card_content .archive_modify_btn,
+.cars .list-car .car-card .sold_card_content .sold_btn,
+.cars .list-car .archive-car-card .card_content .modify_btn,
+.cars .list-car .archive-car-card .card_content .archive_modify_btn,
+.cars .list-car .archive-car-card .card_content .sold_btn,
+.cars .list-car .archive-car-card .archive_card_content .modify_btn,
+.cars .list-car .archive-car-card .archive_card_content .archive_modify_btn,
+.cars .list-car .archive-car-card .archive_card_content .sold_btn,
+.cars .list-car .archive-car-card .sold_card_content .modify_btn,
+.cars .list-car .archive-car-card .sold_card_content .archive_modify_btn,
+.cars .list-car .archive-car-card .sold_card_content .sold_btn,
+.cars .list-car .sold-car-card .card_content .modify_btn,
+.cars .list-car .sold-car-card .card_content .archive_modify_btn,
+.cars .list-car .sold-car-card .card_content .sold_btn,
+.cars .list-car .sold-car-card .archive_card_content .modify_btn,
+.cars .list-car .sold-car-card .archive_card_content .archive_modify_btn,
+.cars .list-car .sold-car-card .archive_card_content .sold_btn,
+.cars .list-car .sold-car-card .sold_card_content .modify_btn,
+.cars .list-car .sold-car-card .sold_card_content .archive_modify_btn,
+.cars .list-car .sold-car-card .sold_card_content .sold_btn,
+.cars .archive-car .car-card .card_content .modify_btn,
+.cars .archive-car .car-card .card_content .archive_modify_btn,
+.cars .archive-car .car-card .card_content .sold_btn,
+.cars .archive-car .car-card .archive_card_content .modify_btn,
+.cars .archive-car .car-card .archive_card_content .archive_modify_btn,
+.cars .archive-car .car-card .archive_card_content .sold_btn,
+.cars .archive-car .car-card .sold_card_content .modify_btn,
+.cars .archive-car .car-card .sold_card_content .archive_modify_btn,
+.cars .archive-car .car-card .sold_card_content .sold_btn,
+.cars .archive-car .archive-car-card .card_content .modify_btn,
+.cars .archive-car .archive-car-card .card_content .archive_modify_btn,
+.cars .archive-car .archive-car-card .card_content .sold_btn,
+.cars .archive-car .archive-car-card .archive_card_content .modify_btn,
+.cars .archive-car .archive-car-card .archive_card_content .archive_modify_btn,
+.cars .archive-car .archive-car-card .archive_card_content .sold_btn,
+.cars .archive-car .archive-car-card .sold_card_content .modify_btn,
+.cars .archive-car .archive-car-card .sold_card_content .archive_modify_btn,
+.cars .archive-car .archive-car-card .sold_card_content .sold_btn,
+.cars .archive-car .sold-car-card .card_content .modify_btn,
+.cars .archive-car .sold-car-card .card_content .archive_modify_btn,
+.cars .archive-car .sold-car-card .card_content .sold_btn,
+.cars .archive-car .sold-car-card .archive_card_content .modify_btn,
+.cars .archive-car .sold-car-card .archive_card_content .archive_modify_btn,
+.cars .archive-car .sold-car-card .archive_card_content .sold_btn,
+.cars .archive-car .sold-car-card .sold_card_content .modify_btn,
+.cars .archive-car .sold-car-card .sold_card_content .archive_modify_btn,
+.cars .archive-car .sold-car-card .sold_card_content .sold_btn,
+.cars .soldCars .car-card .card_content .modify_btn,
+.cars .soldCars .car-card .card_content .archive_modify_btn,
+.cars .soldCars .car-card .card_content .sold_btn,
+.cars .soldCars .car-card .archive_card_content .modify_btn,
+.cars .soldCars .car-card .archive_card_content .archive_modify_btn,
+.cars .soldCars .car-card .archive_card_content .sold_btn,
+.cars .soldCars .car-card .sold_card_content .modify_btn,
+.cars .soldCars .car-card .sold_card_content .archive_modify_btn,
+.cars .soldCars .car-card .sold_card_content .sold_btn,
+.cars .soldCars .archive-car-card .card_content .modify_btn,
+.cars .soldCars .archive-car-card .card_content .archive_modify_btn,
+.cars .soldCars .archive-car-card .card_content .sold_btn,
+.cars .soldCars .archive-car-card .archive_card_content .modify_btn,
+.cars .soldCars .archive-car-card .archive_card_content .archive_modify_btn,
+.cars .soldCars .archive-car-card .archive_card_content .sold_btn,
+.cars .soldCars .archive-car-card .sold_card_content .modify_btn,
+.cars .soldCars .archive-car-card .sold_card_content .archive_modify_btn,
+.cars .soldCars .archive-car-card .sold_card_content .sold_btn,
+.cars .soldCars .sold-car-card .card_content .modify_btn,
+.cars .soldCars .sold-car-card .card_content .archive_modify_btn,
+.cars .soldCars .sold-car-card .card_content .sold_btn,
+.cars .soldCars .sold-car-card .archive_card_content .modify_btn,
+.cars .soldCars .sold-car-card .archive_card_content .archive_modify_btn,
+.cars .soldCars .sold-car-card .archive_card_content .sold_btn,
+.cars .soldCars .sold-car-card .sold_card_content .modify_btn,
+.cars .soldCars .sold-car-card .sold_card_content .archive_modify_btn,
+.cars .soldCars .sold-car-card .sold_card_content .sold_btn {
+    font-size: 14px;
+    font-weight: 600;
+    text-align: center;
+    text-transform: uppercase;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    text-decoration: none;
+    margin: 10px 5px;
+    margin-bottom: 0;
+    cursor: pointer;
+    padding: 2px;
+    color: #000000;
+    flex: 0 0 45%;
+  }
+  .cars .list-car .car-card .card_content .archive_modify_btn,
+.cars .list-car .car-card .archive_card_content .archive_modify_btn,
+.cars .list-car .car-card .sold_card_content .archive_modify_btn,
+.cars .list-car .archive-car-card .card_content .archive_modify_btn,
+.cars .list-car .archive-car-card .archive_card_content .archive_modify_btn,
+.cars .list-car .archive-car-card .sold_card_content .archive_modify_btn,
+.cars .list-car .sold-car-card .card_content .archive_modify_btn,
+.cars .list-car .sold-car-card .archive_card_content .archive_modify_btn,
+.cars .list-car .sold-car-card .sold_card_content .archive_modify_btn,
+.cars .archive-car .car-card .card_content .archive_modify_btn,
+.cars .archive-car .car-card .archive_card_content .archive_modify_btn,
+.cars .archive-car .car-card .sold_card_content .archive_modify_btn,
+.cars .archive-car .archive-car-card .card_content .archive_modify_btn,
+.cars .archive-car .archive-car-card .archive_card_content .archive_modify_btn,
+.cars .archive-car .archive-car-card .sold_card_content .archive_modify_btn,
+.cars .archive-car .sold-car-card .card_content .archive_modify_btn,
+.cars .archive-car .sold-car-card .archive_card_content .archive_modify_btn,
+.cars .archive-car .sold-car-card .sold_card_content .archive_modify_btn,
+.cars .soldCars .car-card .card_content .archive_modify_btn,
+.cars .soldCars .car-card .archive_card_content .archive_modify_btn,
+.cars .soldCars .car-card .sold_card_content .archive_modify_btn,
+.cars .soldCars .archive-car-card .card_content .archive_modify_btn,
+.cars .soldCars .archive-car-card .archive_card_content .archive_modify_btn,
+.cars .soldCars .archive-car-card .sold_card_content .archive_modify_btn,
+.cars .soldCars .sold-car-card .card_content .archive_modify_btn,
+.cars .soldCars .sold-car-card .archive_card_content .archive_modify_btn,
+.cars .soldCars .sold-car-card .sold_card_content .archive_modify_btn {
+    flex: 1 0 50%;
+  }
+  .cars .list-car .car-card:hover,
+.cars .list-car .archive-card:hover,
+.cars .archive-car .car-card:hover,
+.cars .archive-car .archive-card:hover,
+.cars .soldCars .car-card:hover,
+.cars .soldCars .archive-card:hover {
+    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.25);
+  }
+  .cars .modal {
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    z-index: 4;
+    height: 100vh;
+    width: 100vw;
+    border: 2px solid rgba(0, 0, 0, 0.4);
+    border-radius: 5px;
+    background-color: #fff;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    display: none;
+  }
+  .cars .modal .modal_header {
+    display: grid;
+    grid-template-columns: 2fr auto;
+  }
+  .cars .modal .modal_header .title {
+    color: #1B3A57;
+    margin-left: 1rem;
+  }
+  .cars .modal .modal_header button {
+    width: 40px;
+    border: none;
+  }
+  .cars .modal .modal_header button .material-icons {
+    font-size: 36px;
+  }
+  .cars .modal .modal_navbar {
+    width: 100%;
+    height: 40px;
+    display: flex;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  }
+  .cars .modal .modal_navbar a {
+    padding: 5px;
+    list-style: none;
+    margin: auto 1.7rem;
+    margin-top: 4px;
+    text-decoration: none;
+  }
+  .cars .modal .modal_navbar a:visited {
+    color: #000000;
+  }
+  .cars .modal .modal_navbar .active {
+    font-weight: 700;
+    border-bottom: 2px solid rgba(0, 0, 0, 0.6);
+  }
+  .cars .modal .general_details,
+.cars .modal .specs_and_features,
+.cars .modal .car_images {
+    margin-top: 2%;
+  }
+  .cars .modal .general_details {
+    margin: 3rem 3rem 3rem 3rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+  .cars .modal .general_details .item {
+    display: flex;
+    flex-direction: column;
+    height: 13%;
+    width: auto;
+    border-radius: 5px;
+    margin: 1rem 1rem 0 0;
+    padding: 0.6rem;
+  }
+  .cars .modal .general_details .item input {
+    padding: 10px;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    width: 100%;
+    border-radius: 5px;
+    font-size: 1rem;
+    background-color: rgb(255, 255, 255);
+  }
+  .cars .modal .general_details .item label {
+    color: #4d505f;
+    margin-bottom: 5px;
+  }
+  .cars .modal .general_details .update_car_submit,
+.cars .modal .general_details .soldCarSubmit {
+    color: #ffffff;
+    margin: 3% 0% auto auto;
+    font-weight: 600;
+    padding: 5px;
+    background-color: rgb(255, 203, 45);
+    width: 30%;
+    border-radius: 5px;
+    text-align: center;
+    grid-column: span 3;
+  }
+  .cars .modal .general_details .update_car_submit:hover {
+    border: 1px solid rgb(255, 203, 45);
+    background-color: #ffffff;
+    color: rgb(255, 203, 45);
+  }
+  .cars .modal .specs_and_features .comfort_and_convenience,
+.cars .modal .specs_and_features .dimensions_and_capacity,
+.cars .modal .specs_and_features .engine_and_transmission,
+.cars .modal .specs_and_features .entertainment_and_communication,
+.cars .modal .specs_and_features .exterior,
+.cars .modal .specs_and_features .exteriors_report,
+.cars .modal .specs_and_features .features,
+.cars .modal .specs_and_features .fuel_and_performance,
+.cars .modal .specs_and_features .hood_and_bonnet,
+.cars .modal .specs_and_features .interior,
+.cars .modal .specs_and_features .interiors_report,
+.cars .modal .specs_and_features .over_all_rating,
+.cars .modal .specs_and_features .safety,
+.cars .modal .specs_and_features .suspension_and_brakes,
+.cars .modal .specs_and_features .system_and_functions,
+.cars .modal .specs_and_features .vehicle_documents,
+.cars .modal .specs_and_features .wheels {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+  }
+  .cars .modal .specs_and_features .comfort_and_convenience input[type=submit],
+.cars .modal .specs_and_features .dimensions_and_capacity input[type=submit],
+.cars .modal .specs_and_features .engine_and_transmission input[type=submit],
+.cars .modal .specs_and_features .entertainment_and_communication input[type=submit],
+.cars .modal .specs_and_features .exterior input[type=submit],
+.cars .modal .specs_and_features .exteriors_report input[type=submit],
+.cars .modal .specs_and_features .features input[type=submit],
+.cars .modal .specs_and_features .fuel_and_performance input[type=submit],
+.cars .modal .specs_and_features .hood_and_bonnet input[type=submit],
+.cars .modal .specs_and_features .interior input[type=submit],
+.cars .modal .specs_and_features .interiors_report input[type=submit],
+.cars .modal .specs_and_features .over_all_rating input[type=submit],
+.cars .modal .specs_and_features .safety input[type=submit],
+.cars .modal .specs_and_features .suspension_and_brakes input[type=submit],
+.cars .modal .specs_and_features .system_and_functions input[type=submit],
+.cars .modal .specs_and_features .vehicle_documents input[type=submit],
+.cars .modal .specs_and_features .wheels input[type=submit] {
+    margin: 3% 0% auto auto;
+    grid-column: span 3;
+    width: 20%;
+    border-radius: 5px;
+    color: #ffffff;
+    background-color: rgb(24, 187, 45);
+    border: none;
+    cursor: pointer;
+  }
+  .cars .modal .specs_and_features .comfort_and_convenience input[type=submit]:hover,
+.cars .modal .specs_and_features .dimensions_and_capacity input[type=submit]:hover,
+.cars .modal .specs_and_features .engine_and_transmission input[type=submit]:hover,
+.cars .modal .specs_and_features .entertainment_and_communication input[type=submit]:hover,
+.cars .modal .specs_and_features .exterior input[type=submit]:hover,
+.cars .modal .specs_and_features .exteriors_report input[type=submit]:hover,
+.cars .modal .specs_and_features .features input[type=submit]:hover,
+.cars .modal .specs_and_features .fuel_and_performance input[type=submit]:hover,
+.cars .modal .specs_and_features .hood_and_bonnet input[type=submit]:hover,
+.cars .modal .specs_and_features .interior input[type=submit]:hover,
+.cars .modal .specs_and_features .interiors_report input[type=submit]:hover,
+.cars .modal .specs_and_features .over_all_rating input[type=submit]:hover,
+.cars .modal .specs_and_features .safety input[type=submit]:hover,
+.cars .modal .specs_and_features .suspension_and_brakes input[type=submit]:hover,
+.cars .modal .specs_and_features .system_and_functions input[type=submit]:hover,
+.cars .modal .specs_and_features .vehicle_documents input[type=submit]:hover,
+.cars .modal .specs_and_features .wheels input[type=submit]:hover {
+    box-shadow: 0px 0px 10px rgb(24, 187, 45);
+    cursor: pointer;
+  }
+  .cars .modal .specs_and_features .comfort_and_convenience .item,
+.cars .modal .specs_and_features .dimensions_and_capacity .item,
+.cars .modal .specs_and_features .engine_and_transmission .item,
+.cars .modal .specs_and_features .entertainment_and_communication .item,
+.cars .modal .specs_and_features .exterior .item,
+.cars .modal .specs_and_features .exteriors_report .item,
+.cars .modal .specs_and_features .features .item,
+.cars .modal .specs_and_features .fuel_and_performance .item,
+.cars .modal .specs_and_features .hood_and_bonnet .item,
+.cars .modal .specs_and_features .interior .item,
+.cars .modal .specs_and_features .interiors_report .item,
+.cars .modal .specs_and_features .over_all_rating .item,
+.cars .modal .specs_and_features .safety .item,
+.cars .modal .specs_and_features .suspension_and_brakes .item,
+.cars .modal .specs_and_features .system_and_functions .item,
+.cars .modal .specs_and_features .vehicle_documents .item,
+.cars .modal .specs_and_features .wheels .item {
+    width: 100%;
+    flex: 0 0 30%;
+    margin: 5px;
+    padding: 5px;
+  }
+  .cars .modal .specs_and_features .comfort_and_convenience .item input[type=text],
+.cars .modal .specs_and_features .comfort_and_convenience .item input[type=number],
+.cars .modal .specs_and_features .dimensions_and_capacity .item input[type=text],
+.cars .modal .specs_and_features .dimensions_and_capacity .item input[type=number],
+.cars .modal .specs_and_features .engine_and_transmission .item input[type=text],
+.cars .modal .specs_and_features .engine_and_transmission .item input[type=number],
+.cars .modal .specs_and_features .entertainment_and_communication .item input[type=text],
+.cars .modal .specs_and_features .entertainment_and_communication .item input[type=number],
+.cars .modal .specs_and_features .exterior .item input[type=text],
+.cars .modal .specs_and_features .exterior .item input[type=number],
+.cars .modal .specs_and_features .exteriors_report .item input[type=text],
+.cars .modal .specs_and_features .exteriors_report .item input[type=number],
+.cars .modal .specs_and_features .features .item input[type=text],
+.cars .modal .specs_and_features .features .item input[type=number],
+.cars .modal .specs_and_features .fuel_and_performance .item input[type=text],
+.cars .modal .specs_and_features .fuel_and_performance .item input[type=number],
+.cars .modal .specs_and_features .hood_and_bonnet .item input[type=text],
+.cars .modal .specs_and_features .hood_and_bonnet .item input[type=number],
+.cars .modal .specs_and_features .interior .item input[type=text],
+.cars .modal .specs_and_features .interior .item input[type=number],
+.cars .modal .specs_and_features .interiors_report .item input[type=text],
+.cars .modal .specs_and_features .interiors_report .item input[type=number],
+.cars .modal .specs_and_features .over_all_rating .item input[type=text],
+.cars .modal .specs_and_features .over_all_rating .item input[type=number],
+.cars .modal .specs_and_features .safety .item input[type=text],
+.cars .modal .specs_and_features .safety .item input[type=number],
+.cars .modal .specs_and_features .suspension_and_brakes .item input[type=text],
+.cars .modal .specs_and_features .suspension_and_brakes .item input[type=number],
+.cars .modal .specs_and_features .system_and_functions .item input[type=text],
+.cars .modal .specs_and_features .system_and_functions .item input[type=number],
+.cars .modal .specs_and_features .vehicle_documents .item input[type=text],
+.cars .modal .specs_and_features .vehicle_documents .item input[type=number],
+.cars .modal .specs_and_features .wheels .item input[type=text],
+.cars .modal .specs_and_features .wheels .item input[type=number] {
+    padding: 10px;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    width: 100%;
+    border-radius: 5px;
+    font-size: 1rem;
+    background-color: rgb(255, 255, 255);
+  }
+  .cars .modal .specs_and_features .comfort_and_convenience .item select,
+.cars .modal .specs_and_features .dimensions_and_capacity .item select,
+.cars .modal .specs_and_features .engine_and_transmission .item select,
+.cars .modal .specs_and_features .entertainment_and_communication .item select,
+.cars .modal .specs_and_features .exterior .item select,
+.cars .modal .specs_and_features .exteriors_report .item select,
+.cars .modal .specs_and_features .features .item select,
+.cars .modal .specs_and_features .fuel_and_performance .item select,
+.cars .modal .specs_and_features .hood_and_bonnet .item select,
+.cars .modal .specs_and_features .interior .item select,
+.cars .modal .specs_and_features .interiors_report .item select,
+.cars .modal .specs_and_features .over_all_rating .item select,
+.cars .modal .specs_and_features .safety .item select,
+.cars .modal .specs_and_features .suspension_and_brakes .item select,
+.cars .modal .specs_and_features .system_and_functions .item select,
+.cars .modal .specs_and_features .vehicle_documents .item select,
+.cars .modal .specs_and_features .wheels .item select {
+    width: 100%;
+  }
+  .cars .modal .specs_and_features #fule_type {
+    width: 100%;
+  }
+  .cars .modal .car_images {
+    display: flex;
+    justify-content: center;
+    align-self: center;
+    width: 100%;
+  }
+  .cars .modal .car_images .container {
+    height: 60vh;
+    width: 80vw;
+  }
+  .cars .modal .car_images .container .nav {
+    display: flex;
+    flex-direction: row;
+    width: 40%;
+    justify-content: space-between;
+  }
+  .cars .modal .car_images .container .nav a {
+    text-decoration: none;
+    color: #212121;
+    padding: 4px 15px;
+    border-radius: 6px;
+    border: 1px solid #ffffff;
+  }
+  .cars .modal .car_images .container .nav a:hover {
+    color: rgb(255, 203, 45);
+    border: 1px solid rgb(255, 203, 45);
+  }
+  .cars .modal .car_images .container .nav .active {
+    background-color: rgb(255, 203, 45);
+    color: #ffffff;
+    font-weight: 600;
+  }
+  .cars .modal .car_images .container .nav .active:hover {
+    background-color: rgb(255, 203, 45);
+    color: #ffffff;
+    border: 1px solid rgb(255, 203, 45);
+  }
+  .cars .modal .car_images .container .car_images_body {
+    width: 100%;
+    height: auto;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+    margin-top: 2%;
+    padding: 16px;
+    position: relative;
+  }
+  .cars .modal .car_images .container .car_images_body .filepond--item {
+    width: calc(50% - 0.5em);
+  }
+  .cars .modal .car_images .container .car_images_body .filepond--root {
+    height: 500px;
+  }
+  .cars .modal .car_images .container .car_images_body .show_images {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 1rem;
+    width: 100%;
+    height: 90%;
+    background-color: #FAFAFA;
+    margin-bottom: 10px;
+  }
+  .cars .modal .car_images .container .car_images_body .show_images .car_list_images {
+    width: 300px;
+    height: auto;
+  }
+  .cars .modal .car_images .container .car_images_body .custom_file_upload {
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    text-align: center;
+    width: 30%;
+    padding: 7px;
+    font-weight: 700;
+    margin-right: 20px;
+    border-radius: 5px;
+  }
+  .cars .modal .car_images .container .car_images_body .custom_file_upload #add_image {
+    width: 90px;
+    display: none;
+  }
+  .cars .modal .car_images .container .car_images_body #image_upload {
+    width: 10%;
+    border-radius: 5px;
+  }
+  .cars .modal .specs_and_features .accordion {
+    background-color: #eee;
+    color: #444;
+    cursor: pointer;
+    padding: 18px;
+    width: 100%;
+    text-align: left;
+    border: none;
+    outline: none;
+  }
+  .cars .modal .specs_and_features .active,
+.cars .modal .specs_and_features .accordion:hover {
+    background-color: #ccc;
+    font-weight: 800;
+  }
+  .cars .modal .specs_and_features .panel {
+    margin: 1rem 1rem 2rem;
+    padding: 0 18px;
+    background-color: white;
+    display: none;
+    overflow: hidden;
+  }
+
+  .securityMain {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .securityMain .resetPassword {
+    width: 50%;
+    height: fit-content;
+    border: 1px solid rgba(0, 0, 0, 0.3);
+    border-radius: 10px;
+    background-color: #ffffff;
+    padding: 1rem;
+  }
+  .securityMain .resetPassword .title {
+    margin-bottom: 10%;
+  }
+  .securityMain .resetPassword .oldPassword, .securityMain .resetPassword .newPassword {
+    display: flex;
+    justify-content: space-evenly;
+    margin: 1.8rem 0rem;
+    border: 0;
+  }
+  .securityMain .resetPassword #update_password {
+    margin-top: 5%;
+    margin-left: 75%;
+    margin-right: 0;
+    border: 0;
+    width: 100px;
+    height: 30px;
+    background-color: #54a1c1;
+  }
+  .securityMain .resetPassword #update_password:hover {
+    background-color: #004763;
+    color: #ffffff;
+  }
+}

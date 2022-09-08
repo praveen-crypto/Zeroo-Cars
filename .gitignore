@@ -1,0 +1,15 @@
+
+__pycache__/
+*.py[cod]
+
+.vscode/*
+
+*.bat
+
+*.json
+
+postcss
+
+sass
+run_server.py
+requirements.txt

@@ -1,0 +1,1 @@
+select distinct transmission_type from engine_and_transmission;

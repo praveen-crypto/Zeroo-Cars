@@ -1,0 +1,48 @@
+delete from entertainment_and_communication where REGESTRATION_NUMBER=%(regestration_number)s;
+
+INSERT INTO entertainment_and_communication
+(
+  REGESTRATION_NUMBER,
+  CD_PLAYER,
+  CD_CHANGER,
+  DVD_PLAYER,
+  RADIO,
+  AUDIO_SYSTEM_REMOTE_CONTROL,
+  SPEAKERS_FRONT,
+  SPEAKERS_REAR,
+  INTEGRATED_2DIN_AUDIO,
+  USB_AND_AUXILIARY_INPUT,
+  BLUETOOTH_CONNECTIVITY,
+  WIFI_CONNECTIVITY,
+  TOUCH_SCREEN,
+  TOUCH_SCREEN_SIZE,
+  CONNECTIVITY,
+  ANDROID_AUTO,
+  APPLE_CARPLAY,
+  INTERNAL_STORAGE,
+  NUMBER_OF_SPEAKERS,
+  REAR_ENTERTAINMENT_SYSTEM
+)
+VALUES
+(
+  %(regestration_number)s,
+%(cd_player)s,
+%(cd_changer)s,
+%(dvd_player)s,
+%(radio)s,
+%(audio_system_remote_control)s,
+%(speakers_front)s,
+%(speakers_rear)s,
+%(integrated_2din_audio)s,
+%(usb_and_auxiliary_input)s,
+%(bluetooth_connectivity)s,
+%(wifi_connectivity)s,
+%(touch_screen)s,
+%(touch_screen_size)s,
+%(connectivity)s,
+%(android_auto)s,
+%(apple_carplay)s,
+%(internal_storage)s,
+%(number_of_speakers)s,
+%(rear_entertainment_system)s
+);

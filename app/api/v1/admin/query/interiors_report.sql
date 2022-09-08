@@ -1,0 +1,52 @@
+delete from interiors_report where REGESTRATION_NUMBER=%(regestration_number)s;
+
+INSERT INTO interiors_report
+(
+  REGESTRATION_NUMBER,
+  STEERING,
+  DOOR_PANNEL_AND_HINGES,
+  DASH_BOARD,
+  INTERIOR_TRIMS,
+  COMBINATION_SWITCH_ASSEMBLY,
+  SEAT_AND_SEAT_BELT_CONDITION,
+  ACCESSORIE_AUDIO_AND_COVERS,
+  HAND_BRAKE,
+  PEDALS,
+  HORNS,
+  CARPET_AND_FLOORMAT,
+  ODOMETER_ASSEMBLY,
+  HAZARD_LIGHTS,
+  CENTEAL_LOCK_KEYLESS_ENTRY,
+  CRUISE_CONTROL,
+  BOOT_CONDITION,
+  JACK_AND_TOMMY_AVAILABLE,
+  WHEEL_SPANNER_AVAILABLE,
+  REAR_VIEW_CAMERA,
+  UPHOLSTERY,
+  INTERIOR_REMARK
+)
+VALUES
+(
+  %(regestration_number)s,
+%(steering)s,
+%(door_pannel_and_hinges)s,
+%(dash_board)s,
+%(interior_trims)s,
+%(combination_switch_assembly)s,
+%(seat_and_seat_belt_condition)s,
+%(accessorie_audio_and_covers)s,
+%(hand_brake)s,
+%(pedals)s,
+%(horns)s,
+%(carpet_and_floormat)s,
+%(odometer_assembly)s,
+%(hazard_lights)s,
+%(centeal_lock_keyless_entry)s,
+%(cruise_control)s,
+%(boot_condition)s,
+%(jack_and_tommy_available)s,
+%(wheel_spanner_available)s,
+%(rear_view_camera)s,
+%(upholstery)s,
+%(interior_remark)s
+);

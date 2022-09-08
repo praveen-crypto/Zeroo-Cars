@@ -1,0 +1,28 @@
+INSERT INTO inquiry
+( 
+  `regestration_number`,
+  `inquiry_type`,
+  `name`,
+  `phone`,
+  `email`,
+  `message`,  
+  `car_brand`,
+  `car_model`,
+  `registration_year`,
+  `notes`,
+  `created`
+)
+VALUES
+(
+  %(regestration_number)s,
+  %(inquiry_type)s,
+  %(name)s,
+  %(phone)s,
+  %(email)s,
+  %(message)s,
+  %(car_brand)s,
+  %(car_model)s,
+  %(registration_year)s,
+  %(notes)s,
+  CURRENT_TIMESTAMP
+)

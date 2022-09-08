@@ -1,0 +1,37 @@
+{% extends "admin.html" %}
+
+
+
+
+{% block title %}
+<h6 class="title">
+    
+</h6>
+{% endblock %}
+
+
+
+{% block content %}
+<main>
+    <div class="container adminImage">
+        <div class="imageTypeSelector">
+            <label for="imageType">Image Type</label>
+            <select name="imageType" id="imageType">
+                <option value="advertisement">Advertisement</option>
+                <option value="homepage1">Homepage 1</option>
+                <option value="homepage2">Homepage 2</option>
+            </select>
+        </div>
+
+        <div class="addImage">
+            <input type="file" class="adminImageFilepond" id="adminImageFilepond" name="adminImageFilepond" multiple data-allow-reorder="true" data-max-file-size="3MB">
+            
+            <button  class="btn btn-success" id="uploadAdminImage"> Upload</button>
+        </div>
+    </div>
+</main>
+{% endblock %}
+
+{% block script %}
+    <script src="{{ url_for('static', path='admin/js/adminImage.js') }}"></script>
+{% endblock %}
