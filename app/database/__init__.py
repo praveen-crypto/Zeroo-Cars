@@ -17,7 +17,7 @@ config.read("app/config/config.ini")
 # Encrypted connection using TLS/SSL: Flexible Server supports encrypted connections using Transport Layer Security (TLS 1.2)
 # all incoming connections with TLS 1.0 and TLS 1.1 will be denied by default.
 ctx = ssl.SSLContext(ssl.PROTOCOL_TLSv1_2)
-ctx.load_verify_locations('app/config/certificate.crt')
+ctx.load_verify_locations('app/config/ZerooCars-ca-certificate.crt')
 
 async def execute(query, placeholder={}):
     """Executes a single query
@@ -42,8 +42,8 @@ async def execute(query, placeholder={}):
             password=config["Database"]["Password"],
             db=config["Database"]["DB"],
             cursorclass=aiomysql.cursors.DictCursor,
-            autocommit=False
-            #ssl=ctx
+            autocommit=False,
+            ssl = ctx
         )
 
         async with conn.cursor() as cur:
