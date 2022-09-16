@@ -1,9 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap");
 html {
   font-size: 100%;
-}
-
-/*16px*/
+} /*16px*/
 body {
   font-family: "Roboto", sans-serif;
 }
@@ -79,22 +77,17 @@ body {
 }
 
 body::-webkit-scrollbar {
-  width: 8px;
-  /* width of the entire scrollbar */
+  width: 8px; /* width of the entire scrollbar */
 }
 
 body::-webkit-scrollbar-track {
-  background: transparent;
-  /* color of the tracking area */
+  background: transparent; /* color of the tracking area */
 }
 
 body::-webkit-scrollbar-thumb {
-  background-color: #616161;
-  /* color of the scroll thumb */
-  border-radius: 20px;
-  /* roundness of the scroll thumb */
-  border: 0px solid black;
-  /* creates padding around scroll thumb */
+  background-color: #616161; /* color of the scroll thumb */
+  border-radius: 20px; /* roundness of the scroll thumb */
+  border: 0px solid black; /* creates padding around scroll thumb */
 }
 
 .container {
@@ -474,6 +467,10 @@ body::-webkit-scrollbar-thumb {
   font-size: 14px;
   margin: 0% auto 5% auto;
 }
+.container .technical_specs .body .right .scrollspy-example .engine_and_transmission .item {
+  display: flex;
+  justify-content: space-between;
+}
 .container .technical_specs .body .right .scrollspy-example .fuel_and_performance .head,
 .container .technical_specs .body .right .scrollspy-example .suspension_and_breaks .head,
 .container .technical_specs .body .right .scrollspy-example .dimensions_and_capacity .head,
@@ -485,24 +482,30 @@ body::-webkit-scrollbar-thumb {
   font-size: 14px;
   margin: 5% auto;
 }
+.container .technical_specs .body .right .scrollspy-example .fuel_and_performance .item,
+.container .technical_specs .body .right .scrollspy-example .suspension_and_breaks .item,
+.container .technical_specs .body .right .scrollspy-example .dimensions_and_capacity .item,
+.container .technical_specs .body .right .scrollspy-example .comfort_and_convenience .item,
+.container .technical_specs .body .right .scrollspy-example .tech_interior .item,
+.container .technical_specs .body .right .scrollspy-example .tech_exterior .item,
+.container .technical_specs .body .right .scrollspy-example .safety .item,
+.container .technical_specs .body .right .scrollspy-example .entertainment_and_communication .item {
+  display: flex;
+  justify-content: space-between;
+}
 .container .technical_specs .body .right .scrollspy-example .place_holder {
   margin: 0 0 20px 0;
 }
 .container .technical_specs .body .right .scrollspy-example::-webkit-scrollbar {
-  width: 8px;
-  /* width of the entire scrollbar */
+  width: 8px; /* width of the entire scrollbar */
 }
 .container .technical_specs .body .right .scrollspy-example::-webkit-scrollbar-track {
-  background: transparent;
-  /* color of the tracking area */
+  background: transparent; /* color of the tracking area */
 }
 .container .technical_specs .body .right .scrollspy-example::-webkit-scrollbar-thumb {
-  background-color: #616161;
-  /* color of the scroll thumb */
-  border-radius: 20px;
-  /* roundness of the scroll thumb */
-  border: 0px solid black;
-  /* creates padding around scroll thumb */
+  background-color: #616161; /* color of the scroll thumb */
+  border-radius: 20px; /* roundness of the scroll thumb */
+  border: 0px solid black; /* creates padding around scroll thumb */
 }
 .container .technical_specs .rt {
   overflow-y: scroll;
@@ -628,77 +631,59 @@ body::-webkit-scrollbar-thumb {
   @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap");
   html {
     font-size: 100%;
-  }
-
-  /*16px*/
+  } /*16px*/
   body {
     font-family: "Roboto", sans-serif;
   }
-
   button {
     font-size: 9.5pt;
     font-weight: 600;
     text-transform: uppercase;
   }
-
   h1, h2, h3, h4, h5, h6 {
     font-family: "Roboto", sans-serif;
   }
-
   h1 {
     font-size: 57.5pt;
   }
-
   h2 {
     font-size: 40pt;
   }
-
   h3 {
     font-size: 28pt;
   }
-
   h4 {
     font-size: 22pt;
   }
-
   h5 {
     font-size: 17.25pt;
     margin: 1rem 0;
   }
-
   h6 {
     font-size: 13.75pt;
   }
-
   .body-1 {
     font-size: 10.75pt;
   }
-
   .body-2 {
     font-size: 12pt;
   }
-
   .small-1 {
     font-size: 0.875rem;
   }
-
   small,
 .small-2 {
     font-size: 0.75rem;
   }
-
   .caption {
     font-size: 9.5pt;
   }
-
   .endnote {
     font-size: 9.5pt;
   }
-
   .footnote {
     font-size: 8.5pt;
   }
-
   nav {
     background-color: #ffffff;
     border-bottom: 1px solid #EEEEEE;
@@ -738,7 +723,6 @@ body::-webkit-scrollbar-thumb {
   nav .desktop_nav ul li:not(:last-child) a {
     border-right: 2px solid rgba(0, 0, 0, 0.3);
   }
-
   .container {
     margin: auto auto;
   }
@@ -973,7 +957,6 @@ body::-webkit-scrollbar-thumb {
     overflow-y: scroll;
     height: 400px;
   }
-
   .footer {
     height: auto;
     background-color: #858585;
@@ -1037,87 +1020,67 @@ body::-webkit-scrollbar-thumb {
   @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap");
   html {
     font-size: 100%;
-  }
-
-  /*16px*/
+  } /*16px*/
   body {
     font-family: "Roboto", sans-serif;
   }
-
   button {
     font-size: 9.5pt;
     font-weight: 600;
     text-transform: uppercase;
   }
-
   h1, h2, h3, h4, h5, h6 {
     font-family: "Roboto", sans-serif;
   }
-
   h1 {
     font-size: 57.5pt;
   }
-
   h2 {
     font-size: 40pt;
   }
-
   h3 {
     font-size: 28pt;
   }
-
   h4 {
     font-size: 22pt;
   }
-
   h5 {
     font-size: 17.25pt;
     margin: 1rem 0;
   }
-
   h6 {
     font-size: 13.75pt;
   }
-
   .body-1 {
     font-size: 10.75pt;
   }
-
   .body-2 {
     font-size: 12pt;
   }
-
   .small-1 {
     font-size: 0.875rem;
   }
-
   small,
 .small-2 {
     font-size: 0.75rem;
   }
-
   .caption {
     font-size: 9.5pt;
   }
-
   .endnote {
     font-size: 9.5pt;
   }
-
   .footnote {
     font-size: 8.5pt;
   }
-
   body {
     height: 100%;
     width: 100%;
     background-color: #ffffff;
   }
-
   header .book_now {
     font-size: 1.4rem;
   }
-
   .container .car_carousel {
     margin: 0 0;
     width: 100%;
@@ -1182,7 +1145,6 @@ body::-webkit-scrollbar-thumb {
   .container .technical_specs .body .right .scrollspy-example .place_holder {
     margin: 0 0 20px 0;
   }
-
   .footer {
     height: auto;
     background-color: #616161;
