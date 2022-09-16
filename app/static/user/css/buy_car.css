@@ -1,9 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap");
 html {
   font-size: 100%;
-}
-
-/*16px*/
+} /*16px*/
 body {
   font-family: "Roboto", sans-serif;
 }
@@ -78,22 +76,17 @@ body {
 }
 
 body::-webkit-scrollbar {
-  width: 8px;
-  /* width of the entire scrollbar */
+  width: 8px; /* width of the entire scrollbar */
 }
 
 body::-webkit-scrollbar-track {
-  background: transparent;
-  /* color of the tracking area */
+  background: transparent; /* color of the tracking area */
 }
 
 body::-webkit-scrollbar-thumb {
-  background-color: #616161;
-  /* color of the scroll thumb */
-  border-radius: 20px;
-  /* roundness of the scroll thumb */
-  border: 0px solid black;
-  /* creates padding around scroll thumb */
+  background-color: #616161; /* color of the scroll thumb */
+  border-radius: 20px; /* roundness of the scroll thumb */
+  border: 0px solid black; /* creates padding around scroll thumb */
 }
 
 nav .desktop_nav {
@@ -158,7 +151,6 @@ nav .mobile_nav .nav_list_outer ul li a {
 
 .page-wrapper {
   display: grid;
-  grid-template-rows: 0.2fr 7fr;
   padding-left: 0 !important;
   padding-right: 0 !important;
   width: 100%;
@@ -172,6 +164,24 @@ nav .mobile_nav .nav_list_outer ul li a {
 .page-wrapper main {
   width: 100%;
 }
+.page-wrapper main #carouselExampleIndicators {
+  height: 150px;
+  width: 90%;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  margin-left: auto;
+  margin-right: auto;
+}
+.page-wrapper main #carouselExampleIndicators .carousel-inner {
+  height: 100%;
+}
+.page-wrapper main #carouselExampleIndicators .carousel-inner .carousel-item {
+  height: 100%;
+}
+.page-wrapper main #carouselExampleIndicators img {
+  width: 100%;
+  height: 100%;
+  object-fit: fill;
+}
 .page-wrapper main .breadcrumb {
   margin-left: 1rem;
 }
@@ -184,6 +194,7 @@ nav .mobile_nav .nav_list_outer ul li a {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(23rem, 25rem));
   grid-gap: 1rem;
+  margin-top: 20px;
 }
 .page-wrapper main .card_list .car_card {
   width: 78%;
@@ -380,77 +391,59 @@ nav .mobile_nav .nav_list_outer ul li a {
   @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap");
   html {
     font-size: 100%;
-  }
-
-  /*16px*/
+  } /*16px*/
   body {
     font-family: "Roboto", sans-serif;
   }
-
   button {
     font-size: 9.5pt;
     font-weight: 600;
     text-transform: uppercase;
   }
-
   h1, h2, h3, h4, h5, h6 {
     font-family: "Roboto", sans-serif;
   }
-
   h1 {
     font-size: 57.5pt;
   }
-
   h2 {
     font-size: 40pt;
   }
-
   h3 {
     font-size: 28pt;
   }
-
   h4 {
     font-size: 22pt;
   }
-
   h5 {
     font-size: 17.25pt;
     margin: 1rem 0;
   }
-
   h6 {
     font-size: 13.75pt;
   }
-
   .body-1 {
     font-size: 10.75pt;
   }
-
   .body-2 {
     font-size: 12pt;
   }
-
   .small-1 {
     font-size: 0.875rem;
   }
-
   small,
 .small-2 {
     font-size: 0.75rem;
   }
-
   .caption {
     font-size: 9.5pt;
   }
-
   .endnote {
     font-size: 9.5pt;
   }
-
   .footnote {
     font-size: 8.5pt;
   }
-
   nav {
     background-color: #ffffff;
     border-bottom: 1px solid #EEEEEE;
@@ -494,83 +487,64 @@ nav .mobile_nav .nav_list_outer ul li a {
   @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap");
   html {
     font-size: 100%;
-  }
-
-  /*16px*/
+  } /*16px*/
   body {
     font-family: "Roboto", sans-serif;
   }
-
   button {
     font-size: 9.5pt;
     font-weight: 600;
     text-transform: uppercase;
   }
-
   h1, h2, h3, h4, h5, h6 {
     font-family: "Roboto", sans-serif;
   }
-
   h1 {
     font-size: 57.5pt;
   }
-
   h2 {
     font-size: 40pt;
   }
-
   h3 {
     font-size: 28pt;
   }
-
   h4 {
     font-size: 22pt;
   }
-
   h5 {
     font-size: 17.25pt;
     margin: 1rem 0;
   }
-
   h6 {
     font-size: 13.75pt;
   }
-
   .body-1 {
     font-size: 10.75pt;
   }
-
   .body-2 {
     font-size: 12pt;
   }
-
   .small-1 {
     font-size: 0.875rem;
   }
-
   small,
 .small-2 {
     font-size: 0.75rem;
   }
-
   .caption {
     font-size: 9.5pt;
   }
-
   .endnote {
     font-size: 9.5pt;
   }
-
   .footnote {
     font-size: 8.5pt;
   }
-
   body {
     height: 100%;
     width: 100%;
     background-color: #ffffff;
   }
-
   .page-wrapper {
     grid-template-columns: 1.5fr 4fr;
     margin-top: 3rem;
@@ -645,8 +619,7 @@ nav .mobile_nav .nav_list_outer ul li a {
     height: 18px;
     width: 18px;
     top: -4px;
-    right: -9px;
-    /* half the width */
+    right: -9px; /* half the width */
     border-radius: 9px;
   }
   .page-wrapper .aside .filters .filter_brand {
@@ -692,8 +665,7 @@ nav .mobile_nav .nav_list_outer ul li a {
     height: 18px;
     width: 18px;
     top: -5px;
-    right: -9px;
-    /* half the width */
+    right: -9px; /* half the width */
     border-radius: 9px;
   }
   .page-wrapper .aside .filters .filter_kilometer {
@@ -767,7 +739,6 @@ nav .mobile_nav .nav_list_outer ul li a {
   body {
     image-rendering: -webkit-optimize-contrast;
   }
-
   .page-wrapper {
     margin-top: 3rem;
     grid-template-columns: 5fr 5fr;
