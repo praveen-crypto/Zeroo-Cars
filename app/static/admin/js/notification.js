@@ -14,20 +14,28 @@ notification = async () => {
     let res = await axios.get(getUrl+"sell car/");
     let data = res.data.data;
 
+    //debugger;
+    // <div class="phone">
+    //                 <span style="font-weight: 600;" >Phone:</span> `+ele.phone+`
+    //             </div>
     data.forEach(ele => {        
         $(".sellCar").append(`
         <button class="accordion">Name: `+ele.name+` (Phone : `+ele.phone+`)</button>
         <div class="panel">
             <div class="contentBody">
                 <div class="carBrand">
-                    <span style="font-weight: 600;" >Car brand:</span> `+ele.car_brand+`
+                    <span style="font-weight: 600;" >Car name:</span> `+ele.car_brand +` `+ele.car_model+`
                 </div>
-                <div class="carModel">
-                    <span style="font-weight: 600;" >Car model:</span> `+ele.car_model+`
+                <div class="carYear">
+                    <span style="font-weight: 600;" >Reg year:</span> `+ele.registration_year+`
                 </div>
+                
                 <div class="mailId">
                     <span style="font-weight: 600;" >Email:</span> `+ele.email+`
                 </div>
+                <div class="createdOn">
+                    <span style="font-weight: 600;" >Created on: </span> `+ele.created+`
+                </div>                
             </div>
         </div>
         `);
@@ -49,7 +57,7 @@ notification = async () => {
                     <span style="font-weight: 600;" >Email:</span> `+ele.email+`
                 </div>
                 <div class="message">
-                    <span style="font-weight: 600;" >Car model:</span> `+ele.message+`
+                    <span style="font-weight: 600;" >Message:</span> `+ele.message+`
                 </div>
 
             </div>
@@ -79,7 +87,6 @@ notification = async () => {
         `);
 
     });
-
 
     var acc = document.getElementsByClassName("accordion");
     var i;
@@ -163,7 +170,7 @@ notification = async () => {
           }
     };
 
-    $('.notificationNavBar .navList a').each( 
+    $('.notificationNavBar .navList a').each(
         (index, ele) =>  {
             
             $('#'+ele.id).click( () => { 
