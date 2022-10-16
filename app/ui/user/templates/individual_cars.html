@@ -21,15 +21,15 @@
 
     <link rel="stylesheet" href="{{ url_for('static', path='user/css/individual_cars.css') }}">
 
-    <!-- Global site tag (gtag.js) - Google Analytics -->
-    
-    <!-- <script async src="https://www.googletagmanager.com/gtag/js?id=G-BS7FVMKV4M"></script>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-FXD4TJWYNT"></script>
     <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-        gtag('config', 'G-BS7FVMKV4M');
-    </script> -->
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-FXD4TJWYNT');
+    </script>
 
 </head>
 <body>
@@ -71,7 +71,13 @@
         </nav>
 
         <header >
-            <h5 class="car_title">-</h5>
+            <div class="title d-flex ">
+                <div class="header-logo">
+                    <!-- <img class="logo" width="50px" src="{{ url_for('static', path='user/resources/ALL LOGOS/Mahindra.jpg'  ) }}" alt=""> -->
+                </div>
+                
+                <h5 class="car_title ms-2">-</h5>
+            </div>
             
             <div class="book_now">
                 <a href="#" class="nav-link p-0" data-bs-toggle="modal" data-bs-target="#bookNowModal">
@@ -79,6 +85,7 @@
                 </a>
             </div>
         </header>
+         
 
         <div class="row car_carousel">
             <div class="title">
@@ -1879,7 +1886,6 @@
                 </div>
             </div>
         </div>
-        
     </div>
 
     <footer class="page-footer footer ">
@@ -1917,7 +1923,7 @@
                         </div>
                         <div class="body small-1">
                             <span><i class="fas fa-phone-alt"></i> 1800-000-000</span>
-                            <span><i class="fas fa-envelope"></i>zeroocarz@gmail.com</span>
+                            <span><i class="fas fa-envelope"></i> zeroocarz@gmail.com</span>
                         </div>
                     </div>
                 </div>

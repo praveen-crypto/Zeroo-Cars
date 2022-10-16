@@ -9,10 +9,8 @@ from app.constants import PHONE_VALIDATION
 from . import execute_query
 from app.auth import generate_access_token, generate_refresh_token
 
-
 config = configparser.ConfigParser()
 config.read("app/config/config.ini")
-
 
 async def template(data, query, func="template"):
   try:

@@ -188,8 +188,4 @@ notification = async () => {
     
 }
 
-
-
-
-
 $(".notification").ready( notification );

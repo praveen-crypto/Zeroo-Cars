@@ -397,10 +397,6 @@ specific_car_fn = async () => {
         $(".car_carousel .title .carouselTitle").html("WHEELS");
     });
 
-
-    //General Details
-    //console.log(carDetails);
-
     basic = carDetails["basic"];
     comfortConv = carDetails["comfort_and_convenience"];
     dimenCapacity = carDetails["dimensions_and_capacity"];
@@ -420,11 +416,14 @@ specific_car_fn = async () => {
     docs = carDetails["vehicle_documents"];
     wheels = carDetails["wheels"];  
     
-    console.log(overAllRating);
-
+    //CAR DETAILS
+    $(".header-logo").append( `<img class="logo" width="50px" src="{{ url_for('static', path='user/resources/ALL LOGOS/`+basic["brand"]+`.jpg'  ) }}" alt="">` );
     $(".car_title").html( basic["brand"].toUpperCase() +" "+ basic["model"].toUpperCase() +" "+ basic["manufacture_year"] );
     $(".carPrice").html("&#8377;" + basic["price"] );
+    console.log(basic["brand"]);
 
+
+    //General Details
     $(".general_details .make_year .body").html(basic["manufacture_year"]);
     $(".general_details .fuel .body").html(fuelPerformance["fule_type"]);
     $(".general_details .km_driven .body").html(basic["kilometer"]);
@@ -645,7 +644,6 @@ specific_car_fn = async () => {
 
     $(".documents_rating_section .number_of_owner .rating").html(docs["number_of_owner"]);
 
-
     //Specification And Feature Section
     $(".specification_and_feature .specification .head").html("Key Specifications of "+basic["brand"].toUpperCase() +" "+ basic["model"].toUpperCase());
     $(".specification_and_feature .specification .specArai .right").html( fuelPerformance["mileage_arai"] );
@@ -658,9 +656,8 @@ specific_car_fn = async () => {
     $(".specification_and_feature .specification .specPower .right").html( engTransmission["max_power"] );
     $(".specification_and_feature .specification .specSeat .right").html( dimenCapacity["seating_capacity"] );
     $(".specification_and_feature .specification .specFuelCapacity .right").html( fuelPerformance["fuel_tank_capacity"] );
-
     
-    $(".specification_and_feature .features .head").html("Key Specifications of "+basic["brand"].toUpperCase() +" "+ basic["model"].toUpperCase());
+    $(".specification_and_feature .features .head").html("Key Features of "+basic["brand"].toUpperCase() +" "+ basic["model"].toUpperCase());
     $(".specification_and_feature .features .fPowerSteering .right").html( features["power_steering"] > 0 ? 'Yes' : 'No' );
     $(".specification_and_feature .features .fLBS .right").html( safety["anti_lock_braking_system"] > 0 ? 'Yes' : 'No' );
     $(".specification_and_feature .features .fAirbag .right").html( safety["anti_lock_braking_system"] > 0 ? 'Yes' : 'No' );

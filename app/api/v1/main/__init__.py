@@ -37,7 +37,6 @@ from app.model.admin import (
 router = APIRouter()
 security = HTTPBearer()
 
-
 @router.get("/cars/", tags=["Main"])
 async def get_cars(
     request: Request,
@@ -49,6 +48,7 @@ async def get_cars(
     number_of_owners: int = Query(1000),
     fule_type: List[str] = Query([]),
     brand: List[str] = Query([]),
+    body:List[str] = Query([]),
     transmission_type: List[str] = Query([]),
 ):
 
@@ -67,18 +67,19 @@ async def get_cars(
             "number_of_owners": number_of_owners,
             "fule_type": fule_type,
             "brand": brand,
+            "body":body,
             "transmission_type": transmission_type,
             "image": image,
         },
         "get_cars",
         "get_cars",
     )
-    print("Type :",type(result))
+    
+    #print("Type :",type(result))
     return response_format(data=result)
 
-
 @router.get("/cars/{id}/", tags=["Main"])
-async def get_car_details(id: str, request: Request):
+async def get_car_by_id(id: str, request: Request):
     image = (
         str(request.url).replace(request.url.path, "/").split("?")[0] + "api/v1/image/"
     )
@@ -88,9 +89,8 @@ async def get_car_details(id: str, request: Request):
 
     return response_format(data=result)
 
-
 @router.get("/cars/{id}/hidden/", tags=["Main"])
-async def get_car_details(id: str, request: Request):
+async def get_hidden_car_details_by_id(id: str, request: Request):
     image = (
         str(request.url).replace(request.url.path, "/").split("?")[0] + "api/v1/image/"
     )
@@ -100,13 +100,11 @@ async def get_car_details(id: str, request: Request):
 
     return response_format(data=result)
 
-
 @router.get("/filters/brand/", tags=["Filters"])
 async def get_brand_filter(request: Request):
     result = await helper.template({}, "get_brand_filter")
     result = [i["brand"] for i in result]
     return response_format(data=result)
-
 
 @router.get("/filters/fule_type/", tags=["Filters"])
 async def get_fule_type(request: Request):
@@ -114,20 +112,18 @@ async def get_fule_type(request: Request):
     result = [i["fule_type"] for i in result]
     return response_format(data=result)
 
-
 @router.get("/filters/transmission_type/", tags=["Filters"])
 async def get_transmission_type(request: Request):
     result = await helper.template({}, "get_transmission_type")
     result = [i["transmission_type"] for i in result]
     return response_format(data=result)
 
-
 @router.get("/search/", tags=["Filters"])
 async def search(request: Request, search: str = Query("")):
     search = "|".join(search.split())
     result = await helper.template({"search": search}, "search")
     return response_format(data=result)
-  
+
 @router.get("/cars/all/brands/", tags=["Data"])
 async def brands():
     return response_format(data=helper.CARS_DATA)

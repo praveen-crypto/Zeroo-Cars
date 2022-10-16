@@ -3,7 +3,7 @@
 
 buycar_fn = async () => {
 
-    get_all_cars = async ( kilometer, minPrice, maxPrice, owners, fuelType, brand, transmission ) => {
+    get_all_cars = async ( kilometer, minPrice, maxPrice, owners, fuelType, brand, transmission, body ) => {
         
         let url = `/api/v1/main/cars/?offset=0&limit=20&kilometer=${kilometer}&min_price=${minPrice}&max_price=${maxPrice}&number_of_owners=${owners}`;
         
@@ -12,6 +12,7 @@ buycar_fn = async () => {
         fuelType.length > 0 ? fuelType.forEach( (fuel) => { url = url +'&fule_type='+fuel }) : null
         brand.length > 0 ? brand.forEach( (brand) => { url = url +'&brand='+brand }) : null
         transmission.length > 0 ? transmission.forEach( (value) => { url = url +'&transmission='+value }) : null
+        body.length > 0 ? body.forEach( (value) => { url = url +'&body='+value }) : null
         
         let res = await axios.get(url);
         let car_data = res.data.data;              
@@ -280,6 +281,7 @@ buycar_fn = async () => {
 
 
 
+
     let url = window.location.href.split("?")[1];
     let kilometer = '';
     let minPrice = '0';
@@ -299,12 +301,11 @@ buycar_fn = async () => {
         minPrice = [url.split('&')[0].split('=')[1]];
         maxPrice = [url.split('&')[1].split('=')[1]];
     }
-
     
-
     get_all_cars(kilometer = '100000000', minPrice = minPrice, 
     maxPrice = maxPrice, owners = '90', fuelType = '',
-    brand = brand, transmission = '');
+    brand = brand, transmission = '', body = body);
+
     //{fuelType:['Petrol','Diesel'], brand : ['Honda','Ford']}
     
 }    
