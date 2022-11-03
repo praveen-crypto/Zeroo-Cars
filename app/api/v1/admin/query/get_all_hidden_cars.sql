@@ -10,15 +10,13 @@ select basic.regestration_number,
   brand,
   manufacture_year,
   color,
-  cast(created as char) as created
-  -- CASE
-  --   WHEN thumbnail_photo.REGESTRATION_NUMBER IS NULL THEN 
-  --     NULL
-  --   ELSE 
-  --     CAST(CONCAT('[',GROUP_CONCAT(JSON_OBJECT ('sort',thumbnail_photo.sort,'image',concat(%(image)s,thumbnail_photo.name,'/'))),']') AS JSON)
-  --   END thumbnail
-FROM basic
+  cast(created as char) as created,
+  CASE
+    WHEN thumbnail_photo.REGESTRATION_NUMBER IS NULL THEN NULL
+    ELSE CAST(CONCAT('[',GROUP_CONCAT(JSON_OBJECT ('sort',thumbnail_photo.sort,'image',concat(%(image)s,thumbnail_photo.name, '/'))),']') AS JSON)
+  END thumbnail
+from basic
 LEFT JOIN thumbnail_photo ON (thumbnail_photo.REGESTRATION_NUMBER = basic.REGESTRATION_NUMBER)
-WHERE not viewable AND sold = FALSE
-GROUP by basic.REGESTRATION_NUMBER
-ORDER by created limit %(offset)s,%(limit)s;
+where not viewable AND sold = FALSE
+group by basic.REGESTRATION_NUMBER
+order by created limit %(offset)s,%(limit)s;

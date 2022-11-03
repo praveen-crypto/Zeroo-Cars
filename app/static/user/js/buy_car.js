@@ -2,46 +2,59 @@
 //$(".nav_list_outer").css;
 
 buycar_fn = async () => {
+    loadOffset = 0;
+    allowApiCall = true;
 
-    get_all_cars = async ( kilometer, minPrice, maxPrice, owners, fuelType, brand, transmission, body ) => {
+    loadCars = async ( kilometer, minPrice , maxPrice , owners, brand, body, year ) => {
+        allowApiCall = false;
         
-        let url = `/api/v1/main/cars/?offset=0&limit=20&kilometer=${kilometer}&min_price=${minPrice}&max_price=${maxPrice}&number_of_owners=${owners}`;
+        let url = `/api/v1/main/cars/?offset=${loadOffset}&limit=8&kilometer=${kilometer}&min_price=${minPrice}&max_price=${maxPrice}&number_of_owners=${owners}`;
         
-        // console.log('adfdsf',brand);
-
-        fuelType.length > 0 ? fuelType.forEach( (fuel) => { url = url +'&fule_type='+fuel }) : null
-        brand.length > 0 ? brand.forEach( (brand) => { url = url +'&brand='+brand }) : null
-        transmission.length > 0 ? transmission.forEach( (value) => { url = url +'&transmission='+value }) : null
-        body.length > 0 ? body.forEach( (value) => { url = url +'&body='+value }) : null
+        //fuelType.length > 0 ? fuelType.forEach( (fuel) => { url = url +'&fule_type='+fuel }) : null
+        //transmission.length > 0 ? transmission.forEach( (value) => { url = url +'&transmission='+value }) : null
+        brand.length > 0 ? brand.forEach( (val) => { url = url +'&brand='+val }) : []
+        body.length > 0 ? body.forEach( (val) => { url = url +'&body='+val }) : []
+        year.length > 0 ? year.forEach( (val) => { url = url +'&year='+val }) : []
         
         let res = await axios.get(url);
-        let car_data = res.data.data;              
-        
-        for(i = 0; i < car_data.length; i++){
+        let data = res.data.data;
 
-            let thumb = await axios.get("/api/v1/image/thumbnail/photos/"+car_data[i]["regestration_number"]+"/");
-            image = thumb.data.data[0].image;
-            //console.log(image);
+        if(data.length <= 0){
+            return;
+        }
+
+        for(i = 0; i < data.length; i++){
+            //Image Ratio 16:9
+            //Pixel size 520 * 292 For Thumbnail                              
+            let image = data[i]["thumbnail"] == null ? '' : JSON.parse(data[i]["thumbnail"])[0].image;                
             
             $("#used_car_list").append(`
-                <a class="car_card" href="/buy-used-car/`+car_data[i]["car_name"]+`/`+car_data[i]["regestration_number"]+`" >
+                <a class="car_card" href="/buy-used-car/`+data[i]["car_name"]+`/`+data[i]["regestration_number"]+`" >
                     <div class="car_image_container">
                         <div class="car_bg"></div>
                         <img class="car_image" src="`+image+`" alt="">
                     </div>
                     <div class="card_content">
-                        <h6 class="title">`+car_data[i]["car_name"].replace(/(^\w|\s\w)/g, m => m.toUpperCase()) +`</h6>
-                        <span class="kilometer small-2">`+car_data[i]["kilometer"]+`</span>
-                        <span class="fuel small-2">`+car_data[i]["fule_type"]  +`</span>
-                        <span class="transmission small-2"> Manual </span>
-                        <h6 class="price " >Rs `+car_data[i]["price"]+`</h6>
-                        <span class="location small-1"> Avadi, Chennai </span>
+                        <h6 class="title">`+data[i]["car_name"].replace(/(^\w|\s\w)/g, m => m.toUpperCase()) +`</h6>
+                        <span class="kilometer small-2">`+data[i]["kilometer"]+`</span>
+                        <span class="fuel small-2">`+data[i]["fule_type"]  +`</span>
+                        <span class="transmission small-2">`+data[i]["transmission_type"]  +`</span>
+                        <h6 class="price " >Rs `+data[i]["price"]+`</h6>
+                        <span class="location small-1">Chennai</span>
                     </div>
                 </a>                
             `);
 
         }
+        
+        loadOffset = loadOffset + 8;
+
+        allowApiCall = true;
     }
+
+    clearCars = () => {
+        $("#used_car_list").empty();
+    };
 
     noUiSlider.create(slider, {
         start: [100000, 1000000],     
@@ -68,24 +81,30 @@ buycar_fn = async () => {
             min: 2000,
             max: 2022
         },
-
         step: 1,
-
         start: [2000, 2022],
-
         tooltips: {            
             to: function(numericValue) {
                 return Math.round( numericValue.toFixed(1) ) ;
             }
-        }        
+        },
+        format: {
+            to: function (value) {
+                return String(Math.round( value ));
+            },
+            from: function (value) {
+                return Number(value.split('.')[0]);
+            }
+        }
     });
 
-    slider.noUiSlider.on('update', (values, handle) => {
-        //console.log( "Testing" );
+    //Update price in real time
+    slider.noUiSlider.on('update', async (values, handle) => {        
         $("#min_price").html("&#8377; "+values[0]);
-        $("#max_price").html("&#8377; "+values[1]);
+        $("#max_price").html("&#8377; "+values[1]);        
+        
     });
-    
+        
     $(".nav_btn").on("click", () => {
         
         $('html, body').css({
@@ -122,9 +141,8 @@ buycar_fn = async () => {
     $(".owl-1").owlCarousel({      
         margin:15,        
         stagePadding: 20,
-    }); 
+    });
     
-
     //Advertisement Images
     await axios
     .get('/api/v1/image/tag/advertisement/')
@@ -134,7 +152,7 @@ buycar_fn = async () => {
         if( !response.data.data.length == 0){            
             image = response.data["data"][0].image;
             
-            console.log(image);
+            //console.log(image);
             
             $(" #carouselExampleIndicators").append(`<img src="`+image+`" alt="">   `);
         
@@ -279,15 +297,15 @@ buycar_fn = async () => {
 
     //--------------------------------------
 
-
-
-
+    //Landing Page Filter 
     let url = window.location.href.split("?")[1];
-    let kilometer = '';
+    let kilometer = '100000000';
     let minPrice = '0';
     let maxPrice = '100000000';
-    let brand = '';
+    let brand = [];
     let body = '';
+    let owners = '5';
+    let year = [];
 
     if( url?.includes('brand') ){
         brand = [url.split('=')[1]];             
@@ -302,11 +320,71 @@ buycar_fn = async () => {
         maxPrice = [url.split('&')[1].split('=')[1]];
     }
     
-    get_all_cars(kilometer = '100000000', minPrice = minPrice, 
-    maxPrice = maxPrice, owners = '90', fuelType = '',
-    brand = brand, transmission = '', body = body);
+    loadCars(kilometer, minPrice, maxPrice, owners, brand, body, year);
+    
+    //Buy Car Page Filters
+    slider.noUiSlider.on('change', async (values, handle) => {        
+        loadOffset = 0;
+        clearCars();
+       
+        minPrice =  String(values[0]);
+        maxPrice = String(values[1]);
 
-    //{fuelType:['Petrol','Diesel'], brand : ['Honda','Ford']}
+        await loadCars(kilometer, minPrice, maxPrice, owners, brand, body, year);
+        
+    });
+
+    //------Year Filter
+    dateSlider.noUiSlider.on('change', async (values, handle) => {        
+        loadOffset = 0;
+        clearCars();
+
+        //console.log("date", values);
+        year = values
+
+        await loadCars(kilometer, minPrice, maxPrice, owners, brand, body, year);
+        
+    });
+
+    //------Brand Filter
+    $('.checkboxFilter').on('change', async function() {    
+
+        if(this.checked)
+        {
+            brand.push(this.id);
+        }
+        else{
+            brand = brand.filter(item => item !== this.id)
+        }       
+        
+        loadOffset = 0;
+        clearCars();
+
+        await loadCars(kilometer, minPrice, maxPrice, owners, brand, body, year);
+    })
+    
+    //------Kilometer Filter
+    $(".kilometerFilter").on('change', () => {
+        //console.log("kilometer:",$('input[name="kilometer"]:checked').val());
+        kilometer = $('input[name="kilometer"]:checked').val();
+        
+        loadOffset = 0;
+        clearCars();
+
+        loadCars(kilometer, minPrice, maxPrice, owners, brand, body, year);
+    });
+
+    //Mobile Filter
+    
+    
+    //Load content on scroll
+    $(window).scroll(async () => {
+        let percentage = (100 * $(window).scrollTop()) / ($(document).height() - $(window).height());        
+        //console.log(Math.round(percentage));
+        if (percentage >= 75 && allowApiCall) {
+            await loadCars(kilometer, minPrice, maxPrice, owners, brand, body, year);
+        }
+    });
     
 }    
 

@@ -3,6 +3,11 @@ car_functions = () => {
     
     let id;
     let images = [];
+
+    let archiveOffset = 0;
+    let liveOffset = 0;
+    let soldOffset = 0;
+
     let car_image_get = "/api/v1/image/thumbnail/photos/";
     let car_image_upload = "/api/v1/admin/thumbnail/photos/";
     let car_image_delete = "/api/v1/admin/thumbnail/photos/";
@@ -17,7 +22,7 @@ car_functions = () => {
     function hasNumber(myString) {
         return /\d/.test(myString);
     }
-
+    
     // Register the plugin
     FilePond.registerPlugin(FilePondPluginFilePoster);
     FilePond.registerPlugin(FilePondPluginFileRename);
@@ -49,12 +54,12 @@ car_functions = () => {
     axios.get("/api/v1/main/cars/all/brands/")
     .then( (res) => {
         data = res.data.data;        
-        
-        data.forEach((d) => {
-            $('#car_brand').append(`<option value="`+d.name+`">`+d.name+`</option>`)
-            $('#car_brand_update').append(`<option value="`+d.name+`">`+d.name+`</option>`) 
-        });
+        carBrand = Object.keys(data);
 
+        carBrand.forEach((brandName) => {
+            $('#car_brand').append(`<option value="`+brandName+`">`+brandName.capitalize()+`</option>`)
+            $('#car_brand_update').append(`<option value="`+brandName+`">`+brandName.capitalize()+`</option>`) 
+        });
     });
 
     //Load Fuel Types
@@ -67,8 +72,7 @@ car_functions = () => {
         });
     });
 
-
-    get_form_data = (e) =>{
+    get_form_data = (e) => {
         let formData = new FormData();
         formData.append("regestration_number", id);
         forms = e.target.form.elements;
@@ -137,7 +141,7 @@ car_functions = () => {
     });
 
     //Load archive cars
-    $(".nav_archive_car").on("click", nav_archive_car = () => {
+    $(".nav_archive_car").on("click", nav_archive_car = (load = true) => {
         $(".nav_add_car").removeClass("active");
         $(".nav_archive_car").addClass("active");
         $(".navLiveCar").removeClass("active");
@@ -147,26 +151,35 @@ car_functions = () => {
         $(".list-car").hide();
         $(".archive-car").show();
         $(".soldCars").hide();
-
-        axios.get("/api/v1/admin/cars/hidden/").then( async (response) => {
+        
+        if(load){
+            archiveOffset = 0; 
             $("#archive_car").empty();
+            $(".loadMoreContainer").empty();
 
-            let list = response.data["data"];
-            
+            $(".loadMoreContainer").append(`<button id="loadMore" style="cursor: pointer; font-size: 14px; padding: 6px 22px; border: 0; background-color: #FFD230; color: #454545;">Load More</button>`);
+            $("#loadMore").click( ()=> { nav_archive_car(false) });
+        }
+        
+        axios.get("/api/v1/admin/cars/hidden/?offset="+archiveOffset+"&limit=5").then( async (response) => {
+            let list = response.data["data"];   
+
+            if(!list.length){
+                $(".loadMoreContainer").empty();
+            }
+
             for(i=0; i < list.length; i++){
                 let date = new Date( list[i]["created"] + "+00:00");
-                
+                                
                 // Image Ratio 16:9
                 // Pixel size 520 * 292 For Thumbnail
-                let res = await axios.get("/api/v1/image/thumbnail/photos/"+list[i]["regestration_number"]+"/");
+                let image = list[i]["thumbnail"] == null ? '' : JSON.parse(list[i]["thumbnail"])[0].image;                
                 
                 //Incase No image present for thumbnail
-                if(res.data.data.length > 0){
-                    image = res.data.data[0].image
-                }
-                else{
+                if(image.length <= 0 || image == '')
+                {                    
                     image="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAfQAAAEiCAQAAACluOgzAAACgUlEQVR42u3TQQ0AAAgDMeZf9DDBi7QSLrm0AzwXo4PRAaMDRgeMDhgdMDpgdMDoYHTA6IDRAaMDRgeMDhgdMDoYHTA6YHTA6IDRAaMDRgeMDkY3OhgdMDpgdMDogNEBowNGB4wORgeMDhgdMDpgdMDogNEBo4PRAaMDRgeMDhgdMDpgdMDoYHQRwOiA0QGjA0YHjA4YHTA6YHQwOmB0wOiA0QGjA0YHjA4YHYwOGB0wOmB0wOiA0QGjA0YHowNGB4wOGB0wOmB0wOiA0QGjg9EBowNGB4wOGB0wOmB0wOhgdMDogNEBowNGB4wOGB0wOhgdMDpgdMDogNEBowNGB4wOGB2MDhgdMDpgdMDogNEBowNGB6MDRgeMDhgdMDpgdMDogNHB6IDRAaMDRgeMDhgdMDpgdMDoYHTA6IDRAaMDRgeMDhgdMDoYHTA6YHTA6IDRAaMDRgeMDkYHjA4YHTA6YHTA6IDRAaMDRgejA0YHjA4YHTA6YHTA6IDRweiA0QGjA0YHjA4YHTA6YHQwOmB0wOiA0QGjA0YHjA4YHTA6GB0wOmB0wOiA0QGjA0YHjA5GB4wOGB0wOmB0wOiA0QGjg9EBowNGB4wOGB0wOmB0wOiA0cHogNEBowNGB4wOGB0wOmB0MDpgdMDogNEBowNGB4wOGB2MDhgdMDpgdMDogNEBowNGB4wORgeMDhgdMDpgdMDogNEBo4PRAaMDRgeMDhgdMDpgdMDoYHTA6IDRAaMDRgeMDhgdMDoY3ehgdMDogNEBowNGB4wOGB0wOhgdMDpgdMDogNEBowNGB4wORgeMDhgdMDpgdMDogNEBo4PRjQ5GB4wOGB0wOmB04MYCCatC/acif6YAAAAASUVORK5CYII=";
-                }   
+                }
                 
                 $("#archive_car").append(`
                     <div class="archive-car-card archive_card_`+ i.toString() +` ">
@@ -206,10 +219,12 @@ car_functions = () => {
             }
 
         });
-    });
+
+        archiveOffset += 5;        
+    });    
 
     //Load active cars
-    $(".navLiveCar").on("click", nav_list_car = () => {
+    $(".navLiveCar").on("click", navLiveCar = (load = true) => {
         $(".nav_add_car").removeClass("active");
         $(".nav_archive_car").removeClass("active");
         $(".navLiveCar").addClass("active");
@@ -219,30 +234,37 @@ car_functions = () => {
         $(".list-car").show();
         $(".archive-car").hide();
         $(".soldCars").hide();
-        
-        axios.get("/api/v1/admin/cars/").then( async (response) => { 
 
+        if(load){
+            liveOffset = 0;
             $("#car_lists").empty();
+            $(".loadMoreContainer").empty();
 
+            $(".loadMoreContainer").append(`<button id="loadMore" style="cursor: pointer; font-size: 14px; padding: 6px 22px; border: 0; background-color: #FFD230; color: #454545;">Load More</button>`);
+            $("#loadMore").click( ()=> { navLiveCar(false) });
+        }
+
+        axios.get("/api/v1/admin/cars/?offset="+liveOffset+"&limit=5").then( async (response) => {   
             let list = response.data["data"];
 
+            if(!list.length){
+                $(".loadMoreContainer").empty();
+            }
+            
             for(i=0; i < list.length; i++){
+
                 let date = new Date( list[i]["created"] + "+00:00");
                 
                 // Image Ratio 16:9
-                // Pixel size 520 * 292 For Thumbnail
-                let res = await axios.get("/api/v1/image/thumbnail/photos/"+list[i]["regestration_number"]+"/");
+                // Pixel size 520 * 292 For Thumbnail                              
+                let image = list[i]["thumbnail"] == null ? '' : JSON.parse(list[i]["thumbnail"])[0].image;                
                 
                 //Incase No image present for thumbnail
-                if(res.data.data.length > 0)
-                {
-                    image = res.data.data[0].image
-                }
-                else
-                {
+                if(image.length <= 0 || image == '')
+                {                    
                     image="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAfQAAAEiCAQAAACluOgzAAACgUlEQVR42u3TQQ0AAAgDMeZf9DDBi7QSLrm0AzwXo4PRAaMDRgeMDhgdMDpgdMDoYHTA6IDRAaMDRgeMDhgdMDoYHTA6YHTA6IDRAaMDRgeMDkY3OhgdMDpgdMDogNEBowNGB4wORgeMDhgdMDpgdMDogNEBo4PRAaMDRgeMDhgdMDpgdMDoYHQRwOiA0QGjA0YHjA4YHTA6YHQwOmB0wOiA0QGjA0YHjA4YHYwOGB0wOmB0wOiA0QGjA0YHowNGB4wOGB0wOmB0wOiA0QGjg9EBowNGB4wOGB0wOmB0wOhgdMDogNEBowNGB4wOGB0wOhgdMDpgdMDogNEBowNGB4wOGB2MDhgdMDpgdMDogNEBowNGB6MDRgeMDhgdMDpgdMDogNHB6IDRAaMDRgeMDhgdMDpgdMDoYHTA6IDRAaMDRgeMDhgdMDoYHTA6YHTA6IDRAaMDRgeMDkYHjA4YHTA6YHTA6IDRAaMDRgejA0YHjA4YHTA6YHTA6IDRweiA0QGjA0YHjA4YHTA6YHQwOmB0wOiA0QGjA0YHjA4YHTA6GB0wOmB0wOiA0QGjA0YHjA5GB4wOGB0wOmB0wOiA0QGjg9EBowNGB4wOGB0wOmB0wOiA0cHogNEBowNGB4wOGB0wOmB0MDpgdMDogNEBowNGB4wOGB2MDhgdMDpgdMDogNEBowNGB4wORgeMDhgdMDpgdMDogNEBo4PRAaMDRgeMDhgdMDpgdMDoYHTA6IDRAaMDRgeMDhgdMDoY3ehgdMDogNEBowNGB4wOGB0wOhgdMDpgdMDogNEBowNGB4wORgeMDhgdMDpgdMDogNEBo4PRjQ5GB4wOGB0wOmB04MYCCatC/acif6YAAAAASUVORK5CYII=";
                 }
-                
+                                
                 $("#car_lists").append(`
                     <div class="car-card card_`+ i.toString() +` ">
                         <input type="checkbox" name="car_checkbox" class="car_card_checkbox car_checkbox_`+ i.toString() +`" id="`+ i.toString() +`" checked >
@@ -260,20 +282,22 @@ car_functions = () => {
                         </div>
                     </div>
                 `);
-                
+                                                
+                //Modify btn click
                 $(".card_"+ i.toString() +" .card_content .modify_btn_"+ i.toString())
                 .click( (event) => {                    
                     id =  $(" .id_"+event.target.id.toString() ).val();    
                     //console.log(id);                    
                     modifyCarsClick();
                 });
-
+                
+                //Sold btn click
                 $(".card_"+ i.toString() +" .card_content .sold_btn_"+ i.toString())
                 .click( (event) => {                    
                     id =  $(" .id_"+event.target.id.toString() ).val();                                     
                     $(".soldCarsModal").css("display","block");
                 });
-
+                
                 $(".card_"+ i.toString() +" .car_checkbox_"+ i.toString())
                 .click( (event) => {
                     val = event.target.checked;                        
@@ -282,20 +306,20 @@ car_functions = () => {
                     axios
                     .put("/api/v1/admin/car/"+ id +"/viewable/?viewable="+val)
                     .then(() => { 
-                        nav_list_car();
+                        navLiveCar();
                     });;
 
                 });
-            }
+                
+            }           
 
         });
 
+        liveOffset += 5;
     });
-
     
-
     //Load sold cars
-    $(".navSoldCars").on("click", navSoldCar = () => {
+    $(".navSoldCars").on("click", navSoldCar = (load = true) => {
         $(".nav_add_car").removeClass("active");
         $(".nav_archive_car").removeClass("active");
         $(".navLiveCar").removeClass("active");
@@ -306,27 +330,32 @@ car_functions = () => {
         $(".archive-car").hide();
         $(".soldCars").show();
         
-        axios.get("/api/v1/admin/cars/sold/").then( async (response) => {
+        if(load){
+            soldOffset = 0;
             $("#soldCars").empty();
+            $(".loadMoreContainer").empty();
 
+            $(".loadMoreContainer").append(`<button id="loadMore" style="cursor: pointer; font-size: 14px; padding: 6px 22px; border: 0; background-color: #FFD230; color: #454545;">Load More</button>`);
+            $("#loadMore").click( ()=> { navSoldCar(false) });
+        }
+
+        axios.get("/api/v1/admin/cars/sold/?offset="+soldOffset+"&limit=5").then( async (response) => {
             let list = response.data["data"];
-            console.log(list);
-            
+
+            if(!list.length){
+                $(".loadMoreContainer").empty();
+            }                    
             
             for(i=0; i < list.length; i++){
                 let date = new Date( list[i]["created"] + "+00:00");
                 
                 // Image Ratio 16:9
                 // Pixel size 520 * 292 For Thumbnail
-                let res = await axios.get("/api/v1/image/thumbnail/photos/"+list[i]["regestration_number"]+"/");
-                
+                let image = list[i]["thumbnail"] == null ? '' : JSON.parse(list[i]["thumbnail"])[0].image;                
+
                 //Incase No image present for thumbnail
-                if(res.data.data.length > 0)
-                {
-                    image = res.data.data[0].image
-                }
-                else
-                {
+                if(image.length <= 0 || image == '')
+                {                    
                     image="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAfQAAAEiCAQAAACluOgzAAACgUlEQVR42u3TQQ0AAAgDMeZf9DDBi7QSLrm0AzwXo4PRAaMDRgeMDhgdMDpgdMDoYHTA6IDRAaMDRgeMDhgdMDoYHTA6YHTA6IDRAaMDRgeMDkY3OhgdMDpgdMDogNEBowNGB4wORgeMDhgdMDpgdMDogNEBo4PRAaMDRgeMDhgdMDpgdMDoYHQRwOiA0QGjA0YHjA4YHTA6YHQwOmB0wOiA0QGjA0YHjA4YHYwOGB0wOmB0wOiA0QGjA0YHowNGB4wOGB0wOmB0wOiA0QGjg9EBowNGB4wOGB0wOmB0wOhgdMDogNEBowNGB4wOGB0wOhgdMDpgdMDogNEBowNGB4wOGB2MDhgdMDpgdMDogNEBowNGB6MDRgeMDhgdMDpgdMDogNHB6IDRAaMDRgeMDhgdMDpgdMDoYHTA6IDRAaMDRgeMDhgdMDoYHTA6YHTA6IDRAaMDRgeMDkYHjA4YHTA6YHTA6IDRAaMDRgejA0YHjA4YHTA6YHTA6IDRweiA0QGjA0YHjA4YHTA6YHQwOmB0wOiA0QGjA0YHjA4YHTA6GB0wOmB0wOiA0QGjA0YHjA5GB4wOGB0wOmB0wOiA0QGjg9EBowNGB4wOGB0wOmB0wOiA0cHogNEBowNGB4wOGB0wOmB0MDpgdMDogNEBowNGB4wOGB2MDhgdMDpgdMDogNEBowNGB4wORgeMDhgdMDpgdMDogNEBo4PRAaMDRgeMDhgdMDpgdMDoYHTA6IDRAaMDRgeMDhgdMDoY3ehgdMDogNEBowNGB4wOGB0wOhgdMDpgdMDogNEBowNGB4wORgeMDhgdMDpgdMDogNEBo4PRjQ5GB4wOGB0wOmB04MYCCatC/acif6YAAAAASUVORK5CYII=";
                 }
                 
@@ -368,7 +397,7 @@ car_functions = () => {
                     axios
                     .put("/api/v1/admin/car/"+ id +"/viewable/?viewable="+val)
                     .then(() => { 
-                        nav_list_car();
+                        navLiveCar();
                     });;
 
                 });
@@ -376,6 +405,8 @@ car_functions = () => {
 
         });
 
+        soldOffset += 5;
+        
     });
     
     //Add car click event 
@@ -431,7 +462,7 @@ car_functions = () => {
         });    
         
     });
-
+        
     //Modify Car Informations MODAL
     modifyCarsClick = () => {
         $(".amendCarDetail").css("display","block");
@@ -763,13 +794,14 @@ car_functions = () => {
     var acc = document.getElementsByClassName("accordion");
 
     for (i = 0; i < acc.length; i++) {
-        acc[i].addEventListener("click", function() {            
+        acc[i].addEventListener("click", function() {
             this.classList.toggle("active");
             
             var panel = this.nextElementSibling;
+
             if (panel.style.display === "grid") {
                 panel.style.display = "none";
-            } 
+            }
             else {
                 panel.style.display = "grid";
                 

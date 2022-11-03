@@ -39,6 +39,7 @@ async def get_cars(data, query):
         brand = ""
         transmission_type = ""
         body_type = ""
+        year = ""
 
         if len(data["fule_type"]):
             fule_type = " and fule_type in ({})".format( str(data["fule_type"])[1:-1] )
@@ -52,10 +53,19 @@ async def get_cars(data, query):
         if len(data["body"]):
             body_type = " and body_type = '{}'".format(  data["body"][0]  )
 
+        if len(data["year"]):
+            year = " and ( manufacture_year between '{}' and '{}' )".format( str(data["year"][0]), str(data["year"][1]) )
+
+        # if len(data["kilometer"]):
+        #     year = " and ( manufacture_year between '{}' and '{}' )".format( str(data["year"][0]), str(data["year"][1]) )
+
+
         query = helper.open_file(inspect.currentframe(), "{}.sql".format(query))
-        query = query.format(fule_type + brand + transmission_type + body_type)
+        query = query.format(fule_type + brand + transmission_type + body_type + year)
         result = await database.execute(query, data)
+
         return result
+
     except Exception as e:
         if type(e) is HTTPException:
             raise HTTPException(status_code=e.status_code, detail=str(e.detail))

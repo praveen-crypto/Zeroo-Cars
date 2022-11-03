@@ -417,11 +417,17 @@ specific_car_fn = async () => {
     wheels = carDetails["wheels"];  
     
     //CAR DETAILS
-    $(".header-logo").append( `<img class="logo" width="50px" src="{{ url_for('static', path='user/resources/ALL LOGOS/`+basic["brand"]+`.jpg'  ) }}" alt="">` );
+    let logo;
+    await axios.get("/api/v1/main/cars/all/brands/").then( (res) => { 
+        logo = res.data["data"];        
+    });
+    
+    //debugger;
+
+    $(".header-logo").append( `<img class="logo" width="50px" src="`+logo[basic["brand"]]+`" alt="">` );
     $(".car_title").html( basic["brand"].toUpperCase() +" "+ basic["model"].toUpperCase() +" "+ basic["manufacture_year"] );
     $(".carPrice").html("&#8377;" + basic["price"] );
-    console.log(basic["brand"]);
-
+    //console.log(basic["brand"]);
 
     //General Details
     $(".general_details .make_year .body").html(basic["manufacture_year"]);

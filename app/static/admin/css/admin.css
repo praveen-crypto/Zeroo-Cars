@@ -33,77 +33,59 @@ main {
   @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap");
   html {
     font-size: 100%;
-  }
-
-  /*16px*/
+  } /*16px*/
   body {
     font-family: "Roboto", sans-serif;
   }
-
   button {
     font-size: 9.5pt;
     font-weight: 600;
     text-transform: uppercase;
   }
-
   h1, h2, h3, h4, h5, h6 {
     font-family: "Roboto", sans-serif;
   }
-
   h1 {
     font-size: 57.5pt;
   }
-
   h2 {
     font-size: 40pt;
   }
-
   h3 {
     font-size: 28pt;
   }
-
   h4 {
     font-size: 22pt;
   }
-
   h5 {
     font-size: 17.25pt;
     margin: 1rem 0;
   }
-
   h6 {
     font-size: 13.75pt;
   }
-
   .body-1 {
     font-size: 10.75pt;
   }
-
   .body-2 {
     font-size: 12pt;
   }
-
   .small-1 {
     font-size: 0.875rem;
   }
-
   small,
 .small-2 {
     font-size: 0.75rem;
   }
-
   .caption {
     font-size: 9.5pt;
   }
-
   .endnote {
     font-size: 9.5pt;
   }
-
   .footnote {
     font-size: 8.5pt;
   }
-
   body {
     display: grid;
     grid-template-rows: 0.1fr 0.1fr 4fr;
@@ -126,17 +108,14 @@ main {
   body nav, body header {
     display: block;
   }
-
   ::-webkit-scrollbar {
     width: 2px;
     margin-right: 5px;
   }
-
   ::-webkit-scrollbar-thumb {
     background: #ffd230;
     border-radius: 10px;
   }
-
   nav {
     width: 100%;
     height: 100%;
@@ -183,7 +162,6 @@ main {
   nav ul li:hover {
     background-color: none;
   }
-
   .sub-nav {
     width: 100%;
     height: 100%;
@@ -207,7 +185,6 @@ main {
     width: 36px;
     vertical-align: middle;
   }
-
   main {
     width: 90%;
     margin: 0 auto;
@@ -216,7 +193,6 @@ main {
     background-color: #fafafa;
     border-radius: 15px 15px 0px 0;
   }
-
   .dashboard .outer-section-1 {
     margin: 2rem;
     padding: 1rem;
@@ -236,7 +212,6 @@ main {
     box-shadow: inset 1px 1px 4px 1px rgba(0, 0, 0, 0.3);
     text-align: center;
   }
-
   .car-nav {
     grid-area: inner-nav;
     width: 90%;
@@ -262,7 +237,6 @@ main {
     font-weight: 600;
     text-decoration: underline;
   }
-
   .cars .add-car {
     display: flex;
     flex-direction: row;
@@ -295,14 +269,24 @@ main {
     width: 100%;
   }
   .cars .add-car .add-car-submit {
+    color: #454545;
     display: block;
-    color: #000000;
-    margin: 3% 5% 3% auto;
+    background-color: rgb(255, 203, 45);
+    margin: 3% 1rem 3% auto;
+    width: 20%;
     padding: 5px;
-    background-color: #ffd230;
-    width: 30%;
-    border-radius: 5px;
     text-align: center;
+    font-size: 14px;
+    text-transform: uppercase;
+    font-weight: 600;
+    border-radius: 5px;
+    cursor: pointer;
+    border: 1px solid rgb(255, 203, 45);
+  }
+  .cars .add-car .add-car-submit:hover {
+    color: rgb(255, 203, 45);
+    border: 1px solid rgb(255, 203, 45);
+    background-color: #ffffff;
   }
   .cars .list-car,
 .cars .archive-car,
@@ -1366,7 +1350,6 @@ main {
     display: none;
     overflow: hidden;
   }
-
   .securityMain {
     height: 100%;
     display: flex;

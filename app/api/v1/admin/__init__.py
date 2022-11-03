@@ -230,10 +230,10 @@ async def get_hidden_cars(  request: Request, offset: int = Query(0), limit: int
         str(request.url).replace(request.url.path, "/").split("?")[0]
         + "api/v1/image/thumbnail/"
     )
+
     result = await helper.template({"offset": offset, "limit": limit, "image": image}, "get_all_hidden_cars" )
 
     return response_format(data=result)
-
 
 @router.get("/basic/{id}/", tags=["Cars : GET"])
 @router.get("/comfort_and_convenience/{id}/", tags=["Cars : GET"])

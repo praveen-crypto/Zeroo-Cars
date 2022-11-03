@@ -6,7 +6,7 @@ from fastapi.responses import RedirectResponse
 from typing import Optional, List
 
 # from app.api.v1.signup import execute_query
-
+from fastapi.responses import FileResponse
 from app.helper.format import response_format
 from app.auth import auth_required
 from . import helper
@@ -48,15 +48,15 @@ async def get_cars(
     number_of_owners: int = Query(1000),
     fule_type: List[str] = Query([]),
     brand: List[str] = Query([]),
+    year: List[str] = Query([]),
     body:List[str] = Query([]),
     transmission_type: List[str] = Query([]),
 ):
-
     image = (
         str(request.url).replace(request.url.path, "/").split("?")[0]
         + "api/v1/image/thumbnail/"
     )
-
+    
     result = await helper.template(
         {
             "offset": offset,
@@ -64,6 +64,7 @@ async def get_cars(
             "kilometer": kilometer,
             "min_price": min_price,
             "max_price": max_price,
+            "year": year,
             "number_of_owners": number_of_owners,
             "fule_type": fule_type,
             "brand": brand,
@@ -125,10 +126,22 @@ async def search(request: Request, search: str = Query("")):
     return response_format(data=result)
 
 @router.get("/cars/all/brands/", tags=["Data"])
-async def brands():
-    return response_format(data=helper.CARS_DATA)
+async def brands(request: Request):
+    url = str(request.url).replace(request.url.path, "/").split("?")[0] + "api/v1/main/cars/brand/logo/{}/"
+    data = helper.CARS_DATA
+
+    dic = {}
+    for i in range(len(data)):
+        dic[data[i]["name"].lower()] = url.format(data[i]["name"].lower())
+    return response_format(data=dic)
 
 @router.get("/cars/all/fuel_type/", tags=["Data"])
 async def fuel_type():
     return response_format(data=helper.FUEL_TYPE)
 
+@router.get("/cars/brand/logo/{name}/", tags=["Logo"])
+async def car_loogo(name:str):
+    try:
+        return FileResponse("./app/static/user/resources/all_logos/{}.jpg".format(name.lower()), media_type="image/jpeg")
+    except:
+        return FileResponse("./app/static/user/resources/all_logos/placeholder.jpg", media_type="image/jpeg")
