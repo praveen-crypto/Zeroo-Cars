@@ -181,32 +181,34 @@ car_functions = () => {
                     image="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAfQAAAEiCAQAAACluOgzAAACgUlEQVR42u3TQQ0AAAgDMeZf9DDBi7QSLrm0AzwXo4PRAaMDRgeMDhgdMDpgdMDoYHTA6IDRAaMDRgeMDhgdMDoYHTA6YHTA6IDRAaMDRgeMDkY3OhgdMDpgdMDogNEBowNGB4wORgeMDhgdMDpgdMDogNEBo4PRAaMDRgeMDhgdMDpgdMDoYHQRwOiA0QGjA0YHjA4YHTA6YHQwOmB0wOiA0QGjA0YHjA4YHYwOGB0wOmB0wOiA0QGjA0YHowNGB4wOGB0wOmB0wOiA0QGjg9EBowNGB4wOGB0wOmB0wOhgdMDogNEBowNGB4wOGB0wOhgdMDpgdMDogNEBowNGB4wOGB2MDhgdMDpgdMDogNEBowNGB6MDRgeMDhgdMDpgdMDogNHB6IDRAaMDRgeMDhgdMDpgdMDoYHTA6IDRAaMDRgeMDhgdMDoYHTA6YHTA6IDRAaMDRgeMDkYHjA4YHTA6YHTA6IDRAaMDRgejA0YHjA4YHTA6YHTA6IDRweiA0QGjA0YHjA4YHTA6YHQwOmB0wOiA0QGjA0YHjA4YHTA6GB0wOmB0wOiA0QGjA0YHjA5GB4wOGB0wOmB0wOiA0QGjg9EBowNGB4wOGB0wOmB0wOiA0cHogNEBowNGB4wOGB0wOmB0MDpgdMDogNEBowNGB4wOGB2MDhgdMDpgdMDogNEBowNGB4wORgeMDhgdMDpgdMDogNEBo4PRAaMDRgeMDhgdMDpgdMDoYHTA6IDRAaMDRgeMDhgdMDoY3ehgdMDogNEBowNGB4wOGB0wOhgdMDpgdMDogNEBowNGB4wORgeMDhgdMDpgdMDogNEBo4PRjQ5GB4wOGB0wOmB04MYCCatC/acif6YAAAAASUVORK5CYII=";
                 }
                 
+                uniqueVal = list[i]["number_plate"];
+
                 $("#archive_car").append(`
-                    <div class="archive-car-card archive_card_`+ i.toString() +` ">
-                        <input type="checkbox" name="archive_checkbox" class="archive_card_checkbox archive_checkbox_`+ i.toString() +`" id="`+ i.toString() +`" >
+                    <div class="archive-car-card archive_card_`+ uniqueVal +` ">
+                        <input type="checkbox" name="archive_checkbox" class="archive_card_checkbox archive_checkbox_`+ uniqueVal +`" id="`+ uniqueVal +`" >
                         <div class="archive_car_image_container ">
                             <img class="archive_car_image" src="`+image+`" alt="">
                         </div>
                         <div class="archive_card_content">
-                            <input type="hidden" class="archive_id_`+ i.toString() +`" value="`+ list[i]["regestration_number"] +`">
+                            <input type="hidden" class="archive_id_`+ uniqueVal +`" value="`+ list[i]["regestration_number"] +`">
                             <span class="archive-title">`+ list[i]["car_name"].toUpperCase() +`</span>
                             <span class="archive-id small-1 "> `+ list[i]["number_plate"] +  ` </span>
                             <span class="archive-owner-name small-1">`+ list[i]["owner_name"] +`</span>
                             <span class="archive-date small-1" >`+ date.toLocaleString() +`</span>
-                            <button class="archive_modify_btn archive_modify_btn_`+ i.toString() +`" id="`+ i.toString() +`" > Modify </button>
+                            <button class="archive_modify_btn archive_modify_btn_`+ uniqueVal +`" id="`+ uniqueVal +`" > Modify </button>
                                                         
                         </div>
                     </div>
                 `);
                 
-                $(".archive_card_"+ i.toString() +" .archive_card_content .archive_modify_btn_"+ i.toString())
+                $(".archive_card_"+ uniqueVal +" .archive_card_content .archive_modify_btn_"+ uniqueVal)
                 .click( (event) => {
                     id =  $(".archive_id_"+event.target.id.toString() ).val();
                     //$(".modal").css("display","block");
                     modifyCarsClick();
                 });
                 
-                $(".archive_card_"+ i.toString() +" .archive_checkbox_"+ i.toString())
+                $(".archive_card_"+ uniqueVal +" .archive_checkbox_"+ uniqueVal)
                 .click( (event) => {
                     val = event.target.checked;
                     id =  $(".archive_id_"+event.target.id.toString() ).val();
@@ -250,7 +252,9 @@ car_functions = () => {
             if(!list.length){
                 $(".loadMoreContainer").empty();
             }
-            
+
+            //console.log(list);
+
             for(i=0; i < list.length; i++){
                 let date = new Date( list[i]["created"] + "+00:00");
                 
@@ -263,41 +267,43 @@ car_functions = () => {
                 {                    
                     image="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAfQAAAEiCAQAAACluOgzAAACgUlEQVR42u3TQQ0AAAgDMeZf9DDBi7QSLrm0AzwXo4PRAaMDRgeMDhgdMDpgdMDoYHTA6IDRAaMDRgeMDhgdMDoYHTA6YHTA6IDRAaMDRgeMDkY3OhgdMDpgdMDogNEBowNGB4wORgeMDhgdMDpgdMDogNEBo4PRAaMDRgeMDhgdMDpgdMDoYHQRwOiA0QGjA0YHjA4YHTA6YHQwOmB0wOiA0QGjA0YHjA4YHYwOGB0wOmB0wOiA0QGjA0YHowNGB4wOGB0wOmB0wOiA0QGjg9EBowNGB4wOGB0wOmB0wOhgdMDogNEBowNGB4wOGB0wOhgdMDpgdMDogNEBowNGB4wOGB2MDhgdMDpgdMDogNEBowNGB6MDRgeMDhgdMDpgdMDogNHB6IDRAaMDRgeMDhgdMDpgdMDoYHTA6IDRAaMDRgeMDhgdMDoYHTA6YHTA6IDRAaMDRgeMDkYHjA4YHTA6YHTA6IDRAaMDRgejA0YHjA4YHTA6YHTA6IDRweiA0QGjA0YHjA4YHTA6YHQwOmB0wOiA0QGjA0YHjA4YHTA6GB0wOmB0wOiA0QGjA0YHjA5GB4wOGB0wOmB0wOiA0QGjg9EBowNGB4wOGB0wOmB0wOiA0cHogNEBowNGB4wOGB0wOmB0MDpgdMDogNEBowNGB4wOGB2MDhgdMDpgdMDogNEBowNGB4wORgeMDhgdMDpgdMDogNEBo4PRAaMDRgeMDhgdMDpgdMDoYHTA6IDRAaMDRgeMDhgdMDoY3ehgdMDogNEBowNGB4wOGB0wOhgdMDpgdMDogNEBowNGB4wORgeMDhgdMDpgdMDogNEBo4PRjQ5GB4wOGB0wOmB04MYCCatC/acif6YAAAAASUVORK5CYII=";
                 }
-                                
+
+                uniqueVal = list[i]["number_plate"];
+
                 $("#car_lists").append(`
-                    <div class="car-card card_`+ i.toString() +` ">
-                        <input type="checkbox" name="car_checkbox" class="car_card_checkbox car_checkbox_`+ i.toString() +`" id="`+ i.toString() +`" checked >
+                    <div class="car-card card_`+ uniqueVal +` ">
+                        <input type="checkbox" name="car_checkbox" class="car_card_checkbox car_checkbox_`+ uniqueVal +`" id="`+ uniqueVal +`" checked >
                         <div class="car_image_container ">
                             <img class="car_image" src="`+image+`" alt="">
                         </div>
                         <div class="card_content">
-                            <input type="hidden" class="id_`+ i.toString() +`" value="`+ list[i]["regestration_number"] +`">
+                            <input type="hidden" class="id_`+ uniqueVal +`" value="`+ list[i]["regestration_number"] +`">
                             <span class="title">`+ list[i]["car_name"].toUpperCase() +`</span>
                             <span class="id small-1 "> `+ list[i]["number_plate"] +  ` </span> 
                             <span class="owner_name small-1">`+ list[i]["owner_name"] +`</span>
                             <span class="date small-1" >`+ date.toLocaleString() +`</span>
-                            <button class="modify_btn modify_btn_`+ i.toString() +`" id="`+ i.toString() +`"  width="50%"> Modify </button>
-                            <button class="sold_btn sold_btn_`+ i.toString() +`" id="`+ i.toString() +`"  width="50%"> Sold </button>                            
+                            <button class="modify_btn modify_btn_`+ uniqueVal +`" id="`+ uniqueVal +`"  width="50%"> Modify </button>
+                            <button class="sold_btn sold_btn_`+ uniqueVal +`" id="`+ uniqueVal +`"  width="50%"> Sold </button>                            
                         </div>
                     </div>
                 `);
                                                 
                 //Modify btn click
-                $("#car_lists .card_"+ i.toString() +" .card_content .modify_btn_"+ i.toString())
+                $("#car_lists .card_"+ uniqueVal +" .card_content .modify_btn_"+ uniqueVal)
                 .click( (event) => {                    
                     id =  $("#car_lists .id_"+event.target.id.toString() ).val();    
-                    //console.log(id);
+                    console.log(id);
                     modifyCarsClick();
                 });
                 
                 //Sold btn click
-                $("#car_lists .card_"+ i.toString() +" .card_content .sold_btn_"+ i.toString())
+                $("#car_lists .card_"+ uniqueVal +" .card_content .sold_btn_"+ uniqueVal)
                 .click( (event) => {                    
                     id =  $(" .id_"+event.target.id.toString() ).val();                                     
                     $(".soldCarsModal").css("display","block");
                 });
                 
-                $("#car_lists .card_"+ i.toString() +" .car_checkbox_"+ i.toString())
+                $("#car_lists .card_"+ uniqueVal +" .car_checkbox_"+ uniqueVal)
                 .click( (event) => {
                     val = event.target.checked;                        
                     id =  $("#car_lists .id_"+event.target.id.toString() ).val();
@@ -332,10 +338,12 @@ car_functions = () => {
             soldOffset = 0;
             $("#soldCars").empty();
             $(".loadMoreContainer").empty();
-
-            $(".loadMoreContainer").append(`<button id="loadMore" style="cursor: pointer; font-size: 14px; padding: 6px 22px; border: 0; background-color: #FFD230; color: #454545;">Load More</button>`);
-            $("#loadMore").click( ()=> { navSoldCar(false) });
+            
+            $(".loadMoreContainer").append(`<button id="loadMoreSoldCar" style="cursor: pointer; font-size: 14px; padding: 6px 22px; border: 0; background-color: #FFD230; color: #454545;">Load More</button>`);
+            $("#loadMoreSoldCar").click( ()=> { navSoldCar(false) });
         }
+
+        
 
         axios.get("/api/v1/admin/cars/sold/?offset="+soldOffset+"&limit=5").then( async (response) => {
             let list = response.data["data"];
@@ -359,41 +367,42 @@ car_functions = () => {
                     image="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAfQAAAEiCAQAAACluOgzAAACgUlEQVR42u3TQQ0AAAgDMeZf9DDBi7QSLrm0AzwXo4PRAaMDRgeMDhgdMDpgdMDoYHTA6IDRAaMDRgeMDhgdMDoYHTA6YHTA6IDRAaMDRgeMDkY3OhgdMDpgdMDogNEBowNGB4wORgeMDhgdMDpgdMDogNEBo4PRAaMDRgeMDhgdMDpgdMDoYHQRwOiA0QGjA0YHjA4YHTA6YHQwOmB0wOiA0QGjA0YHjA4YHYwOGB0wOmB0wOiA0QGjA0YHowNGB4wOGB0wOmB0wOiA0QGjg9EBowNGB4wOGB0wOmB0wOhgdMDogNEBowNGB4wOGB0wOhgdMDpgdMDogNEBowNGB4wOGB2MDhgdMDpgdMDogNEBowNGB6MDRgeMDhgdMDpgdMDogNHB6IDRAaMDRgeMDhgdMDpgdMDoYHTA6IDRAaMDRgeMDhgdMDoYHTA6YHTA6IDRAaMDRgeMDkYHjA4YHTA6YHTA6IDRAaMDRgejA0YHjA4YHTA6YHTA6IDRweiA0QGjA0YHjA4YHTA6YHQwOmB0wOiA0QGjA0YHjA4YHTA6GB0wOmB0wOiA0QGjA0YHjA5GB4wOGB0wOmB0wOiA0QGjg9EBowNGB4wOGB0wOmB0wOiA0cHogNEBowNGB4wOGB0wOmB0MDpgdMDogNEBowNGB4wOGB2MDhgdMDpgdMDogNEBowNGB4wORgeMDhgdMDpgdMDogNEBo4PRAaMDRgeMDhgdMDpgdMDoYHTA6IDRAaMDRgeMDhgdMDoY3ehgdMDogNEBowNGB4wOGB0wOhgdMDpgdMDogNEBowNGB4wORgeMDhgdMDpgdMDogNEBo4PRjQ5GB4wOGB0wOmB04MYCCatC/acif6YAAAAASUVORK5CYII=";
                 }
                 
+                uniqueVal = list[i]["number_plate"];
+
                 $("#soldCars").append(`
-                    <div class="car-card card_`+ i.toString() +` ">
+                    <div class="car-card card_`+ uniqueVal +` ">
                         <div class="car_image_container ">
                             <img class="car_image" src="`+image+`" alt="">
                         </div>
                         <div class="card_content">
-                            <input type="hidden" class="id_`+ i.toString() +`" value="`+ list[i]["regestration_number"] +`">
+                            <input type="hidden" class="id_`+ uniqueVal +`" value="`+ list[i]["regestration_number"] +`">
                             <span class="title">`+ list[i]["car_name"].toUpperCase() +`</span>
                             <span class="id small-1 "> `+ list[i]["number_plate"] +  ` </span> 
                             <span class="owner_name small-1">`+ list[i]["owner_name"] +`</span>
                             <span class="date small-1" >`+ date.toLocaleString() +`</span>
-                            <button class="modify_btn modify_btn_`+ i.toString() +`" id="`+ i.toString() +`"  width="50%"> Modify </button>
-                            <button class="sold_btn sold_btn_`+ i.toString() +`" id="`+ i.toString() +`"  width="50%"> Sold </button>                            
+                            <button class="modify_btn modify_btn_`+ uniqueVal +`" id="`+ uniqueVal +`"  width="50%"> Modify </button>
+                            <button class="sold_btn sold_btn_`+ uniqueVal +`" id="`+ uniqueVal +`"  width="50%"> Sold </button>                            
                         </div>
                     </div>
                 `);
                 
-                $("#soldCars .card_"+ i.toString() +" .card_content .modify_btn_"+ i.toString())
+                $("#soldCars .card_"+ uniqueVal +" .card_content .modify_btn_"+ uniqueVal)
                 .click( (event) => {                    
                     id =  $("#soldCars .id_"+event.target.id.toString() ).val();    
                     //console.log("sold", id);
                     modifyCarsClick();
                 });
 
-                $("#soldCars .card_"+ i.toString() +" .card_content .sold_btn_"+ i.toString())
+                $("#soldCars .card_"+ uniqueVal +" .card_content .sold_btn_"+ uniqueVal)
                 .click( (event) => {                    
                     id =  $("#soldCars .id_"+event.target.id.toString() ).val();                                     
                     $(".soldCarsModal").css("display","block");
                 });
 
-                $("#soldCars .card_"+ i.toString() +" .car_checkbox_"+ i.toString())
+                $("#soldCars .card_"+ uniqueVal +" .car_checkbox_"+ uniqueVal)
                 .click( (event) => {
                     val = event.target.checked;                        
-                    id =  $("#soldCars .id_"+event.target.id.toString() ).val();
-                    
+                    id =  $("#soldCars .id_"+event.target.id.toString() ).val();                    
                     axios
                     .put("/api/v1/admin/car/"+ id +"/viewable/?viewable="+val)
                     .then(() => { 
