@@ -7,7 +7,7 @@ car_functions = () => {
     let archiveOffset = 0;
     let liveOffset = 0;
     let soldOffset = 0;
-
+    
     let car_image_get = "/api/v1/image/thumbnail/photos/";
     let car_image_upload = "/api/v1/admin/thumbnail/photos/";
     let car_image_delete = "/api/v1/admin/thumbnail/photos/";
@@ -22,7 +22,7 @@ car_functions = () => {
     function hasNumber(myString) {
         return /\d/.test(myString);
     }
-    
+
     // Register the plugin
     FilePond.registerPlugin(FilePondPluginFilePoster);
     FilePond.registerPlugin(FilePondPluginFileRename);
@@ -252,7 +252,6 @@ car_functions = () => {
             }
             
             for(i=0; i < list.length; i++){
-
                 let date = new Date( list[i]["created"] + "+00:00");
                 
                 // Image Ratio 16:9
@@ -284,31 +283,30 @@ car_functions = () => {
                 `);
                                                 
                 //Modify btn click
-                $(".card_"+ i.toString() +" .card_content .modify_btn_"+ i.toString())
+                $("#car_lists .card_"+ i.toString() +" .card_content .modify_btn_"+ i.toString())
                 .click( (event) => {                    
-                    id =  $(" .id_"+event.target.id.toString() ).val();    
-                    //console.log(id);                    
+                    id =  $("#car_lists .id_"+event.target.id.toString() ).val();    
+                    //console.log(id);
                     modifyCarsClick();
                 });
                 
                 //Sold btn click
-                $(".card_"+ i.toString() +" .card_content .sold_btn_"+ i.toString())
+                $("#car_lists .card_"+ i.toString() +" .card_content .sold_btn_"+ i.toString())
                 .click( (event) => {                    
                     id =  $(" .id_"+event.target.id.toString() ).val();                                     
                     $(".soldCarsModal").css("display","block");
                 });
                 
-                $(".card_"+ i.toString() +" .car_checkbox_"+ i.toString())
+                $("#car_lists .card_"+ i.toString() +" .car_checkbox_"+ i.toString())
                 .click( (event) => {
                     val = event.target.checked;                        
-                    id =  $(".id_"+event.target.id.toString() ).val();
+                    id =  $("#car_lists .id_"+event.target.id.toString() ).val();
                     
                     axios
                     .put("/api/v1/admin/car/"+ id +"/viewable/?viewable="+val)
                     .then(() => { 
                         navLiveCar();
                     });;
-
                 });
                 
             }           
@@ -323,7 +321,7 @@ car_functions = () => {
         $(".nav_add_car").removeClass("active");
         $(".nav_archive_car").removeClass("active");
         $(".navLiveCar").removeClass("active");
-        $(".navSoldCars").addClass("active");       
+        $(".navSoldCars").addClass("active");
 
         $(".add-car").hide();
         $(".list-car").hide();
@@ -345,7 +343,9 @@ car_functions = () => {
             if(!list.length){
                 $(".loadMoreContainer").empty();
             }                    
-            
+
+            //console.log(list);
+
             for(i=0; i < list.length; i++){
                 let date = new Date( list[i]["created"] + "+00:00");
                 
@@ -376,23 +376,23 @@ car_functions = () => {
                     </div>
                 `);
                 
-                $(".card_"+ i.toString() +" .card_content .modify_btn_"+ i.toString())
+                $("#soldCars .card_"+ i.toString() +" .card_content .modify_btn_"+ i.toString())
                 .click( (event) => {                    
-                    id =  $(" .id_"+event.target.id.toString() ).val();    
-                    //console.log(id);                    
+                    id =  $("#soldCars .id_"+event.target.id.toString() ).val();    
+                    //console.log("sold", id);
                     modifyCarsClick();
                 });
 
-                $(".card_"+ i.toString() +" .card_content .sold_btn_"+ i.toString())
+                $("#soldCars .card_"+ i.toString() +" .card_content .sold_btn_"+ i.toString())
                 .click( (event) => {                    
-                    id =  $(" .id_"+event.target.id.toString() ).val();                                     
+                    id =  $("#soldCars .id_"+event.target.id.toString() ).val();                                     
                     $(".soldCarsModal").css("display","block");
                 });
 
-                $(".card_"+ i.toString() +" .car_checkbox_"+ i.toString())
+                $("#soldCars .card_"+ i.toString() +" .car_checkbox_"+ i.toString())
                 .click( (event) => {
                     val = event.target.checked;                        
-                    id =  $(".id_"+event.target.id.toString() ).val();
+                    id =  $("#soldCars .id_"+event.target.id.toString() ).val();
                     
                     axios
                     .put("/api/v1/admin/car/"+ id +"/viewable/?viewable="+val)
@@ -457,7 +457,7 @@ car_functions = () => {
                 alert(error.response.data['message']);                
             }            
             else{
-                console.log(error.response.data['message']);            
+                //console.log(error.response.data['message']);            
             }
         });    
         
@@ -468,7 +468,7 @@ car_functions = () => {
         $(".amendCarDetail").css("display","block");
         
         //Initial Modal loading
-        axios.get("/api/v1/admin/basic/"+id)
+        axios.get("/api/v1/admin/basic/"+id+"/")
         .then( (response) => {
             let data = response.data["data"];
             
@@ -482,7 +482,7 @@ car_functions = () => {
             $("#owner_number_update").val(data.OWNER_PHONE_NUMBER);
             $("#chassis_number_update").val(data.CHASSIS_NUMBER);
             $("#car_price_update").val(data.price);
-            $("#history_update").val(data.HISTORY);            
+            $("#history_update").val(data.HISTORY);
         });
 
         //#region  Modify Car Info
@@ -743,7 +743,7 @@ car_functions = () => {
         form.append("history", $("#history_update").val());
         
         form.append("regestration_number", id);
-        console.log(form);
+        //console.log(form);
         //debugger;
         axios.put("/api/v1/admin/car/", form)
         .then((response)=>{
