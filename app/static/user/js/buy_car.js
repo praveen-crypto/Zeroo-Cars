@@ -156,8 +156,8 @@ buycar_fn = async () => {
     });
     
     $(".owl-1").owlCarousel({      
-        margin:15,        
-        stagePadding: 20,
+        margin: 0,        
+        stagePadding: 25,
     });
     
     //Advertisement Images
@@ -489,7 +489,7 @@ buycar_fn = async () => {
         clearCars();
 
         await loadCars(kilometer, minPrice, maxPrice, owners, brand, body, year);
-        
+
         $('#modalFilter').modal('hide');
 
     } );
