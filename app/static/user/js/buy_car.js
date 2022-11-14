@@ -4,7 +4,7 @@
 buycar_fn = async () => {
     loadOffset = 0;
     allowApiCall = true;
-
+    let orientation = '';
     loadCars = async ( kilometer, minPrice , maxPrice , owners, brand, body, year ) => {
         allowApiCall = false;
         
@@ -12,7 +12,7 @@ buycar_fn = async () => {
         
         //fuelType.length > 0 ? fuelType.forEach( (fuel) => { url = url +'&fule_type='+fuel }) : null
         //transmission.length > 0 ? transmission.forEach( (value) => { url = url +'&transmission='+value }) : null
-        brand.length > 0 ? brand.forEach( (val) => { url = url +'&brand='+val }) : []
+        brand.length > 0 ? brand.forEach( (val) => { url = url +'&brand='+val.replace("%", " ") }) : []
         body.length > 0 ? body.forEach( (val) => { url = url +'&body='+val }) : []
         year.length > 0 ? year.forEach( (val) => { url = url +'&year='+val }) : []
         
@@ -52,15 +52,31 @@ buycar_fn = async () => {
         allowApiCall = true;
     }
 
+
     clearCars = () => {
         $("#used_car_list").empty();
     };
 
+    //Hide Desktop Filter on load for mobile
+    if(window.innerWidth < 430){
+        $(".desktopFilter").empty();
+        orientation = 'vertical';
+        //$(".mobileFilterBody .filter_budget").hide();
+        $(".mobileFilterBody .filter_brand").hide();
+        $(".mobileFilterBody .filter_year").hide();
+        $(".mobileFilterBody .filter_kilometer").hide();
+    }
+    else{
+        $(".mobileFilterBody").empty();
+        orientation = 'horizontal';
+    }    
+    
     noUiSlider.create(slider, {
         start: [100000, 1000000],     
         step: 100000,
         padding: [15, 10],   
-        connect: true,
+        connect: true,   
+        orientation: orientation,   
         range: {
             'min': 100000,
             'max': 1000000
@@ -74,7 +90,7 @@ buycar_fn = async () => {
                 return Number(value.replace(',-', ' '));
             }
         }
-    });
+    });     
 
     noUiSlider.create(dateSlider, {        
         range: {
@@ -83,9 +99,10 @@ buycar_fn = async () => {
         },
         step: 1,
         start: [2000, 2022],
+        orientation: orientation,
         tooltips: {            
             to: function(numericValue) {
-                return Math.round( numericValue.toFixed(1) ) ;
+                return Math.round( numericValue.toFixed(1) );
             }
         },
         format: {
@@ -97,14 +114,14 @@ buycar_fn = async () => {
             }
         }
     });
-
+    
     //Update price in real time
     slider.noUiSlider.on('update', async (values, handle) => {        
         $("#min_price").html("&#8377; "+values[0]);
         $("#max_price").html("&#8377; "+values[1]);        
         
     });
-        
+
     $(".nav_btn").on("click", () => {
         
         $('html, body').css({
@@ -347,7 +364,7 @@ buycar_fn = async () => {
     });
 
     //------Brand Filter
-    $('.checkboxFilter').on('change', async function() {    
+    $('.desktopFilter .checkboxFilter').on('change', async function() {    
 
         if(this.checked)
         {
@@ -364,7 +381,7 @@ buycar_fn = async () => {
     })
     
     //------Kilometer Filter
-    $(".kilometerFilter").on('change', () => {
+    $(".desktopFilter .kilometerFilter").on('change', () => {
         //console.log("kilometer:",$('input[name="kilometer"]:checked').val());
         kilometer = $('input[name="kilometer"]:checked').val();
         
@@ -374,8 +391,110 @@ buycar_fn = async () => {
         loadCars(kilometer, minPrice, maxPrice, owners, brand, body, year);
     });
 
-    //Mobile Filter
+    //#region Mobile Filter
+    toggleActiveClass = (cls) => {
+        if(cls == "budget"){
+            $(".mobileFilterBody .budget").addClass("active");
+            $(".mobileFilterBody .brand").removeClass("active");
+            $(".mobileFilterBody .year").removeClass("active");
+            $(".mobileFilterBody .kilometer").removeClass("active");
+
+            $(".mobileFilterBody .filter_budget").show();
+            $(".mobileFilterBody .filter_brand").hide();
+            $(".mobileFilterBody .filter_year").hide();
+            $(".mobileFilterBody .filter_kilometer").hide();
+        }
+        else if(cls == "brand"){
+            $(".mobileFilterBody .budget").removeClass("active");
+            $(".mobileFilterBody .brand").addClass("active");
+            $(".mobileFilterBody .year").removeClass("active");
+            $(".mobileFilterBody .kilometer").removeClass("active");
+
+            $(".mobileFilterBody .filter_budget").hide();
+            $(".mobileFilterBody .filter_brand").show();
+            $(".mobileFilterBody .filter_year").hide();
+            $(".mobileFilterBody .filter_kilometer").hide();
+        }
+        else if(cls == "year"){
+            $(".mobileFilterBody .budget").removeClass("active");
+            $(".mobileFilterBody .brand").removeClass("active");
+            $(".mobileFilterBody .year").addClass("active");
+            $(".mobileFilterBody .kilometer").removeClass("active");
+
+            $(".mobileFilterBody .filter_budget").hide();
+            $(".mobileFilterBody .filter_brand").hide();
+            $(".mobileFilterBody .filter_year").show();
+            $(".mobileFilterBody .filter_kilometer").hide();
+        }
+        else{
+            $(".mobileFilterBody .budget").removeClass("active");
+            $(".mobileFilterBody .brand").removeClass("active");
+            $(".mobileFilterBody .year").removeClass("active");
+            $(".mobileFilterBody .kilometer").addClass("active");
+
+            $(".mobileFilterBody .filter_budget").hide();
+            $(".mobileFilterBody .filter_brand").hide();
+            $(".mobileFilterBody .filter_year").hide();
+            $(".mobileFilterBody .filter_kilometer").show();
+        }
+    }
     
+    $(".mobileFilterBody .budget").on('click', () => {
+        toggleActiveClass('budget');
+    });
+
+    $(".mobileFilterBody .brand").on('click', () => {
+        toggleActiveClass('brand');
+    });
+
+    $(".mobileFilterBody .year").on('click', () => {
+        toggleActiveClass('year');
+    });
+
+    $(".mobileFilterBody .kilometer").on('click', () => {
+        toggleActiveClass('kilometer');
+    });
+
+    $('.mobileModalFilter .checkboxFilter').on('change', async function() {    
+        
+        if(this.checked)
+        {
+            brand.push(this.id);
+        }
+        else{
+            brand = brand.filter(item => item !== this.id)
+        }
+
+    })
+    
+    //Mobile Filter Apply button
+    $("#applyFilter").on("click", async () => {
+        minPrice =  String(slider.noUiSlider.get()[0]);
+        maxPrice = String(slider.noUiSlider.get()[1]);
+
+        year = dateSlider.noUiSlider.get();
+
+        kilometer = $('input[name="kilometer"]:checked').val();
+        
+        if( kilometer == undefined ){
+            kilometer = '100000000';
+        }
+
+        // console.log(minPrice, maxPrice);
+        // console.log(year);
+        // console.log(kilometer);
+        // console.log(brand);
+        
+        loadOffset = 0;
+        clearCars();
+
+        await loadCars(kilometer, minPrice, maxPrice, owners, brand, body, year);
+        
+        $('#modalFilter').modal('hide');
+
+    } );
+    //#endregion
+
     
     //Load content on scroll
     $(window).scroll(async () => {

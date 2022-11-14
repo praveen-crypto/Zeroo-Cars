@@ -54,12 +54,10 @@ async def admin_token(data: dict = Depends(AdminSigninValidate)):
     del result["refresh"]
     return response_format(cookies=cookies, httponly=True, secure=False, **result)
 
-
 # @router.post("/token/refresh/", tags=["Admin"])
 # async def admin_token_refresh(token: HTTPAuthorizationCredentials = Security(security)):
 #     result = await helper.verify_admin_refresh_token(token.credentials)
 #     return response_format(**result)
-
 
 @router.post("/token/refresh/", tags=["Admin"])
 async def admin_token_refresh(token: Optional[str] = Cookie(None)):
@@ -75,24 +73,20 @@ async def add_car(data: dict = Depends(AddCar)):
     result = await helper.template(data, "add_car")
     return response_format(data=result)
 
-
 @router.post("/comfort_and_convenience/", tags=["Cars : Insert"])
 async def comfort_and_convenience(data: dict = Depends(ComfortAndConvenience)):
     result = await helper.template(data, "comfort_and_convenience")
     return response_format(data=result)
-
 
 @router.post("/dimensions_and_capacity/", tags=["Cars : Insert"])
 async def dimensions_and_capacity(data: dict = Depends(DimensionsAndCapacity)):
     result = await helper.template(data, "dimensions_and_capacity")
     return response_format(data=result)
 
-
 @router.post("/engine_and_transmission/", tags=["Cars : Insert"])
 async def engine_and_transmission(data: dict = Depends(EngineAndTransmission)):
     result = await helper.template(data, "engine_and_transmission")
     return response_format(data=result)
-
 
 @router.post("/entertainment_and_communication/", tags=["Cars : Insert"])
 async def entertainment_and_communication(    data: dict = Depends(EntertainmentAndCommunication),):

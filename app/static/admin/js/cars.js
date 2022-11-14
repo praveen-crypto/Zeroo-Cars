@@ -476,12 +476,15 @@ car_functions = () => {
     modifyCarsClick = () => {
         $(".amendCarDetail").css("display","block");
         
+        //console.log('data');
+
         //Initial Modal loading
         axios.get("/api/v1/admin/basic/"+id+"/")
         .then( (response) => {
             let data = response.data["data"];
+            //console.log(String(data.BRAND).capitalize());
             
-            $("#car_brand_update").val(String(data.BRAND).capitalize());
+            $("#car_brand_update").val(data['BRAND']);
             $("#car_model_update").val(String(data.MODEL).capitalize());
             $("#car_mfg_year_update").val(data.MANUFACTURE_YEAR);
             $("#reg_number_update").val(data.number_plate);

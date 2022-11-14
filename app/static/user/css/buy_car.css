@@ -264,16 +264,165 @@ nav .mobile_nav .nav_list_outer ul li a {
   display: none;
 }
 .aside .mobileModalFilter .modal-content .modal-header {
-  padding: 6px;
+  padding: 10px;
 }
 .aside .mobileModalFilter .modal-content .modal-header .btn {
   padding: 0;
 }
 .aside .mobileModalFilter .modal-content .modal-header .btn span {
   vertical-align: middle;
+  font-size: 20px;
 }
 .aside .mobileModalFilter .modal-content .modal-body {
+  height: 100%;
   padding: 0;
+  font-size: 14px;
+}
+.aside .mobileModalFilter .modal-content .modal-body .bodyLeft {
+  background-color: #F5F5f5;
+  font-weight: 500;
+  color: #9E9E9E;
+  padding: 0 0 0 12px;
+}
+.aside .mobileModalFilter .modal-content .modal-body .bodyLeft .filterName {
+  height: 50px;
+  padding: 12px;
+  margin-right: 1px;
+  display: flex;
+  align-items: center;
+}
+.aside .mobileModalFilter .modal-content .modal-body .bodyLeft .filterName span {
+  padding: 8px;
+}
+.aside .mobileModalFilter .modal-content .modal-body .bodyLeft .active {
+  color: #424242;
+  background-color: #ffffff;
+}
+.aside .mobileModalFilter .modal-content .modal-body .bodyRight {
+  height: 100%;
+}
+.aside .mobileModalFilter .modal-content .modal-body .bodyRight .filter_budget {
+  display: flex;
+  flex-direction: row;
+  margin-top: 15%;
+  margin-left: 12%;
+}
+.aside .mobileModalFilter .modal-content .modal-body .bodyRight .filter_budget .price_text {
+  display: flex;
+  flex-direction: column;
+  width: 40%;
+  height: auto;
+}
+.aside .mobileModalFilter .modal-content .modal-body .bodyRight .filter_budget .price_text p {
+  margin: 0rem 0;
+}
+.aside .mobileModalFilter .modal-content .modal-body .bodyRight .filter_budget .price_text #max_price {
+  margin-top: 340px;
+}
+.aside .mobileModalFilter .modal-content .modal-body .bodyRight .filter_budget .range_container {
+  display: flex;
+  margin-bottom: 5rem;
+  width: 15px;
+  height: 370px;
+}
+.aside .mobileModalFilter .modal-content .modal-body .bodyRight .filter_budget .range_container .noUi-handle:before, .aside .mobileModalFilter .modal-content .modal-body .bodyRight .filter_budget .range_container .noUi-handle:after {
+  display: none;
+}
+.aside .mobileModalFilter .modal-content .modal-body .bodyRight .filter_budget .range_container .noUi-connect {
+  background: rgb(255, 203, 45);
+}
+.aside .mobileModalFilter .modal-content .modal-body .bodyRight .filter_budget .range_container .noUi-target {
+  width: 6px;
+  height: 370px;
+  border: none;
+  background-color: #BDBDBD;
+}
+.aside .mobileModalFilter .modal-content .modal-body .bodyRight .filter_budget .range_container .noUi-handle {
+  height: 18px;
+  width: 18px;
+  border-radius: 50px;
+}
+.aside .mobileModalFilter .modal-content .modal-body .bodyRight .filter_brand {
+  height: 100%;
+  overflow-y: scroll;
+  margin-left: 0.5rem;
+}
+.aside .mobileModalFilter .modal-content .modal-body .bodyRight .filter_brand .brand_list {
+  width: 100%;
+  margin: 1rem 0 1rem 0rem;
+  color: #616161;
+}
+.aside .mobileModalFilter .modal-content .modal-body .bodyRight .filter_brand .brand_list label {
+  margin: 0;
+  font-size: 14px;
+  margin-left: 0.3rem;
+}
+.aside .mobileModalFilter .modal-content .modal-body .bodyRight .filter_brand .brand_list * {
+  display: flex;
+  flex-direction: row;
+  padding: 4px;
+}
+.aside .mobileModalFilter .modal-content .modal-body .bodyRight .filter_brand input[type=checkbox] {
+  width: 20px;
+  height: 20px;
+  border-radius: 0px;
+  margin: auto 3px;
+  border: 1px solid #616161;
+}
+.aside .mobileModalFilter .modal-content .modal-body .bodyRight .filter_year {
+  height: 8rem;
+  display: flex;
+  flex-direction: column;
+}
+.aside .mobileModalFilter .modal-content .modal-body .bodyRight .filter_year .year_range {
+  margin-top: 2.9rem;
+  margin-left: 40%;
+}
+.aside .mobileModalFilter .modal-content .modal-body .bodyRight .filter_year #dateSlider .noUi-handle:before, .aside .mobileModalFilter .modal-content .modal-body .bodyRight .filter_year #dateSlider .noUi-handle:after {
+  display: none;
+}
+.aside .mobileModalFilter .modal-content .modal-body .bodyRight .filter_year #dateSlider {
+  height: 400px;
+  width: 9px;
+}
+.aside .mobileModalFilter .modal-content .modal-body .bodyRight .filter_year #dateSlider .noUi-connect {
+  background: #c0392b;
+}
+.aside .mobileModalFilter .modal-content .modal-body .bodyRight .filter_year #dateSlider .noUi-handle {
+  height: 20px;
+  width: 20px;
+  border-radius: 9px;
+}
+.aside .mobileModalFilter .modal-content .modal-body .bodyRight .filter_kilometer {
+  border-bottom: none;
+  margin-left: 1rem;
+}
+.aside .mobileModalFilter .modal-content .modal-body .bodyRight .filter_kilometer .kilometer_list {
+  width: 100%;
+  margin: 1rem 0 1rem 0rem;
+  color: #616161;
+}
+.aside .mobileModalFilter .modal-content .modal-body .bodyRight .filter_kilometer .kilometer_list label {
+  margin: 0;
+  font-size: 14px;
+}
+.aside .mobileModalFilter .modal-content .modal-body .bodyRight .filter_kilometer .kilometer_list input[type=radio] {
+  width: 16px;
+  height: 16px;
+  margin: auto 3px;
+}
+.aside .mobileModalFilter .modal-content .modal-body .bodyRight .filter_kilometer .kilometer_list * {
+  padding: 4px;
+  display: flex;
+  flex-direction: row;
+}
+.aside .mobileModalFilter .modal-content .modal-footer {
+  border-top: 1px solid #F5F5f5;
+}
+.aside .mobileModalFilter .modal-content .modal-footer .btn {
+  font-size: 14px;
+  padding: 8px 28px;
+  border-radius: 6px;
 }
 
 .footer {

@@ -137,7 +137,7 @@
                         <p id="min_price">Rs --</p> <p id="max_price">Rs --</p>
                     </div>
                     <div class="range_container">
-                        <div id="slider" style="height: 10px; width: 100%;"></div>
+                        <div id="slider" style="height: 10px; width: 90%;"></div>
                     </div>
                 </div>
 
@@ -201,11 +201,11 @@
                             <label for="mahindra">Mahindra</label>
                         </div>
                         <div class="brand_maruti">
-                            <input type="checkbox" name="maruti" class="checkboxFilter" id="maruti">
+                            <input type="checkbox" name="maruti" class="checkboxFilter" id="maruti suzuki">
                             <label for="maruti">Maruti Suzuki</label>
                         </div>   
                         <div class="brand_mercedesbenz">
-                            <input type="checkbox" name="mercedesbenz" class="checkboxFilter" id="mercedesbenz">
+                            <input type="checkbox" name="mercedesbenz" class="checkboxFilter" id="mercedes benz">
                             <label for="mercedesbenz">Mercedes Benz</label>
                         </div>
                         <div class="brand_mgmotors">
@@ -282,31 +282,204 @@
                         </div>    
                     </div>
                 </div>
-            </div>            
+            </div>
 
             <!-- Mobile Filter Modal -->
-            <div class="modal mobileModalFilter" id="modalFilter" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal mobileModalFilter"   id="modalFilter" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog modal-fullscreen">
                     <div class="modal-content">
                         <div class="modal-header">
                             <div class="btn" type="button" data-bs-dismiss="modal"> 
                                 <span class="material-icons">
-                                arrow_back
+                                west
                                 </span>
                             </div>                            
                         </div>
+
                         <div class="row modal-body mobileFilterBody ">
-                            <div class="col-3 bodyLeft">
-
+                            <div class="col-4 bodyLeft">
+                                <div class="budget filterName active">
+                                    <span>
+                                        Budget
+                                    </span> 
+                                </div>
+                                <div class="brand filterName">                                    
+                                    <span>
+                                        Brand
+                                    </span> 
+                                </div>
+                                <div class="year filterName">                                    
+                                    <span>
+                                        Year
+                                    </span>
+                                </div>
+                                <div class="kilometer filterName">
+                                    <span>
+                                        KM Driven
+                                    </span>
+                                </div>
                             </div>
+
                             <div class="col bodyRight">
-
+                                <div class="filter_budget" >
+                                    <div class="price_text">
+                                        <p id="min_price"></p> <p id="max_price"></p>
+                                    </div>
+                                    <div class="range_container">
+                                        <div id="slider" ></div>
+                                    </div>
+                                </div>
+                                
+                                <div class="filter_brand" >
+                                    <div class="brand_list">
+                                        <div class="brand_audi">
+                                            <input type="checkbox" name="audi" class="checkboxFilter" id="audi">
+                                            <label for="audi">Audi</label>
+                                        </div>
+                                        <div class="brand_bmw">
+                                            <input type="checkbox" name="bmw" class="checkboxFilter" id="bmw">
+                                            <label for="bmw">Bmw</label>
+                                        </div>
+                                        <div class="brand_chevrolet">
+                                            <input type="checkbox" name="chevrolet" class="checkboxFilter" id="chevrolet">
+                                            <label for="chevrolet">Chevrolet</label>
+                                        </div>
+                                        <div class="brand_datsun">
+                                            <input type="checkbox" name="datsun" class="checkboxFilter" id="datsun">
+                                            <label for="datsun">Datsun</label>
+                                        </div>                          
+                                        <div class="brand_fiat">
+                                            <input type="checkbox" name="fiat" class="checkboxFilter" id="fiat">
+                                            <label for="fiat">Fiat</label>
+                                        </div>
+                                        <div class="brand_ford">
+                                            <input type="checkbox" name="ford" class="checkboxFilter" id="ford">
+                                            <label for="ford">Ford</label>
+                                        </div> 
+                                        <div class="brand_hyundai">
+                                            <input type="checkbox" name="hyundai" class="checkboxFilter" id="hyundai">
+                                            <label for="hyundai">Hyundai</label>
+                                        </div>
+                                        <div class="brand_honda">
+                                            <input type="checkbox" name="Honda" class="checkboxFilter" id="Honda">
+                                            <label for="honda">Honda</label>
+                                        </div>
+                                        <div class="brand_isuzu">
+                                            <input type="checkbox" name="isuzu" class="checkboxFilter" id="isuzu">
+                                            <label for="isuzu">Isuzu</label>
+                                        </div>
+                                        <div class="brand_jaguar">
+                                            <input type="checkbox" name="jaguar" class="checkboxFilter" id="jaguar">
+                                            <label for="jaguar">Jaguar</label>
+                                        </div>
+                                        <div class="brand_jeep">
+                                            <input type="checkbox" name="jeep" class="checkboxFilter" id="jeep">
+                                            <label for="jeep">Jeep</label>
+                                        </div>
+                                        <div class="brand_kia">
+                                            <input type="checkbox" name="kia" class="checkboxFilter" id="kia">
+                                            <label for="kia">Kia</label>
+                                        </div>
+                                        <div class="brand_landrover">
+                                            <input type="checkbox" name="landrover" class="checkboxFilter" id="landrover">
+                                            <label for="landrover">Land Rover</label>
+                                        </div>                        
+                                        <div class="brand_mahindra">
+                                            <input type="checkbox" name="mahindra" class="checkboxFilter" id="mahindra">
+                                            <label for="mahindra">Mahindra</label>
+                                        </div>
+                                        <div class="brand_maruti">
+                                            <input type="checkbox" name="maruti" class="checkboxFilter" id="maruti">
+                                            <label for="maruti">Maruti Suzuki</label>
+                                        </div>   
+                                        <div class="brand_mercedesbenz">
+                                            <input type="checkbox" name="mercedesbenz" class="checkboxFilter" id="mercedesbenz">
+                                            <label for="mercedesbenz">Mercedes Benz</label>
+                                        </div>
+                                        <div class="brand_mgmotors">
+                                            <input type="checkbox" name="mgmotors" class="checkboxFilter" id="mgmotors">
+                                            <label for="mgmotors">Mg Motors</label>
+                                        </div>
+                                        <div class="brand_mini">
+                                            <input type="checkbox" name="mini" class="checkboxFilter" id="mini">
+                                            <label for="mini">Mini</label>
+                                        </div>
+                                        <div class="brand_mitsubishi">
+                                            <input type="checkbox" name="mitsubishi" class="checkboxFilter" id="mitsubishi">
+                                            <label for="mitsubishi">Mitsubishi</label>
+                                        </div>
+                                        <div class="brand_nissan">
+                                            <input type="checkbox" name="nissan" class="checkboxFilter" id="nissan">
+                                            <label for="nissan">Nissan</label>
+                                        </div>
+                                        <div class="brand_renault">
+                                            <input type="checkbox" name="renault" class="checkboxFilter" id="renault">
+                                            <label for="renault">Renault</label>
+                                        </div>
+                                        <div class="brand_skoda">
+                                            <input type="checkbox" name="skoda" class="checkboxFilter" id="skoda">
+                                            <label for="skoda">Skoda</label>
+                                        </div>
+                                        <div class="brand_tata">
+                                            <input type="checkbox" name="tata" class="checkboxFilter" id="tata">
+                                            <label for="tata">Tata</label>
+                                        </div>
+                                        <div class="brand_toyota">
+                                            <input type="checkbox" name="toyota" class="checkboxFilter" id="toyota">
+                                            <label for="toyota">Toyota</label>
+                                        </div>
+                                        <div class="brand_volkswagen">
+                                            <input type="checkbox" name="volkswagen" class="checkboxFilter" id="volkswagen">
+                                            <label for="volkswagen">Volkswagen</label>
+                                        </div>
+                                        <div class="brand_volvo">
+                                            <input type="checkbox" name="volvo" class="checkboxFilter" id="volvo">
+                                            <label for="volvo">Volvo</label>
+                                        </div>                        
+                                    </div>
+                                </div>
+                                
+                                <div class="filter_year" >                                    
+                                    <div class="year_range ">
+                                        <div id="dateSlider"></div>
+                                    </div>
+                                </div>
+                                
+                                <div class="filter_kilometer" >
+                                    <!-- <p>KM Driven</p> -->
+                                    <div class="kilometer_list">
+                                        <div class="list_1">
+                                            <input type="radio" id="kilometer_1" class="kilometerFilter" name="kilometer" value="30000">
+                                            <label for="kilometer_1">10000 KM - 30000 KM</label>
+                                        </div>
+                
+                                        <div class="list_2">                            
+                                            <input type="radio" id="kilometer_2" class="kilometerFilter" name="kilometer" value="60000">
+                                            <label for="kilometer_2">31000 KM - 60000 KM</label>
+                                        </div>
+                
+                                        <div class="list_3">
+                                            <input type="radio" id="kilometer_3" class="kilometerFilter" name="kilometer" value="100000">
+                                            <label for="kilometer_3">61000 KM - 100000 KM</label>
+                                        </div>
+                
+                                        <div class="list_4">
+                                            <input type="radio" id="kilometer_4" class="kilometerFilter" name="kilometer" value="200000"> 
+                                            <label for="kilometer_4">200000 KM</label>
+                                        </div>    
+                                    </div>
+                                </div>
                             </div>
-                        </div>                   
+                        </div>
+                        
+                        <div class="modal-footer applyFilter">
+                            <div class="btn btn-warning text-white" id="applyFilter" >
+                                Apply
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
-            
         </aside>
         
         <main class="">
@@ -321,6 +494,45 @@
                 <!-- <div id="carouselExampleIndicators">
                     
                 </div> -->
+            </div>
+
+            <div class="mobileFilter filter_container owl-1 owl-carousel">
+
+                <div class="dropdown filter_options filter_budget">
+                    <button class="btn btn-warning btn-sm dropdown-toggle text-white shadow-none" 
+                    type="button" data-bs-toggle="modal" data-bs-target="#modalFilter" aria-expanded="false">
+                      Filters
+                    </button>
+                </div>
+
+                <div class="dropdown filter_options filter_budget">
+                    <button class="btn btn-warning btn-sm dropdown-toggle text-white shadow-none" 
+                    type="button" data-bs-toggle="modal" data-bs-target="#modalFilter" aria-expanded="false">
+                      Budget
+                    </button>
+                </div>
+
+                <div class="dropdown filter_options">
+                    <button class="btn btn-warning btn-sm dropdown-toggle text-white shadow-none" type="button"
+                     data-bs-toggle="modal" data-bs-target="#modalFilter" aria-expanded="false">
+                      Brand
+                    </button>
+                </div>
+
+                <div class="dropdown filter_options">
+                    <button class="btn btn-warning btn-sm dropdown-toggle text-white shadow-none" type="button"
+                     data-bs-toggle="modal" data-bs-target="#modalFilter" aria-expanded="false">
+                      Year
+                    </button>
+                </div>
+
+                <div class="dropdown filter_options">
+                    <button class="btn btn-warning btn-sm dropdown-toggle text-white shadow-none" type="button"  
+                     data-bs-toggle="modal" data-bs-target="#modalFilter" aria-expanded="false">
+                      Kilometer
+                    </button>
+                </div>
+
             </div>
             
             <div class="card_list" id="used_car_list">
@@ -341,7 +553,6 @@
                     </div>
                 </a>  -->
             </div>
-
         </main>
     </div>
     

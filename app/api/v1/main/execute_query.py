@@ -59,7 +59,6 @@ async def get_cars(data, query):
         # if len(data["kilometer"]):
         #     year = " and ( manufacture_year between '{}' and '{}' )".format( str(data["year"][0]), str(data["year"][1]) )
 
-
         query = helper.open_file(inspect.currentframe(), "{}.sql".format(query))
         query = query.format(fule_type + brand + transmission_type + body_type + year)
         result = await database.execute(query, data)

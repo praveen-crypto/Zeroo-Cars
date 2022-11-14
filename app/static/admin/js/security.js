@@ -2,7 +2,7 @@
 
 security = () => {
 
-    console.log("Security Initialised"); 
+    //console.log("Security Initialised"); 
     
     $(".updatePasswordSubmit").on("click", () => {
         console.log( $("#old_password").val() );
