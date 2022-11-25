@@ -1105,11 +1105,8 @@ body::-webkit-scrollbar-thumb {
   .container .inspection_report .body > div:nth-child(7) {
     border-bottom: 0px solid rgba(0, 0, 0, 0.1);
   }
-  .container .technical_specs .body {
-    height: 100%;
-  }
   .container .technical_specs .body .left {
-    height: 100%;
+    height: inherit;
     font-size: initial;
     padding-right: 2px;
   }
@@ -1123,7 +1120,7 @@ body::-webkit-scrollbar-thumb {
     padding-left: 0;
   }
   .container .technical_specs .body .right .scrollspy-example {
-    height: 368px;
+    height: 325px;
     overflow-y: scroll;
     scroll-behavior: smooth;
     font-weight: 300;

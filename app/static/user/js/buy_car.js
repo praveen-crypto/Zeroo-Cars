@@ -5,10 +5,12 @@ buycar_fn = async () => {
     loadOffset = 0;
     allowApiCall = true;
     let orientation = '';
+    limit = 20;
+
     loadCars = async ( kilometer, minPrice , maxPrice , owners, brand, body, year ) => {
         allowApiCall = false;
         
-        let url = `/api/v1/main/cars/?offset=${loadOffset}&limit=8&kilometer=${kilometer}&min_price=${minPrice}&max_price=${maxPrice}&number_of_owners=${owners}`;
+        let url = `/api/v1/main/cars/?offset=${loadOffset}&limit=${limit}&kilometer=${kilometer}&min_price=${minPrice}&max_price=${maxPrice}&number_of_owners=${owners}`;
         
         //fuelType.length > 0 ? fuelType.forEach( (fuel) => { url = url +'&fule_type='+fuel }) : null
         //transmission.length > 0 ? transmission.forEach( (value) => { url = url +'&transmission='+value }) : null
@@ -51,8 +53,7 @@ buycar_fn = async () => {
 
         allowApiCall = true;
     }
-
-
+    
     clearCars = () => {
         $("#used_car_list").empty();
     };
@@ -314,7 +315,7 @@ buycar_fn = async () => {
 
     //--------------------------------------
 
-    //Landing Page Filter 
+    //Landing Page Filter
     let url = window.location.href.split("?")[1];
     let kilometer = '100000000';
     let minPrice = '0';
@@ -343,7 +344,7 @@ buycar_fn = async () => {
     slider.noUiSlider.on('change', async (values, handle) => {        
         loadOffset = 0;
         clearCars();
-       
+        
         minPrice =  String(values[0]);
         maxPrice = String(values[1]);
 
@@ -479,11 +480,6 @@ buycar_fn = async () => {
         if( kilometer == undefined ){
             kilometer = '100000000';
         }
-
-        // console.log(minPrice, maxPrice);
-        // console.log(year);
-        // console.log(kilometer);
-        // console.log(brand);
         
         loadOffset = 0;
         clearCars();

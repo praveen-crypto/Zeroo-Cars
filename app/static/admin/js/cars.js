@@ -7,7 +7,8 @@ car_functions = () => {
     let archiveOffset = 0;
     let liveOffset = 0;
     let soldOffset = 0;
-    
+    let limit = 20;
+
     let car_image_get = "/api/v1/image/thumbnail/photos/";
     let car_image_upload = "/api/v1/admin/thumbnail/photos/";
     let car_image_delete = "/api/v1/admin/thumbnail/photos/";
@@ -161,7 +162,7 @@ car_functions = () => {
             $("#loadMore").click( ()=> { nav_archive_car(false) });
         }
         
-        axios.get("/api/v1/admin/cars/hidden/?offset="+archiveOffset+"&limit=5").then( async (response) => {
+        axios.get(`/api/v1/admin/cars/hidden/?offset=${archiveOffset}&limit=${limit}`).then( async (response) => {
             let list = response.data["data"];   
 
             if(!list.length){
@@ -246,7 +247,7 @@ car_functions = () => {
             $("#loadMore").click( ()=> { navLiveCar(false) });
         }
 
-        axios.get("/api/v1/admin/cars/?offset="+liveOffset+"&limit=5").then( async (response) => {   
+        axios.get(`/api/v1/admin/cars/?offset=${liveOffset}&limit=${limit}`).then( async (response) => {   
             let list = response.data["data"];
 
             if(!list.length){
@@ -342,10 +343,8 @@ car_functions = () => {
             $(".loadMoreContainer").append(`<button id="loadMoreSoldCar" style="cursor: pointer; font-size: 14px; padding: 6px 22px; border: 0; background-color: #FFD230; color: #454545;">Load More</button>`);
             $("#loadMoreSoldCar").click( ()=> { navSoldCar(false) });
         }
-
         
-
-        axios.get("/api/v1/admin/cars/sold/?offset="+soldOffset+"&limit=5").then( async (response) => {
+        axios.get(`/api/v1/admin/cars/sold/?offset=${soldOffset}&limit=${limit}`).then( async (response) => {
             let list = response.data["data"];
 
             if(!list.length){

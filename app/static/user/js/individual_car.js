@@ -149,7 +149,7 @@ specific_car_fn = async () => {
 
     });
 
-    $("#bookNowSubmit").on('click', async () => { 
+    $("#bookNowSubmit").on('click', async () => {
 
         let bookNowName = $('#bookNowName').val();
         let bookNowPhone = $('#bookNowPhone').val();
@@ -182,7 +182,6 @@ specific_car_fn = async () => {
             response.data.message == "ok" ? alert("Response sent succesfully.") : alert("Failed to send, try again.") 
         });
         
-
     });
     //--------------------------------------
 
@@ -199,11 +198,11 @@ specific_car_fn = async () => {
             $("#scroll_item .s1").removeClass("active");
             $("#scroll_item .s2").addClass("active");            
         }
-        if( $("#scroll_list .suspension_and_breaks").position().top < threshold){
-            $("#scroll_item .s1").removeClass("active");
-            $("#scroll_item .s2").removeClass("active"); 
-            $("#scroll_item .s3").addClass("active");           
-        }
+        // if( $("#scroll_list .suspension_and_breaks").position().top < threshold){
+        //     $("#scroll_item .s1").removeClass("active");
+        //     $("#scroll_item .s2").removeClass("active"); 
+        //     $("#scroll_item .s3").addClass("active");           
+        // }
         if( $("#scroll_list .dimensions_and_capacity").position().top < threshold){
             $("#scroll_item .s1").removeClass("active");
             $("#scroll_item .s2").removeClass("active"); 
@@ -233,7 +232,6 @@ specific_car_fn = async () => {
             $("#scroll_item .s5").removeClass("active");
             $("#scroll_item .s6").removeClass("active");
             $("#scroll_item .s7").addClass("active");
-
         }
         if( $("#scroll_list .safety").position().top < threshold){
             $("#scroll_item .s1").removeClass("active");
@@ -244,7 +242,6 @@ specific_car_fn = async () => {
             $("#scroll_item .s6").removeClass("active");
             $("#scroll_item .s7").removeClass("active");  
             $("#scroll_item .s8").addClass("active");
-
         }
         if( $("#scroll_list .entertainment_and_communication").position().top < threshold){
             $("#scroll_item .s1").removeClass("active");
@@ -256,8 +253,7 @@ specific_car_fn = async () => {
             $("#scroll_item .s7").removeClass("active");  
             $("#scroll_item .s8").removeClass("active");          
             $("#scroll_item .s9").addClass("active");          
-        }
-        
+        }        
         if( $("#scroll_list .fuel_and_performance").position().top > threshold){            
             $("#scroll_item .s2").removeClass("active");            
         }
@@ -703,13 +699,13 @@ specific_car_fn = async () => {
     $(".technical_specs .fuel_and_performance .emission_norm_compliance .right").html( fuelPerformance["emission_norm_compliance"] );
 
 
-    // --- Suspension and Brakes
-    $(".technical_specs .suspension_and_breaks .front_disc_and_pads .right").html( suspension["front_disc_and_pads"] );
-    $(".technical_specs .suspension_and_breaks .rear_drum_and_shoes .right").html( suspension["rear_drum_and_shoes"] );
-    $(".technical_specs .suspension_and_breaks .rear_shock_assembly .right").html( suspension["rear_shock_assembly"] );
-    $(".technical_specs .suspension_and_breaks .front_strut_assembly .right").html( suspension["front_strut_assembly"] );
-    $(".technical_specs .suspension_and_breaks .steering_box_assembly .right").html( suspension["steering_box_assembly"] );
-    $(".technical_specs .suspension_and_breaks .power_steering_assembly .right").html( suspension["power_steering_assembly"] );
+    // // --- Suspension and Brakes
+    // $(".technical_specs .suspension_and_breaks .front_disc_and_pads .right").html( suspension["front_disc_and_pads"] );
+    // $(".technical_specs .suspension_and_breaks .rear_drum_and_shoes .right").html( suspension["rear_drum_and_shoes"] );
+    // $(".technical_specs .suspension_and_breaks .rear_shock_assembly .right").html( suspension["rear_shock_assembly"] );
+    // $(".technical_specs .suspension_and_breaks .front_strut_assembly .right").html( suspension["front_strut_assembly"] );
+    // $(".technical_specs .suspension_and_breaks .steering_box_assembly .right").html( suspension["steering_box_assembly"] );
+    // $(".technical_specs .suspension_and_breaks .power_steering_assembly .right").html( suspension["power_steering_assembly"] );
 
 
     // -- Dimensions and Capacity
