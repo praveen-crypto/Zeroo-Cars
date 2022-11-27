@@ -394,16 +394,24 @@ async def get_inquiry(inquiry_type: str, offset: int = Query(0), limit: int = Qu
 @router.post("/password/", tags=["Security"])
 @auth_required([])
 async def change_password(
-    old_pass: str = Form(...), new_pass: str = Form(20), token=Security(security)
+    old_pass: str = Form(...), new_pass: str = Form(...), token=Security(security)
 ):
+
     result = await helper.verify_admin_with_id(
         {"id": token["admin_id"], "password": old_pass}
     )
+
+    print(result)
+
     if result:
-        helper.template(
-            {"id": token["admin_id"], "password": helper.password_hash(new_pass)},
+        password =  helper.password_hash(new_pass)
+        
+        await helper.template(
+            {"id": token["admin_id"], "password":password},
             "change_password",
         )
+        
+        #print('executed')
     return response_format()
 
 @router.get("/cars/count/", tags=["Cars : CRM"])

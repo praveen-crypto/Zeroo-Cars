@@ -1370,10 +1370,12 @@ main {
   .securityMain .resetPassword .title {
     margin-bottom: 10%;
   }
-  .securityMain .resetPassword .oldPassword, .securityMain .resetPassword .newPassword {
+  .securityMain .resetPassword .oldPassword, .securityMain .resetPassword .newPassword, .securityMain .resetPassword .confirmPassword {
     display: flex;
-    justify-content: space-evenly;
+    flex-direction: column;
+    justify-content: space-between;
     margin: 1.8rem 0rem;
+    padding: 0rem 4rem;
     border: 0;
   }
   .securityMain .resetPassword #update_password {

@@ -60,7 +60,7 @@ async def execute(query, placeholder={}):
         else:
             raise HTTPException(status_code=503, detail="Database Unreachable")
     finally:
-        #print(cur._last_executed)  # need to log this
+        print(cur._last_executed)  # need to log this
         if conn:
             conn.close()
 

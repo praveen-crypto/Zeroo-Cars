@@ -11,7 +11,7 @@ from app.helper.format import response_format
 
 print("", "Python Current Version:-", sys.version, "", sep="\n\n")
 
-app = FastAPI()
+app = FastAPI(docs_url = '/docs', redoc_url = None)
 
 app.mount("/static", StaticFiles(directory="./app/static"), name="static")
 
