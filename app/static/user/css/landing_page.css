@@ -301,7 +301,7 @@ main .section-2 h5 {
   margin: 1rem 0;
 }
 main .section-2 .review_card {
-  height: 340px;
+  height: 380px;
   width: 16rem;
   margin: 2rem auto;
   border: 1px solid #E0E0E0;
@@ -321,6 +321,7 @@ main .section-2 .review_card .card-body {
   height: 45%;
   font-size: 14px;
   text-align: left;
+  padding: 8px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -328,9 +329,22 @@ main .section-2 .review_card .card-body {
 main .section-2 .review_card .card-body .card-text {
   margin-top: 0;
 }
-main .section-2 .review_card .card-body .descriptionBottom ul {
+main .section-2 .review_card .card-body .descriptionBottom {
+  display: flex;
+  flex-direction: row;
+  align-self: start;
+  justify-content: center;
   list-style: none;
   padding: 0;
+  font-size: 12px;
+  margin-bottom: 0;
+}
+main .section-2 .review_card .card-body .descriptionBottom .material-icons {
+  font-size: 18px;
+}
+main .section-2 .review_card .card-body .descriptionBottom .loc {
+  margin-bottom: 1px;
+  vertical-align: middle;
 }
 main .section-3 .review_card {
   width: 20rem;
@@ -390,7 +404,7 @@ main .accordion-button:not(.collapsed)::after {
   padding: 0 0 0 3%;
 }
 .footer .right .support {
-  padding: 0 0 0 4rem;
+  padding: 0 0 0 5%;
 }
 .footer .right .title {
   font-weight: 600;
@@ -409,13 +423,7 @@ main .accordion-button:not(.collapsed)::after {
 .footer .legal_copyright {
   color: #ffffff;
   margin: 0.8rem 0 auto 0;
-}
-.footer .legal_rights {
-  color: #ffffff;
-}
-.footer .legal_rights a {
-  text-decoration: none;
-  color: #ffffff;
+  padding: 2% 4%;
 }
 
 #sellcarModal #registration_year::placeholder {
