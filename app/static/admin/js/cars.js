@@ -165,7 +165,7 @@ car_functions = () => {
         axios.get(`/api/v1/admin/cars/hidden/?offset=${archiveOffset}&limit=${limit}`).then( async (response) => {
             let list = response.data["data"];   
 
-            if(!list.length){
+            if(!list.length || list.length < limit){
                 $(".loadMoreContainer").empty();
             }
 
@@ -223,7 +223,7 @@ car_functions = () => {
 
         });
 
-        archiveOffset += 5;        
+        archiveOffset += limit;
     });    
 
     //Load active cars
@@ -250,7 +250,7 @@ car_functions = () => {
         axios.get(`/api/v1/admin/cars/?offset=${liveOffset}&limit=${limit}`).then( async (response) => {   
             let list = response.data["data"];
 
-            if(!list.length){
+            if(!list.length || list.length < limit){
                 $(".loadMoreContainer").empty();
             }
 
@@ -320,7 +320,7 @@ car_functions = () => {
 
         });
 
-        liveOffset += 5;
+        liveOffset += limit;
     });
     
     //Load sold cars
@@ -347,10 +347,10 @@ car_functions = () => {
         axios.get(`/api/v1/admin/cars/sold/?offset=${soldOffset}&limit=${limit}`).then( async (response) => {
             let list = response.data["data"];
 
-            if(!list.length){
+            if(!list.length || list.length < limit){
                 $(".loadMoreContainer").empty();
-            }                    
-
+            }               
+            
             //console.log(list);
 
             for(i=0; i < list.length; i++){
@@ -379,7 +379,7 @@ car_functions = () => {
                             <span class="id small-1 "> `+ list[i]["number_plate"] +  ` </span> 
                             <span class="owner_name small-1">`+ list[i]["owner_name"] +`</span>
                             <span class="date small-1" >`+ date.toLocaleString() +`</span>
-                            <button class="modify_btn modify_btn_`+ uniqueVal +`" id="`+ uniqueVal +`"  width="50%"> Modify </button>
+                            <button class="modify_btn modify_btn_`+ uniqueVal +`" id="`+ uniqueVal +`"  width="50%"> View </button>
                             <button class="sold_btn sold_btn_`+ uniqueVal +`" id="`+ uniqueVal +`"  width="50%"> Sold </button>                            
                         </div>
                     </div>
@@ -389,7 +389,7 @@ car_functions = () => {
                 .click( (event) => {                    
                     id =  $("#soldCars .id_"+event.target.id.toString() ).val();    
                     //console.log("sold", id);
-                    modifyCarsClick();
+                    modifyCarsClick(true);
                 });
 
                 $("#soldCars .card_"+ uniqueVal +" .card_content .sold_btn_"+ uniqueVal)
@@ -413,7 +413,7 @@ car_functions = () => {
 
         });
 
-        soldOffset += 5;
+        soldOffset += limit;
         
     });
     
@@ -470,19 +470,16 @@ car_functions = () => {
         });    
         
     });
-        
+    
     //Modify Car Informations MODAL
-    modifyCarsClick = () => {
+    modifyCarsClick = (sold = false) => {
         $(".amendCarDetail").css("display","block");
-        
-        //console.log('data');
-
+                
         //Initial Modal loading
         axios.get("/api/v1/admin/basic/"+id+"/")
         .then( (response) => {
             let data = response.data["data"];
-            //console.log(String(data.BRAND).capitalize());
-            
+
             $("#car_brand_update").val(data['BRAND']);
             $("#car_model_update").val(String(data.MODEL).capitalize());
             $("#car_mfg_year_update").val(data.MANUFACTURE_YEAR);
@@ -736,6 +733,26 @@ car_functions = () => {
         });
         //#endregion
         
+        if(sold){
+            $("#update_car_submit").hide();
+            $("#cac_apply").hide();
+            $("#dac_apply").hide();
+            $("#eat_apply").hide();
+            $("#eac_apply").hide();
+            $("#exterior_apply").hide();
+            $("#extrep_apply").hide();
+            $("#feature_apply").hide();
+            $("#fap_apply").hide();
+            $("#hab_apply").hide();
+            $("#intr_apply").hide();
+            $("#intrp_apply").hide();
+            $("#oar_apply").hide();
+            $("#safety_apply").hide();
+            $("#sab_apply").hide();
+            $("#saf_apply").hide();
+            $("#vd_apply").hide();
+            $("#whl_apply").hide();
+        }
     }
     
     //UPDATE BASIC/GENERAL CAR DETAILS

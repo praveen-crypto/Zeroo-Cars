@@ -8,23 +8,26 @@ buycar_fn = async () => {
     limit = 20;
 
     loadCars = async ( kilometer, minPrice , maxPrice , owners, brand, body, year ) => {
-        allowApiCall = false;
-        
+        allowApiCall = false;               
+
         let url = `/api/v1/main/cars/?offset=${loadOffset}&limit=${limit}&kilometer=${kilometer}&min_price=${minPrice}&max_price=${maxPrice}&number_of_owners=${owners}`;
         
         //fuelType.length > 0 ? fuelType.forEach( (fuel) => { url = url +'&fule_type='+fuel }) : null
         //transmission.length > 0 ? transmission.forEach( (value) => { url = url +'&transmission='+value }) : null
-        brand.length > 0 ? brand.forEach( (val) => { url = url +'&brand='+val.replace("%", " ") }) : []
+        
+        brand.length > 0 ? brand.forEach( (val) => { url = url +'&brand='+val.replace("%", " ").replace("_", " ") }) : []
         body.length > 0 ? body.forEach( (val) => { url = url +'&body='+val }) : []
         year.length > 0 ? year.forEach( (val) => { url = url +'&year='+val }) : []
         
+        //console.log(url);
+
         let res = await axios.get(url);
         let data = res.data.data;
 
         if(data.length <= 0){
             return;
         }
-
+        
         for(i = 0; i < data.length; i++){
             //Image Ratio 16:9
             //Pixel size 520 * 292 For Thumbnail                              
@@ -49,8 +52,8 @@ buycar_fn = async () => {
 
         }
         
-        loadOffset = loadOffset + 8;
-
+        loadOffset = loadOffset + limit;
+        
         allowApiCall = true;
     }
     
@@ -70,7 +73,7 @@ buycar_fn = async () => {
     else{
         $(".mobileFilterBody").empty();
         orientation = 'horizontal';
-    }    
+    }
     
     noUiSlider.create(slider, {
         start: [100000, 1000000],     
@@ -456,11 +459,12 @@ buycar_fn = async () => {
         toggleActiveClass('kilometer');
     });
 
+    //brand filter
     $('.mobileModalFilter .checkboxFilter').on('change', async function() {    
-        
+        //console.log("this", this);
         if(this.checked)
         {
-            brand.push(this.id);
+            brand.push(this.name);
         }
         else{
             brand = brand.filter(item => item !== this.id)

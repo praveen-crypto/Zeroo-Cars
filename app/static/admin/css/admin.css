@@ -1019,6 +1019,9 @@ main {
     color: #1B3A57;
     margin-left: 1rem;
   }
+  .cars .modal .modal_header .close_modal {
+    background-color: #ffffff;
+  }
   .cars .modal .modal_header button {
     width: 40px;
     border: none;

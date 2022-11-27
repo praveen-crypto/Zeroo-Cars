@@ -711,7 +711,7 @@ nav .mobile_nav .nav_list_outer ul li a {
     margin-right: 5px;
   }
   ::-webkit-scrollbar-thumb {
-    background: #ffd230;
+    background: #90A4AE;
     border-radius: 10px;
   }
   .page-wrapper {
@@ -726,8 +726,6 @@ nav .mobile_nav .nav_list_outer ul li a {
     height: 800px;
     display: block;
     padding: 3%;
-    scrollbar-width: thin;
-    scrollbar-color: #90A4AE #CFD8DC;
   }
   .page-wrapper .aside .filters {
     background-color: #ffffff;
@@ -796,6 +794,7 @@ nav .mobile_nav .nav_list_outer ul li a {
   .page-wrapper .aside .filters .filter_brand {
     height: 300px;
     overflow-y: scroll;
+    scrollbar-color: #90A4AE #CFD8DC;
   }
   .page-wrapper .aside .filters .filter_brand .brand_list {
     width: 100%;
