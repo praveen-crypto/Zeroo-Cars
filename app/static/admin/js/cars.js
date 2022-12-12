@@ -169,9 +169,9 @@ car_functions = () => {
                 $(".loadMoreContainer").empty();
             }
 
-            for(i=0; i < list.length; i++){
+            for(i = 0; i < list.length; i++){
                 let date = new Date( list[i]["created"] + "+00:00");
-                                
+                
                 // Image Ratio 16:9
                 // Pixel size 520 * 292 For Thumbnail
                 let image = list[i]["thumbnail"] == null ? '' : JSON.parse(list[i]["thumbnail"])[0].image;                
@@ -419,18 +419,24 @@ car_functions = () => {
     
     //Add car click event 
     $("#add_car_submit").on("click", () => {
-        let reg_number = $("#reg_number").val();
-        let owner_name = $("#owner_name").val();
-        let owner_number = $("#owner_number").val();
-        let chassis_number = $("#chassis_number").val();
-        let history = $("#history").val();
-        let kilometer = $("#kilometer").val();
-        let car_model = $("#car_model").val();
-        let car_brand = $("#car_brand").val();
-        let car_mfg_year = $("#car_mfg_year").val();
-        let car_color = $("#car_color").val();
-        let car_price = $("#car_price").val();
+        let specialCharPattern = "^[a-zA-Z0-9]*$";
+        let alphabetPattern = "^[a-zA-Z]+$";
+        let numberPattern = "^[0-9]+$";
         
+        let reg_number = ($("#reg_number").val().match(specialCharPattern) == null) ? '' : $("#reg_number").val();
+        
+        let owner_name = ($("#owner_name").val().match(alphabetPattern) == null) ? '' : $("#owner_name").val();
+
+        let owner_number = ($("#owner_number").val().match(numberPattern) == null) ? '' : $("#owner_number").val();
+        let chassis_number = ($("#chassis_number").val().match(numberPattern) == null) ? '' : $("#chassis_number").val();
+        let history = $("#history").val();
+        let kilometer = ($("#kilometer").val().match(numberPattern) == null) ? '' : $("#kilometer").val();
+        let car_model = ($("#car_model").val().match(alphabetPattern) == null) ? '' : $("#car_model").val();
+        let car_brand = ($("#car_brand").val().match(alphabetPattern) == null) ? '' : $("#car_brand").val();
+        let car_mfg_year = ($("#car_mfg_year").val().match(numberPattern) == null) ? '' : $("#car_mfg_year").val();
+        let car_color = ($("#car_color").val().match(alphabetPattern) == null) ? '' : $("#car_color").val();
+        let car_price = ($("#car_price").val().match(numberPattern) == null) ? '' : $("#car_price").val();
+
         if(reg_number == '' || owner_name == '' || owner_number == '' || chassis_number == '' || kilometer == ''){
             alert("Fill all details");
             return
@@ -453,20 +459,17 @@ car_functions = () => {
         form.append("manufacture_year", car_mfg_year);
         form.append("color", car_color); 
         form.append("price", car_price);     
-        
+
+        //console.log("success");
+
         axios
         .post("/api/v1/admin/car/", form)
         .then((response) => {
                 alert("Created successfully");
                 location.reload();          
             },            
-            (error) => {
-            if(error.response.status == 401){                
-                alert(error.response.data['message']);                
-            }            
-            else{
-                //console.log(error.response.data['message']);            
-            }
+            (error) => {                
+            alert(error.response.data['message']);            
         });    
         
     });

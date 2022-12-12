@@ -464,7 +464,7 @@ nav .mobile_nav .nav_list_outer ul li a {
   padding: 0 0 0 3%;
 }
 .footer .right .support {
-  padding: 0 0 0 4rem;
+  padding: 0 0 0 5%;
 }
 .footer .right .title {
   font-weight: 600;
@@ -483,13 +483,7 @@ nav .mobile_nav .nav_list_outer ul li a {
 .footer .legal_copyright {
   color: #ffffff;
   margin: 0.8rem 0 auto 0;
-}
-.footer .legal_rights {
-  color: #ffffff;
-}
-.footer .legal_rights a {
-  text-decoration: none;
-  color: #ffffff;
+  padding: 2% 4%;
 }
 
 #sellcarModal #registration_year::placeholder {
