@@ -465,6 +465,7 @@ main {
 .cars .soldCars .sold-car-card .sold_car_image_container .archive_car_image,
 .cars .soldCars .sold-car-card .sold_car_image_container .sold_car_image {
     width: 100%;
+    min-height: 150px;
     height: auto;
   }
   .cars .list-car .car-card .modify_btn,

@@ -31,9 +31,10 @@ def password_hash(password: str):
 async def verify_admin(data):
     try:
         result = await execute_query.get_admin_login_details(data)
-        if result == () or not bcrypt.checkpw(
-            data["password"].encode(), (result[0]["password"] + "").encode()
-        ):
+        
+        print("\nPassword", result)
+
+        if result == () or not data["password"] == result[0]["password"]: #bcrypt.checkpw( data["password"].encode(), (result[0]["password"] + "").encode() ):
             raise HTTPException(status_code=401, detail="Invalid user credentials")
         if result[0]["status"] != True:
             raise HTTPException(status_code=403, detail="User not active")
@@ -72,9 +73,8 @@ async def verify_admin(data):
 async def verify_admin_with_id(data):
     try:
         result = await execute_query.get_admin_login_details_with_id(data)
-        if result == () or not bcrypt.checkpw(
-            data["password"].encode(), (result[0]["password"] + "").encode()
-        ):
+        print("passwd :",result)
+        if result == () or not data["password"] == result[0]["password"]: #bcrypt.checkpw( data["password"].encode(), (result[0]["password"] + "").encode() ):
             raise HTTPException(status_code=401, detail="Invalid user credentials")
         if result[0]["status"] != True:
             raise HTTPException(status_code=403, detail="User not active")

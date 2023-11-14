@@ -437,11 +437,16 @@ car_functions = () => {
         let car_color = ($("#car_color").val().match(alphabetPattern) == null) ? '' : $("#car_color").val();
         let car_price = ($("#car_price").val().match(numberPattern) == null) ? '' : $("#car_price").val();
 
-        if(reg_number == '' || owner_name == '' || owner_number == '' || chassis_number == '' || kilometer == ''){
+        //console.log(reg_number,owner_name,owner_number,chassis_number,kilometer );
+        if(reg_number == '' ){
+            alert("Fill registartion number");
+            return
+        }
+        else if(owner_name == '' || owner_number == '' || chassis_number == '' || kilometer == ''){
             alert("Fill all details");
             return
         }
-
+        //console.log(car_model,car_brand,car_mfg_year,car_color,car_price );
         if(car_model == '' || car_brand == '' || car_mfg_year == '' || car_color == '' || car_price == ''){
             alert("Fill all details");
             return
