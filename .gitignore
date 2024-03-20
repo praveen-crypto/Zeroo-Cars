@@ -16,3 +16,5 @@ run_server.py
 
 node_modules
 app/config/ZerooCars-ca-certificate_old.crt
+
+venv

@@ -13,11 +13,10 @@ loop = asyncio.get_event_loop()
 config = configparser.ConfigParser()
 config.read("app/config/config.ini")
 
-
 # Encrypted connection using TLS/SSL: Flexible Server supports encrypted connections using Transport Layer Security (TLS 1.2)
 # all incoming connections with TLS 1.0 and TLS 1.1 will be denied by default.
 ctx = ssl.SSLContext(ssl.PROTOCOL_TLSv1_2)
-ctx.load_verify_locations('app/config/ZerooCars-ca-certificate.crt')
+ctx.load_verify_locations('app/config/zeroo_cars-ca-certificate.crt')
 
 async def execute(query, placeholder={}):
     """Executes a single query
@@ -64,7 +63,6 @@ async def execute(query, placeholder={}):
         if conn:
             conn.close()
 
-
 async def executemany(query, placeholder={}):
     """Executes many query
 
@@ -107,7 +105,6 @@ async def executemany(query, placeholder={}):
         # print(cur._last_executed)  # need to log this
         if conn:
             conn.close()
-
 
 async def callproc(query, data):
     try:

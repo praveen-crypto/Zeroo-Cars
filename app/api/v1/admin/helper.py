@@ -34,7 +34,8 @@ async def verify_admin(data):
         
         print("\nPassword", result)
 
-        if result == () or not data["password"] == result[0]["password"]: #bcrypt.checkpw( data["password"].encode(), (result[0]["password"] + "").encode() ):
+        #if result == () or not data["password"] == result[0]["password"]: #
+        if bcrypt.checkpw( data["password"].encode(), (result[0]["password"] + "").encode() ):
             raise HTTPException(status_code=401, detail="Invalid user credentials")
         if result[0]["status"] != True:
             raise HTTPException(status_code=403, detail="User not active")
