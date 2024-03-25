@@ -428,7 +428,7 @@ car_functions = () => {
         let owner_name = ($("#owner_name").val().match(alphabetPattern) == null) ? '' : $("#owner_name").val();
 
         let owner_number = ($("#owner_number").val().match(numberPattern) == null) ? '' : $("#owner_number").val();
-        let chassis_number = ($("#chassis_number").val().match(numberPattern) == null) ? '' : $("#chassis_number").val();
+        let chassis_number = ($("#chassis_number").val().match(specialCharPattern) == null) ? '' : $("#chassis_number").val();
         let history = $("#history").val();
         let kilometer = ($("#kilometer").val().match(numberPattern) == null) ? '' : $("#kilometer").val();
         let car_model = ($("#car_model").val().match(alphabetPattern) == null) ? '' : $("#car_model").val();
@@ -438,19 +438,29 @@ car_functions = () => {
         let car_price = ($("#car_price").val().match(numberPattern) == null) ? '' : $("#car_price").val();
 
         //console.log(reg_number,owner_name,owner_number,chassis_number,kilometer );
-        if(reg_number == '' ){
-            alert("Fill registartion number");
-            return
+        const errorMessage =
+            reg_number == '' ? "Fill Registartion number" :
+            owner_name == '' ? "Fill Owner Name" :
+            owner_number == '' ? "Fill Owner Number" :
+            chassis_number == '' ? "Fill Chassis Number" :
+            kilometer == '' ? "Fill Kilometer" :
+            car_model == '' ? "Fill Car Model" :
+            car_brand == '' ? "Fill Car Brand" :
+            car_mfg_year == '' ? "Fill Car Manufacture Year" :
+            car_color == '' ? "Fill Car Color" :
+            car_price == '' ? "Fill Car Price" : null;
+
+        if (errorMessage) {
+            alert(errorMessage);
+            return;
         }
-        else if(owner_name == '' || owner_number == '' || chassis_number == '' || kilometer == ''){
-            alert("Fill all details");
-            return
-        }
+        
         //console.log(car_model,car_brand,car_mfg_year,car_color,car_price );
-        if(car_model == '' || car_brand == '' || car_mfg_year == '' || car_color == '' || car_price == ''){
-            alert("Fill all details");
-            return
-        }
+        // if(car_model == '' || car_brand == '' || car_mfg_year == '' || car_color == '' || car_price == ''){
+        //     console.log( {car_model, car_brand, car_mfg_year, car_color, car_price })
+        //     alert("Fill all details");
+        //     return
+        // }
         
         let form = new FormData();
         form.append("number_plate", reg_number);
