@@ -257,9 +257,9 @@ specific_car_fn = async () => {
         if( $("#scroll_list .fuel_and_performance").position().top > threshold){            
             $("#scroll_item .s2").removeClass("active");            
         }
-        if( $("#scroll_list .suspension_and_breaks").position().top > threshold){
-            $("#scroll_item .s3").removeClass("active");           
-        }
+        // if( $("#scroll_list .suspension_and_breaks").position().top > threshold){
+        //     $("#scroll_item .s3").removeClass("active");           
+        // }
         if( $("#scroll_list .dimensions_and_capacity").position().top > threshold){
             $("#scroll_item .s4").removeClass("active");            
         }
